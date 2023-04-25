@@ -56,21 +56,19 @@ const {
 
 // Aca vendrian las relaciones
 //User.hasMany(Productinchart)
-Dog.belongsToMany(Temperament, { through: "dog_temperament" });
-Temperament.belongsToMany(Dog, { through: "dog_temperament" });
-User.hasMany(Cart);
-Cart.hasMany(Productinchart);
-//AGREGAR REVIEW
-User.hasMany(Review);
-Products.hasMany(Review);
-Review.belongsTo(Products);
+
+User.hasMany(ShoppingCart);
+ShoppingCart.hasMany(Products);
+//AGREGAR FAVORITE
+Products.hasMany(Favorite);
+Favorite.belongsTo(Products);
 
 User.hasMany(Favorite);
-//User.hasMany(Favorite);
-//ESTADISTICAS DE PRODUCTOS
-User.hasMany(Historiccart);
-Historiccart.hasMany(Historicproduct);
+User.hasMany(Adress);
 
+
+Admin.hasMany(Products);
+Admin.hasMany(User);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
