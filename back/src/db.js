@@ -41,7 +41,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const {
    Admin,
-  Adress,
+   Adress,
    User,
    Products,
    Favorite,
