@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-// Agregar propiedades de admin.
+//! Agregar propiedades de admin.
 
 module.exports = (sequelize) => {
   const Admin = sequelize.define('user', {
