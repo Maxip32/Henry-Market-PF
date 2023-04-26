@@ -15,7 +15,7 @@ const sequelize = new Sequelize(
 const basename = path.basename(__filename);
 const modelDefiners = [];
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
+
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
     (file) =>
@@ -66,6 +66,6 @@ module.exports = {
    Favorite: sequelize.models.Favorite,
    ProductsName: sequelize.models.ProductsName,
    ShoppingCart: sequelize.models.ShoppingCart,
-   Adress: sequelize.models.Adress, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+   Adress: sequelize.models.Adress, 
+  conn: sequelize, 
 };
