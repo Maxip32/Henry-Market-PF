@@ -1,5 +1,6 @@
 const {ShoppingCart, ProductsName} = require("../db");
 
+
 const getShoppingCartById = async (id) => {
     try {
         const shoppingCart = await ShoppingCart.findByPk(id, {
