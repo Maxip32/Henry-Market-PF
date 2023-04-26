@@ -1,7 +1,11 @@
 const axios = require('axios');
-import cloudynaryConfig from "../../configs/cloudynaryConfig";
-
 const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name: "dsdsit7gk",
+    api_key: "655469967346251",
+    api_secret: "DSSC-5A70hjrDgdH8JYxDBN9klA"
+});
 
 const uploadImage = async (imagePath) => {
     try {
@@ -12,11 +16,12 @@ const uploadImage = async (imagePath) => {
         console.error(error);
     }
 }
-const getAssetInfo = async (publicId) => {
+const getAssetInfo = async () => {
     try {
-        // Get details about the asset
-        const reult = await cloudinary.url('imageName', {width: 200, height: 200});
+        const result = await cloudinary.api.resources({max_results: 500})
+        // res es un array de objetos con la propiedad url y url_secure que nos interesan
         console.log(result);
+        return result;
     } catch (error) {
         console.error(error);
     }
