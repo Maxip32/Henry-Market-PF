@@ -1,6 +1,6 @@
 const { getApiData, getDbData } = require('./saveData');
 
-const getProducts = async () => {
+const getAllProducts = async () => {
     try {
         const allProductsDb = await getDbData();
         const allProductsApi = await getApiData();
@@ -19,4 +19,4 @@ const getProducts = async () => {
     }
 };
 
-module.exports = { getProducts };
+module.exports = { getAllProducts };
