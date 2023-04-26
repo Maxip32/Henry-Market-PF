@@ -17,13 +17,17 @@ const modelDefiners = [];
 
 
 fs.readdirSync(path.join(__dirname, '/models'))
-  .filter(
-    (file) =>
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-  )
-  .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
-  });
+
+   .filter(
+      (file) =>
+         file.indexOf('.') !== 0 &&
+         (file !== basename) &&
+         (file.slice(-3) === '.js')
+   )
+   .forEach((file) => {
+      modelDefiners.push(require(path.join(__dirname, '/models', file)));
+   });
+
 
 // Inyectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
@@ -39,6 +43,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const {
+
   Admin,
   Adress,
   User,
@@ -69,3 +74,4 @@ module.exports = {
    Adress: sequelize.models.Adress, 
   conn: sequelize, 
 };
+
