@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const productsRouter = require("express").Router();
 
-router.get('/', (req, res) => {
-  res.send('¡Hola desde la ruta raíz!');
+productsRouter.get('/', (req, res) => {
+  res.send('¡Hola desde la ruta Products!');
 });
 
-module.exports = router;
+module.exports = productsRouter;
