@@ -1,5 +1,6 @@
 
 const axios = require('axios');
+import cloudynaryConfig from "../../configs/cloudynaryConfig";
 
 //! Info API (cloudinary supongo)
 const getApiData = async () => {
