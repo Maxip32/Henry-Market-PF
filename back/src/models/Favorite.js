@@ -9,8 +9,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: true,
       },
-
-      product: {
+      productId: {
         type: DataTypes.INTEGER,
       },
     },
