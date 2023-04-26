@@ -1,3 +1,7 @@
+
+node_modules
+.env
+
 # Logs
 logs
 *.log
@@ -105,3 +109,4 @@ dist
 
 # package-lock.json
 package-lock.json
+
