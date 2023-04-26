@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import styled from "./Search.module.css";
+import styled from "./Search.module.css"
 
 
 export default function SearchBar() {
