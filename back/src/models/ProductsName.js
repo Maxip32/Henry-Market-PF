@@ -1,12 +1,14 @@
+const Sequelize = require("sequelize");
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
     "productsName",
     {
       id: {
-        type: DataTypes.INTEGER,// numeros enteros 
-        allowNull: false,//unico id
-        primaryKey: true,// cada registro tiene un valor único. !!!!!
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true,
       },
 
       name: {
@@ -21,6 +23,7 @@ module.exports = (sequelize) => {
 
       image: {
         type: DataTypes.TEXT,
+        allowNull: false,
       },
 
       category: {
@@ -35,7 +38,15 @@ module.exports = (sequelize) => {
 
       stock: {
         type: DataTypes.INTEGER,
-        
+        allowNull: false,
+      },
+
+      colors: {
+        type: DataTypes.ARRAY(DataTypes.STRING), 
+      },
+
+      sizes: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
     },
     {
