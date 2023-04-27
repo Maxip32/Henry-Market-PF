@@ -49,7 +49,7 @@ const getApiData = async () => {
 // };
 //! Info de la DB
 const getDbData = async () => {
-    const res = Products.finAll({
+    const res = Products.findAll({
         include: {
             model: ProductsName,
             attributes: ['name'],
