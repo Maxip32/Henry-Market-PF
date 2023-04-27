@@ -1,6 +1,6 @@
 const { getApiData, getDbData } = require('./saveData.js');
 
-const getProducts = async (name) => {
+const getByName = async (name) => {
     if(!name) throw new Error('No prodcut found');
     if(name.charAt(0) === name.charAt(0).toUpperCase()){
         //Si el primer caracter es mayuscula
@@ -31,4 +31,4 @@ const getProducts = async (name) => {
     };
 };
 
-module.exports = { getProducts };
+module.exports = { getByName };
