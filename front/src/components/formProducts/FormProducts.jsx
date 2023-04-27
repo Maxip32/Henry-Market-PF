@@ -108,7 +108,7 @@ const FormProducts = () => {
             <div>
                 <p>sizes</p>
 
-                <label><input type="checkbox" name="sizes" value="xs" onChange={handleCheck} />x</label>
+                <label><input type="checkbox" name="sizes" value="xs" onChange={handleCheck} />xs</label>
                 <label><input type="checkbox" name="sizes" value="x" onChange={handleCheck} />x</label>
                 <label><input type="checkbox" name="sizes" value="s" onChange={handleCheck} />s</label>
                 <label><input type="checkbox" name="sizes" value="m" onChange={handleCheck} />m</label>
