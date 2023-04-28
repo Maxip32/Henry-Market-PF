@@ -1,24 +1,23 @@
-const { DataTypes } = require("sequelize");
+const {DataTypes} = require("sequelize");
 module.exports = (sequelize) => {
-  sequelize.define(
+    sequelize.define(
+        "shoppingCart",
 
-    "shoppingCart",
+        {
+            id: {
+                type: DataTypes.INTEGER,
 
-    {
-      id: {
-        type: DataTypes.INTEGER,
-      
-        primaryKey: true,
-      },
-      
-    },
-    {
-      timestamps: false,
-    }
-  );
-  
-  const ProductsName = sequelize.models.productsName;
-  const ShoppingCart = sequelize.models.shoppingCart;
-  
-  ShoppingCart.hasMany(ProductsName, { foreignKey: 'shoppingCartId' });
+                primaryKey: true,
+            },
+
+        },
+        {
+            timestamps: false,
+        }
+    );
+
+    const ProductsName = sequelize.models.productsName;
+    const ShoppingCart = sequelize.models.shoppingCart;
+
+    ShoppingCart.hasMany(ProductsName, {foreignKey: 'shoppingCartId'});
 };  
