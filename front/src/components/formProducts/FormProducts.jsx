@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const initialState ={
     "name": "",
@@ -10,9 +10,11 @@ const initialState ={
     "description":"",
     "stock": "",
 }
+
 const FormProducts = () => {
     
     const [form, setForm] = useState(initialState)
+    const [file, setFile] = useState("")
 
     const handleChange = (e) =>{
         const {name, value }= e.target
@@ -45,38 +47,63 @@ const FormProducts = () => {
                   ...form, colors:[...form.colors.filter(el => el !== tipoSeleccionado) ]
                 })
               }
-        }
-        
+        }   
     }
 
-    // const handleImage = (e) => {
-       
-    //     const file = e.target.files[0]
-    //     const fileReader = new FileReader()
-    //     fileReader.readAsDataURL(file)
-    //     fileReader.addEventListener('load',(e)=>{
-    //         setForm({
-    //             ...form, image : e.target.result
-    //         })
-    //     })
-    //     setForm({...form, image: file})
-    // }
+    const handleImage = (e) =>{
+        setFile(e.target.files[0])
+    }
+
+
+    const uploadImage = async (e) => {
+        const public_id = file.name.split('.')[0];
+        const data = new FormData();
+        data.append('file', file, file.name)
+        data.append('public_id', public_id);
+        data.append('tags', `codeinfuse, medium, gist`)
+        data.append('upload_preset', 'uwen44tw')
+        data.append('api_key', '136633542476255')
+        data.append('timestamp', (Date.now()/1000))
+
+        const cloud_name = 'dzcvicnlw'
+        const resource_type = 'image'
+        const action = 'upload'
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/${resource_type}/${action}`,
+            {
+                method: 'POST',
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: data
+            })
+
+        const response = await res.json()
+
+        return response.url
+    }
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
+
+        const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
+        const resJson = await resFound.json()
+
+        if(resJson) return console.log('producto ya existe')
+
+        const IMAGEURL = await uploadImage()
 
         const res = await fetch('http://localhost:3001/products/',{
             method:'POST',      
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify({...form, image:IMAGEURL})
         })
         const data = await res.json()
         console.log(data)
-
     }
-
+    
   return (
     <div>
         <h3>Create products</h3>
@@ -87,7 +114,7 @@ const FormProducts = () => {
             </div>
             <div>
                 <label htmlFor="">image</label>
-                <input type="text" name="image" value={form.image} onChange={handleChange} />
+                <input type="file" name="image" onChange={handleImage} />
             </div>
             <div>
                 <label htmlFor="">price</label>
