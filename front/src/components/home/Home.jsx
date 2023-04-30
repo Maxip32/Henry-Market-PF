@@ -24,10 +24,9 @@ export default function Home() {
 */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from "../../redux/actions";
-//import Search from "../searchbar/Search";
+import { allProducts } from "../../redux/actions";import Search from "../searchbar/Search";
 
-// import "./Home.css";
+ import "./Home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,6 +38,7 @@ export default function Home() {
 
   return (
     <div>
+      <Search />
       {products && products.map((product) => (
         <div key={product.id} className="product">
           <img src={product.image} alt={product.name} />
