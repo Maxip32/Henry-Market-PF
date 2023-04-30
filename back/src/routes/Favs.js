@@ -1,6 +1,6 @@
 
 const { addFav, getFavs, deleteFav } = require('../controllers/Favorites/favController');
-const favRouter = Router();
+const favRouter = require('express').Router();
 
 favRouter.post("/", addFav);
 favRouter.get("/", getFavs);

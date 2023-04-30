@@ -50,6 +50,7 @@ const {
   ProductsName,
   Favorite,
   ShoppingCart,
+  Reviews,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -72,6 +73,7 @@ module.exports = {
    ProductsName: sequelize.models.ProductsName,
    ShoppingCart: sequelize.models.ShoppingCart,
    Adress: sequelize.models.Adress, 
+   Reviews: sequelize.models.Reviews,
   conn: sequelize, 
 };
 
