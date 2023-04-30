@@ -34,4 +34,25 @@
     margin-top: 15px;
     color: aliceblue;
   }
+  .product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .product img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .product h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .product p {
+    margin: 0;
+    font-size: 16px;
+  }
   

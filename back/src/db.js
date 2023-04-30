@@ -50,6 +50,7 @@ const {
   ProductsName,
   Favorite,
   ShoppingCart,
+  
 } = sequelize.models;
 
 // Aca vendrian las relaciones
