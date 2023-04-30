@@ -51,7 +51,7 @@ const getApiData = async () => {
 const getDbData = async () => {
     const res = Products.findAll({
         include: {
-            model: ProductsName,
+            model: Product,
             attributes: ['name'],
         }
     })

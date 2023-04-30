@@ -1,23 +1,22 @@
+const Sequelize = require("sequelize");
 const {DataTypes} = require("sequelize");
 module.exports = (sequelize) => {
-    sequelize.define(
-        "shoppingCart",
+	sequelize.define(
+		"shoppingCart",
+		{
+			id: {
+				type: DataTypes.UUID,
+				defaultValue: Sequelize.UUIDV4,
+        		allowNull: false,
+				primaryKey: true,
+			},
+			listProducts: {
+				type: DataTypes.ARRAY(DataTypes.STRING),
+			}
+		},
+		{
+			timestamps: false,
+		}
+	);
 
-        {
-            id: {
-                type: DataTypes.INTEGER,
-
-                primaryKey: true,
-            },
-
-        },
-        {
-            timestamps: false,
-        }
-    );
-
-    const ProductsName = sequelize.models.productsName;
-    const ShoppingCart = sequelize.models.shoppingCart;
-
-    ShoppingCart.hasMany(ProductsName, {foreignKey: 'shoppingCartId'});
 };  

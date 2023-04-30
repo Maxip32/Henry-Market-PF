@@ -1,35 +1,34 @@
-const { DataTypes } = require("sequelize");
+
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('admin', {
+    sequelize.define('address', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-    },
-    mail: {
+   },
+    street: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    name: {
+   },
+    number: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    surname: {
+   },
+    city: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    password: {
+   },
+    country: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    isAdmin: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
+   },
   },
   { timestamps: false }
-  );}
+
+
+  );
+};

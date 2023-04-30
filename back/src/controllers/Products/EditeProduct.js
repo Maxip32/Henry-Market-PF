@@ -1,10 +1,10 @@
-const { ProductsName } = require("../../db");
+const { Product } = require("../../db");
 
 const editeProducts = async (req, res) => {
     try {
         const { id, name, image, price, colors, size, category, description, stock } = req.body;
     
-        const [rowsUpdated, [updatedProduct]] = await ProductsName.update({
+        const [rowsUpdated, [updatedProduct]] = await Product.update({
           name,
           image,
           price,

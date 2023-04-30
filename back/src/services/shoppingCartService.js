@@ -1,10 +1,10 @@
-const {ShoppingCart, ProductsName} = require("../db");
+const {ShoppingCart, Products} = require("../db");
 
 
 const getShoppingCartById = async (id) => {
     try {
         const shoppingCart = await ShoppingCart.findByPk(id, {
-            include: ProductsName
+            include: Products
         });
         return shoppingCart;
     } catch (error) {
@@ -15,7 +15,7 @@ const getShoppingCartById = async (id) => {
 const getAllShoppingCarts = async () => {
     try {
         const shoppingCarts = await ShoppingCart.findAll({
-            include: ProductsName
+            include: Products
         });
         return shoppingCarts;
     } catch (error) {
@@ -23,7 +23,20 @@ const getAllShoppingCarts = async () => {
     }
 }
 
+const createShoppingCart = async (listProducts) => {
+    try {
+        if(typeof listProducts !== "object" ) return {error: "Ingrese un array"}
+        const cart = await ShoppingCart.create({
+            listProducts: listProducts
+        });
+        return cart;
+    } catch (error) {
+        return {error: error.message};
+    }
+}
+
 module.exports = {
     getShoppingCartById,
-    getAllShoppingCarts
+    getAllShoppingCarts,
+    createShoppingCart
 }
