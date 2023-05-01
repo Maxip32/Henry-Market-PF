@@ -19,7 +19,7 @@ router.get('/allproducts', async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 });
-router.get('/products/name', async (req, res) => {
+router.get('/products/name/:name', async (req, res) => {
     //* Para buscar en Thunder ==> parameter name ---- value = nombre producto
     const { name } = req.query;
     try {

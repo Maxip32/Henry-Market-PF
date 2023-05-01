@@ -1,13 +1,15 @@
 const products = [
     {
+      
         id: 1,
-        name: "Producto 1",
+        name: "Maleta",    
         description:  "Equipaje giratorio rígido para viajes de trabajo, escapadas de fin de semana o como equipaje de mano internacional.",
         price: 10,
         colors: ["rojo", "azul", "verde"],
         sizes: ["S", "M", "L"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682814364/imagenes%20henry/maleta_de_viaje_Henry_juye8n.png",
-         
+        category: "Hogar",
+        stock: ""
       },
       {
         id: 2,

@@ -21,7 +21,7 @@
  
  module.exports = { getAllProducts };*/
 
- const { products } = require('../../utils/Products');
+ /*const { products } = require('../../utils/Products');
 const { ProductsName } = require("../../db");
 
 const getAllProducts = async (req, res) => {
@@ -34,4 +34,4 @@ const getAllProducts = async (req, res) => {
 };
 
 module.exports = { getAllProducts };
- 
+ */
