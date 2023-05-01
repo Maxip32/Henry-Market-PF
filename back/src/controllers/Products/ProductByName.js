@@ -1,33 +1,19 @@
-const { Products } = require("../../utils/data");
+const { ProductsName } = require("../../db");
 
 const getByName = async (req, res) => {
-  try {
-    const { name } = req.params;
-    const product = await Products.findAll({
-        where: { name: { [Op.like]: `%${name}%` } },
-    });
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
+
+    try {
+        const {name} = req.params
+        const product = await ProductsName.findOne({ where: { name: name.toLowerCase() } });
+        res.json(product)
+
+    } catch (error) {
+        return  res.status(500).json({ error: error.message })
     }
-    return res.json(product);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+
 };
 
 module.exports = { getByName };
-
-
-/*router.get('/products/name/:name', async (req, res) => {
-    try {
-      const name = req.params.name.toLowerCase();
-      const products = await Products.findAll({ where: { name: { [Op.like]: `%${name}%` } } });
-      res.json(products);
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
-  });
-  */
 
 
 // const { getApiData, getDbData } = require('./saveData.js');
