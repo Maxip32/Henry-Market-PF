@@ -1,21 +1,30 @@
 const { ProductsName } = require("../../db");
+const { products } = require("../../utils/data");
 
-const getByCategory = async (req, res) => {
-    try {
-        const {category} = req.params
-        let allProducts = await ProductsName.findAll();
-        allProducts = allProducts.filter((product)=>(product.category === category.toLowerCase()) )
-        res.json(allProducts)
+// const getByCategory = async (req, res) => {
+//     try {
+//         const {category} = req.params
+//         let allProducts = await ProductsName.findAll();
+//         allProducts = allProducts.filter((product)=>(product.category === category.toLowerCase()) )
+//         res.json(allProducts)
 
-    } catch (error) {
-        return  res.status(500).json({ error: error.message })
-    }
+//     } catch (error) {
+//         return  res.status(500).json({ error: error.message })
+//     }
 
+// };
+
+const getByCategoryInData = async (category) => {
+  const filteredProducts = products.filter((product) =>
+    product.category.toLowerCase().includes(category.toLowerCase())
+  );
+  return filteredProducts;
 };
 
-module.exports = { getByCategory };
-
-
+module.exports = {
+  // getByCategory,
+  getByCategoryInData,
+};
 
 // const { getApiData, getDbData } = require('./saveData');
 

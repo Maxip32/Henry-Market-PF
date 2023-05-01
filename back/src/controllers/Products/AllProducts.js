@@ -10,4 +10,9 @@ const getAllProducts = async (req, res) => {
     }
 };
 
-module.exports = { getAllProducts };
+const getProductById = async (id) => {
+    const product = products.findIndex(id);
+    return product;
+  };
+
+module.exports = { getAllProducts, getProductById };

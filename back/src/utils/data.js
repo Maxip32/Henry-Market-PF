@@ -1,53 +1,58 @@
 const products = [
     {
         id: 1,
-        name: "Producto 1",
+        name: "Carry-On",
         description:  "Equipaje giratorio rígido para viajes de trabajo, escapadas de fin de semana o como equipaje de mano internacional.",
         price: 10,
         colors: ["rojo", "azul", "verde"],
         sizes: ["S", "M", "L"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682814364/imagenes%20henry/maleta_de_viaje_Henry_juye8n.png",
-         
+        category: "Equipaje",
+        stock: 3 
       },
       {
         id: 2,
-        name: "Producto 2",
+        name: "Remera",
         description:  "Remera Lisa Algodón Jersey Peinado Premium.",
         price: 5,
         colors: ["blanco", "gris", "amarillo","negro"],
         sizes: ["S", "M", "L","XL","XXL"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682800364/imagenes%20henry/remera_manga_larga0_ynqelb.png",
-         
+        category: "Vestimenta",
+        stock: 4 
       },
       {
         id: 3,
-        name: "Producto 3",
+        name: "Buzo",
         description:  "Buzo Algodón  Premium..",
         price: 15,
         colors: ["negro","gris", "blanco", "amarillo"],
         sizes: ["S", "M", "L","XL","XXL"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682800363/imagenes%20henry/buzo_blanco0_sjhbmz.png",
-         
+        category: "Vestimenta",
+        stock: 3 
       },
       {
         id: 4,
-        name: "Producto 4",
+        name: "Carry-On",
         description:  "Equipaje giratorio rígido para viajes de trabajo, escapadas de fin de semana o como equipaje de mano internacional.",
         price: 10,
         colors: ["negro", "blanco", "amarillo"],
         sizes: ["S", "M", "L"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682800364/imagenes%20henry/maletadeviaje0_ha2i4z.png",
-         
+        category: "Equipaje",
+        stock: 3 
       },
       {
         id: 5,
-        name: "Producto 5",
+        name: "Gorra",
         description:  "Gorra lisa con estanpado de Henry.",
         price: 8,
         colors: ["blanco", "amarillo", "negro"],
         sizes: ["S", "M", "L"],
         image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682800363/imagenes%20henry/gorra_blanca0_agodsi.png",
-         
+        category: "Vestimenta",
+        stock: 3 
       },
       {
         id: 6,
