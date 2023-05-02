@@ -105,7 +105,10 @@ const FormProducts = () => {
         return response.url
     }
 
+
+    
    
+
 
     const handleSubmit = async (e) =>{
       e.preventDefault()
@@ -126,12 +129,18 @@ const FormProducts = () => {
             body: JSON.stringify({...form, image:IMAGEURL})
         })
         const data = await res.json()
+
+
+        if(data.error) return console.log('producto ya existe')
+        else return console.log(data)
+
         console.log(data)
 
         // Show success message
         alert('Product created successfully!')
     } catch (error) {
         console.log('Product could not be created')
+
     }
 }
 
