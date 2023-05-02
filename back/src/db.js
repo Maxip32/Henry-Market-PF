@@ -1,7 +1,7 @@
-require('dotenv').config();
-const { Sequelize, DataTypes } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+require("dotenv").config();
+const { Sequelize, DataTypes } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -15,19 +15,15 @@ const sequelize = new Sequelize(
 const basename = path.basename(__filename);
 const modelDefiners = [];
 
+fs.readdirSync(path.join(__dirname, "/models"))
 
-fs.readdirSync(path.join(__dirname, '/models'))
-
-   .filter(
-      (file) =>
-         file.indexOf('.') !== 0 &&
-         (file !== basename) &&
-         (file.slice(-3) === '.js')
-   )
-   .forEach((file) => {
-      modelDefiners.push(require(path.join(__dirname, '/models', file)));
-   });
-
+  .filter(
+    (file) =>
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+  )
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, "/models", file)));
+  });
 
 // Inyectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
@@ -42,37 +38,30 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const {
-
-  Admin,
-  Adress,
-  User,
-  ProductsName,
-  Favorite,
-  ShoppingCart,
-  
-} = sequelize.models;
+const { Address, User, ProductsName, ShoppingCart, Review } = sequelize.models;
 
 // Aca vendrian las relaciones
-User.hasMany(ShoppingCart);
-ShoppingCart.hasMany(ProductsName);
 
-ProductsName.hasMany(Favorite);
-Favorite.belongsTo(ProductsName);
+// User.hasMany(Address)
+// Address.belongsTo(User);
 
-User.hasMany(Favorite);
-User.hasMany(Adress);
+User.belongsToMany(ProductsName, { through: "UserProductsNameFavorite" });
+ProductsName.belongsToMany(User, { through: "UserProductsNameFavorite" });
 
-Admin.hasMany(ProductsName);
-Admin.hasMany(User);
+// User.hasMany(ShoppingCart);
+// ShoppingCart.hasMany(User);
+
+ShoppingCart.belongsToMany(ProductsName, { through: "ProductsNameCart" });
+ProductsName.belongsToMany(ShoppingCart, { through: "ProductsNameCart" });
+
+ProductsName.hasMany(Review, { foreignKey: "ProductsNameId" });
+Review.belongsTo(ProductsName, { foreignKey: "ProductsNameId" });
 
 module.exports = {
-   User: sequelize.models.User,
-   Admin: sequelize.models.Admin,
-   Favorite: sequelize.models.Favorite,
-   ProductsName: sequelize.models.ProductsName,
-   ShoppingCart: sequelize.models.ShoppingCart,
-   Adress: sequelize.models.Adress, 
-  conn: sequelize, 
+  User: sequelize.models.User,
+  ProductsName: sequelize.models.ProductsName,
+  ShoppingCart: sequelize.models.ShoppingCart,
+  Address: sequelize.models.Address,
+  Review: sequelize.models.Review,
+  conn: sequelize,
 };
-

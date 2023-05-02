@@ -1,12 +1,17 @@
-const { Favorite } = require('../../db');
+const { User } = require('../../db');
 
-const getFavs = async (req, res) => {
+const getFav = async (req, res) => {
     try {
-        const allFavorites = await Favorite.findAll();
-        res.status(200).json(allFavorites);
+        const { userId } = req.params;
+
+        const user = await User.findByPk(userId);
+        const products = await user.getProductsName();
+
+        return res.json({ products });
     } catch (error) {
-        return res.status(400).json({ msg: error.message });
+        return res.status(500).json({ error: error.message });
     }
+    
 };
 
-module.exports = getFavs;
+module.exports = {getFav};

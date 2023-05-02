@@ -1,17 +1,17 @@
-const { Favorite } = require('../../db');
+const { User, ProductsName } = require('../../db');
 
 const deleteFav = async (req, res) => {
     try {
-        const { id } = req.params;
-        const favToDelete = await Favorite.findByPk(id);
-        if(favToDelete){
-            favToDelete.destroy();
-            return res.status(200).json(favToDelete);
-        }
-        res.status(400).json({msg: "No se encontro el favorito con el ID enviado"});
+        const { productId, userId } = req.body;
+
+        const user = await User.findByPk(userId);
+        const product = await ProductsName.findByPk(productId);
+        await user.removeProduct(product);
+
+        return res.json({ message: 'Producto eliminado de favoritos correctamente' });
     } catch (error) {
-        return res.status(500).json({ msg: error.message });
+        return res.status(500).json({ error: error.message });
     }
 };
 
-module.exports = deleteFav;
+module.exports = {deleteFav};
