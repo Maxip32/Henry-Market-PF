@@ -1,4 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-globals */
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
+import styles from "./FormProducts.module.css"
+
+//import "./FormProducts.css"
 
 const initialState ={
     "name": "",
@@ -11,10 +17,26 @@ const initialState ={
     "stock": "",
 }
 
+          
+         // Update state to true once the dog has been successfully created
+       
 const FormProducts = () => {
+ 
     
     const [form, setForm] = useState(initialState)
     const [file, setFile] = useState("")
+    const [selectedColor, setSelectedColor] = useState("");
+    const [selectedSize, setSelectedSize] = useState("");
+
+    const handleSelect = (event) =>{
+        setSelectedColor(event.target.value);
+       }
+
+       const handleSelectSizes = (event) =>{
+        setSelectedSize(event.target.value);
+       }
+
+       
 
     const handleChange = (e) =>{
         const {name, value }= e.target
@@ -83,16 +105,19 @@ const FormProducts = () => {
         return response.url
     }
 
+   
+
     const handleSubmit = async (e) =>{
-        e.preventDefault()
-
-        const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
-        const resJson = await resFound.json()
-
-        if(resJson) return console.log('producto ya existe')
-
-        const IMAGEURL = await uploadImage()
-
+      e.preventDefault()
+  
+      const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
+      const resJson = await resFound.json()
+  
+      if(resJson) return console.log('Product created')
+  
+      const IMAGEURL = await uploadImage()
+  
+      try {
         const res = await fetch('http://localhost:3001/products/',{
             method:'POST',      
             headers: {
@@ -102,70 +127,151 @@ const FormProducts = () => {
         })
         const data = await res.json()
         console.log(data)
+
+        // Show success message
+        alert('Product created successfully!')
+    } catch (error) {
+        console.log('Product could not be created')
     }
-    
+}
+
+  
+  
+
   return (
-    <div>
+    <div className={styles.createdog}>
+        <Link to="/home"><button className={styles.landingButtonn}>Henry Market</button></Link>
         <h3>Create products</h3>
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div>
-                <label htmlFor="">name</label>
-                <input type="text" name="name" value={form.name} onChange={handleChange} />
+                <label htmlFor="name" className={styles.label}>
+                  Name:
+                  </label>
+                <input 
+                type="text"   
+                name="name" 
+                value={form.name} 
+                onChange={handleChange} 
+                required
+                className={styles.input}
+                pattern="[A-Za-z0-9 ]+"
+                title="Please enter only letters or numbers." />
+            </div>
+             <div>
+                <label htmlFor="Price"  className={styles.label}>
+                  Price:
+                  </label>
+                <input 
+                type="text" 
+                name="price" 
+                value={form.price}  
+                onChange={handleChange}
+                required
+                className={styles.input} 
+                pattern="^(USD|\$)?\d{1,3}(,\d{3})*(\.\d{2})?$"
+                 title="Enter a value expressed in dollars." 
+/>
             </div>
             <div>
-                <label htmlFor="">image</label>
-                <input type="file" name="image" onChange={handleImage} />
-            </div>
-            <div>
-                <label htmlFor="">price</label>
-                <input type="text" name="price" value={form.price}  onChange={handleChange} />
-            </div>
-            <div>
-                <p>colors</p>
+      <label htmlFor="colors"  className={styles.label}>
+      Select color: {selectedColor}</label>
+      <select name="colors" 
+      required
+      className={styles.input}
+      
+      id="colors" 
+      value={selectedColor} 
+      onChange={handleSelect}>
+        <option value="">Select color</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+       
+      </select>
+    
+    </div>
 
-                <label><input type="checkbox" name="colors" value="white" onChange={handleCheck} />white</label>
-                <label><input type="checkbox" name="colors" value="yellow" onChange={handleCheck} />yellow</label>
-                <label><input type="checkbox" name="colors" value="pink" onChange={handleCheck} />pink</label>
-                <label><input type="checkbox" name="colors" value="black" onChange={handleCheck} />black</label>
-                <label><input type="checkbox" name="colors" value="purple" onChange={handleCheck} />purple</label>
-                <label><input type="checkbox" name="colors" value="blue" onChange={handleCheck} />blue</label>
-                <label><input type="checkbox" name="colors" value="red" onChange={handleCheck} />red</label>
-                <label><input type="checkbox" name="colors" value="orange" onChange={handleCheck} />orange</label>
-            </div>
-            <div>
-                <p>sizes</p>
-
-                <label><input type="checkbox" name="sizes" value="xs" onChange={handleCheck} />xs</label>
-                <label><input type="checkbox" name="sizes" value="x" onChange={handleCheck} />x</label>
-                <label><input type="checkbox" name="sizes" value="s" onChange={handleCheck} />s</label>
-                <label><input type="checkbox" name="sizes" value="m" onChange={handleCheck} />m</label>
-                <label><input type="checkbox" name="sizes" value="l" onChange={handleCheck} />l</label>
-                <label><input type="checkbox" name="sizes" value="xl" onChange={handleCheck} />xl</label>
-                <label><input type="checkbox" name="sizes" value="xl" onChange={handleCheck} />xl</label>
-                <label><input type="checkbox" name="sizes" value="xxl" onChange={handleCheck} />xxl</label>
-            </div>
-            <br/>
-            <div>
-                <label htmlFor="">category</label>
+    <div>
+    <label htmlFor="Size"  className={styles.label}>
+  Select size:</label>
+  <select name="sizes"  
+   required
+   className={styles.input}
+   
+  onChange={handleSelectSizes}>
+    <option value="">Select size {selectedSize}</option>
+    <option value="xs">XS</option>
+   <option value="s">S</option>
+    <option value="m">M</option>
+    <option value="l">L</option>
+    <option value="xl">XL</option>
+    <option value="xxl">XXL</option>
+  </select>
+</div>
+ <div>
+                <label htmlFor="Category" className={styles.input}>
+                  Category:</label>
                 <select name="category" 
                     defaultValue=""
-                    onChange={handleChange}>
-                        <option value="">---</option>
-                        <option value="library">library</option>
-                        <option value="home">home</option>
-                        <option value="tecnology">tecnology</option>
+                     required
+                     className={styles.input}
+                    
+                     onChange={handleChange}>
+                        <option value="">Select category</option>
+                        <option value="library">Home</option>
+                        <option value="home">Dress</option>
+                        <option value="tecnology">Tecnology</option>
+                        <option value="tecnology">Bookshop</option>
+
                     </select>
             </div>
             <div>
-                <label htmlFor="">description</label>
-                <input type="text" name="description" value={form.description}  onChange={handleChange}  />
+                <label htmlFor="Description" className={styles.input}>
+                  Description:</label>
+                <input 
+                type="text" 
+                name="description" 
+                value={form.description} 
+                 onChange={handleChange} 
+                 required
+                 className={styles.input}
+                 
+                  />
             </div>
             <div>
-                <label htmlFor="">stock</label>
-                <input type="text" name="stock" value={form.stock}  onChange={handleChange} />
+                <label htmlFor="Stock" className={styles.input}>
+                  Stock:</label>
+                <input
+                 type="text" 
+                 name="stock" 
+                 value={form.stock} 
+                 onChange={handleChange} 
+                 required
+                 className={styles.input}
+                 pattern="[0-9]+(\.[0-9]+)?"
+                 title="Please enter only numbers."
+
+                 />
+            </div>
+             <div>
+                <label htmlFor="Image" className={styles.label}>
+                 Image:
+                  </label>
+                <input 
+                type="file" 
+                name="image"
+                placeholder="Url..." 
+                
+                autoComplete={"off"}
+                onChange={handleImage} />
             </div>
 
-            <input type='submit' value="Enviar" />
+            <p>
+        <button type="submit" className={styles.landingButtonn}>
+          Submit
+        </button>
+        </p>
         </form>
     </div>
   );

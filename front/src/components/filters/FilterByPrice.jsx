@@ -1,12 +1,12 @@
-import { allProducts } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+//import { allProducts } from "../../redux/actions";
+//import { useDispatch } from "react-redux";
 
 
 export default function filterByPrice() {
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
 
     const handleOrder = (event) => {
-        dispatch(allProducts(event.target.value))
+        //dispatch(allProducts(event.target.value))
     }
 
   return (<>
