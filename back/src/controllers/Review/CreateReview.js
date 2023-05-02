@@ -1,9 +1,9 @@
-const { Product, Review } = require("../../db");
+const { ProductsName, Review } = require("../../db");
 
 const createReview = async (req, res) => {
     try {
         const { title, body, rating, productId} = req.body;
-        const product = await Product.findByPk(productId);
+        const product = await ProductsName.findByPk(productId);
         const review = await Review.create({
             title: title,
             body: body,

@@ -32,7 +32,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 // Inyectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
 
-// Capitalizamos los nombres de los modelos ie: product => Product
+// Capitalizamos los nombres de los modelos ie: ProductsName => ProductsName
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
@@ -46,7 +46,7 @@ const {
 
   Address,
   User,
-  Product,
+  ProductsName,
   ShoppingCart,
   Review
 } = sequelize.models;
@@ -56,23 +56,23 @@ const {
 User.hasMany(Address);
 Address.belongsTo(User);
 
-User.belongsToMany(Product, { through: 'UserProductFavorite' });
-Product.belongsToMany(User, { through: 'UserProductFavorite' });
+User.belongsToMany(ProductsName, { through: 'UserProductsNameFavorite' });
+ProductsName.belongsToMany(User, { through: 'UserProductsNameFavorite' });
 
 User.hasMany(ShoppingCart)
 ShoppingCart.belongsTo(User)
 
-ShoppingCart.belongsToMany(Product, { through: "ProductCart" });
-Product.belongsToMany(ShoppingCart, { through: "ProductCart" });
+ShoppingCart.belongsToMany(ProductsName, { through: "ProductsNameCart" });
+ProductsName.belongsToMany(ShoppingCart, { through: "ProductsNameCart" });
 
-Product.hasMany(Review , { foreignKey: 'productId' })
-Review.belongsTo(Product, { foreignKey: 'productId' })
+ProductsName.hasMany(Review , { foreignKey: 'ProductsNameId' })
+Review.belongsTo(ProductsName, { foreignKey: 'ProductsNameId' })
 
 
 module.exports = {
    Admin: sequelize.models.Admin,
    User: sequelize.models.User,
-   Product: sequelize.models.Product,
+   ProductsName: sequelize.models.ProductsName,
    ShoppingCart: sequelize.models.ShoppingCart,
    Address: sequelize.models.Address, 
    Review: sequelize.models.Review, 

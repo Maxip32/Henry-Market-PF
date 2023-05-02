@@ -5,7 +5,7 @@ const getFav = async (req, res) => {
         const { userId } = req.params;
 
         const user = await User.findByPk(userId);
-        const products = await user.getProducts();
+        const products = await user.getProductsName();
 
         return res.json({ products });
     } catch (error) {
