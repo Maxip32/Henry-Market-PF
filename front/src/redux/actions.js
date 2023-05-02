@@ -91,7 +91,7 @@ export const allProductsId = (id) => {
     try {
       const response = await axios.get(`/products/${id}`);
       dispatch({
-        type: "GET_PRODUCTS_ID",
+        type: "GET_PRODUCTS_DETAIL",
         payload: response.data,
       });
     } catch (error) {
@@ -113,6 +113,7 @@ export const allProductsName = (name) => {
     }
   };
 };
+
 
 export const getProductsByCategory = (category) => {
   return async function (dispatch) {
@@ -212,5 +213,11 @@ export const putProductsId = (id, product) => {
 	};
   };
   
+  export const filterByName = (payload) => {
+    return {
+      type: "FILTER_BY_NAME",
+      payload,
+    };
+  };
   
   
