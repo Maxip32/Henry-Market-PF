@@ -85,11 +85,12 @@ const FormProducts = () => {
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
+        if(form.name === "") return console.log('Name no puede estar vacío')
 
         const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
         const resJson = await resFound.json()
 
-        if(resJson) return console.log('producto ya existe')
+        if(resJson.id) return console.log('producto ya existe')
 
         const IMAGEURL = await uploadImage()
 
@@ -101,7 +102,9 @@ const FormProducts = () => {
             body: JSON.stringify({...form, image:IMAGEURL})
         })
         const data = await res.json()
-        console.log(data)
+
+        if(data.error) return console.log('producto ya existe')
+        else return console.log(data)
     }
     
   return (
