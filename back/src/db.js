@@ -45,17 +45,17 @@ const { Address, User, ProductsName, ShoppingCart, Review } = sequelize.models;
 // User.hasMany(Address)
 // Address.belongsTo(User);
 
-User.belongsToMany(ProductsName, { through: "UserProductsNameFavorite" });
-ProductsName.belongsToMany(User, { through: "UserProductsNameFavorite" });
+// User.belongsToMany(ProductsName, { through: "UserProductsNameFavorite" });
+// ProductsName.belongsToMany(User, { through: "UserProductsNameFavorite" });
 
 // User.hasMany(ShoppingCart);
 // ShoppingCart.hasMany(User);
 
-ShoppingCart.belongsToMany(ProductsName, { through: "ProductsNameCart" });
-ProductsName.belongsToMany(ShoppingCart, { through: "ProductsNameCart" });
+// ShoppingCart.belongsToMany(ProductsName, { through: "ProductsNameCart" });
+// ProductsName.belongsToMany(ShoppingCart, { through: "ProductsNameCart" });
 
-ProductsName.hasMany(Review, { foreignKey: "ProductsNameId" });
-Review.belongsTo(ProductsName, { foreignKey: "ProductsNameId" });
+// ProductsName.hasMany(Review, { foreignKey: "ProductsNameId" });
+// Review.belongsTo(ProductsName, { foreignKey: "ProductsNameId" });
 
 module.exports = {
   User: sequelize.models.User,

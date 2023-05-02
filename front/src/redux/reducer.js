@@ -32,7 +32,7 @@ const initialState = {
           ...state,
           products: action.payload,
         };
-      case "GET_PRODUCTS_ID":
+      case "GET_PRODUCTS_DETAIL":
         return {
           ...state,
           products: action.payload,
@@ -79,6 +79,21 @@ const initialState = {
           ...state,
           shoppingCart: action.payload,
         };
+        
+        case "FILTER_BY_NAME":
+      const filterName = state.products;
+      const aux2 =
+        action.payload === "All Products"
+          ? filterName
+          : filterName.filter((e) =>
+              e.products?.includes(action.payload) ? e : null
+            );
+      return {
+        ...state,
+        products: aux2,
+      };
+
+
       default:
         return state;
     }
