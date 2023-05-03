@@ -1,20 +1,28 @@
 const { ProductsName } = require("../../db");
+const { products } = require("../../utils/data");
 
-const getByName = async (req, res) => {
+// const getByName = async (req, res) => {
+//   try {
+//     const { name } = req.params;
+//     const product = await ProductsName.findOne({
+//       where: { name: name.toLowerCase() },
+//     });
+//     res.json(product);
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message });
+//   }
+// };
 
-    try {
-        const {name} = req.params
-        const product = await ProductsName.findOne({ where: { name: name.toLowerCase() } });
-        res.json(product)
-
-    } catch (error) {
-        return  res.status(500).json({ error: error.message })
-    }
-
+const getByNameInData = async (name) => {
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(name.toLowerCase())
+  );
+  return filteredProducts;
 };
 
-module.exports = { getByName };
-
+module.exports = { 
+    // getByName, 
+    getByNameInData };
 
 // const { getApiData, getDbData } = require('./saveData.js');
 
