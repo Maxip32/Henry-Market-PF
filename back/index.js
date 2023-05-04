@@ -3,7 +3,7 @@ const { conn } = require('./src/db');
 
 // Syncing all the models at once.
 
-conn.sync({ alter: true }).then(() => {
+conn.sync({ force: true }).then(() => {
 // conn.sync({ alter: true }).then(() => {
   server.listen(3001, () => {
     console.log("Server listening at 3001"); // eslint-disable-line no-console

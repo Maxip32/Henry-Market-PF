@@ -8,6 +8,7 @@ import styles from "./ProductsDetail.module.css";
 const image = "";
 
 const ProductsDetail = () => {
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const allProduct= useSelector((state) => state.products);
@@ -20,6 +21,7 @@ const ProductsDetail = () => {
 
   const handleSelectCategory = (event) => {
     setSelectedCategory(event.target.value);
+
     setSelectedDetail(""); // Reiniciar la selección de tamaño cuando se cambia de categoría
   };
 
@@ -53,6 +55,7 @@ const ProductsDetail = () => {
           value={selectedDetail}
           onChange={handleSelect}
         >
+          
           <option value="">Size</option>
           <option value="XS">XS</option>
           <option value="S">S</option>
