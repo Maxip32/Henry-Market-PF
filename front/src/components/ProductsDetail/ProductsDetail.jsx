@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {getProductsByCategory} from "../../redux/actions";
+import {allProductsId} from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
 
 const image = "";
@@ -10,7 +10,7 @@ const image = "";
 const ProductsDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const allProducts = useSelector((state) => state.products);
+  const allProduct= useSelector((state) => state.products);
   const [selectedDetail, setSelectedDetail] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -24,7 +24,7 @@ const ProductsDetail = () => {
   };
 
   useEffect(() => {
-    dispatch(getProductsByCategory(id));
+    dispatch(allProductsId(id));
   }, [dispatch, id]);
 
   return (
@@ -40,7 +40,7 @@ const ProductsDetail = () => {
         value={selectedCategory}
         onChange={handleSelectCategory}
       >
-        <option value="Select">--Select--</option>
+        <option value="Select">Select</option>
         <option value="Home">Home</option>
         <option value="Dress">Dress</option>
         <option value="Technology">Technology</option>
@@ -64,25 +64,25 @@ const ProductsDetail = () => {
         </select>
       )}
       <div className={styles.productCard}>
-        {allProducts.length === 0 ? (
+        {allProduct.length === 0 ? (
           <div></div>
         ) : (
           <>
             <img
               className={styles.productImage}
-              src={allProducts.image ? allProducts.image : image}
-              alt={`img-${allProducts.name}`}
+              src={allProduct.image ? allProduct.image : image}
+              alt={`img-${allProduct.name}`}
             />
             <section>
               <div className={styles.productInfo}>
-                <h1 className={styles.productName}>{allProducts.name}</h1>
-                {selectedCategory === "Dress" && allProducts.products ? ( // Solo mostrar el tamaño si se selecciona la categoría "Dress"
+                <h1 className={styles.productName}>{allProduct.name}</h1>
+                {selectedCategory === "Dress" && allProduct.products ? ( // Solo mostrar el tamaño si se selecciona la categoría "Dress"
                   <p>
-                    <b>Size: </b> {allProducts.products}
+                    <b>Size: </b> {allProduct.products}
                   </p>
                 ) : (
                   <p>
-                    <b>Category:</b> {allProducts.category}
+                    <b>Category:</b> {allProduct.category}
                   </p>
                 )}
               </div>

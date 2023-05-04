@@ -5,15 +5,15 @@ const deleteProducts = async (req, res) => {
         const {id} = req.params
         
         const productFound = await ProductsName.findByPk(id);
-        if (!productFound) throw new Error("Producto no creado en la base de datos")
+        if (!productFound) throw new Error("Product not created in DB")
 
         const productDeleted = await ProductsName.destroy({ where: { id } });
         
         if(productDeleted === 1){
-            return res.status(200).json("producto eliminado")
+            return res.status(200).json("Product deleted")
         }
         else{
-            throw new Error("se produjo un error")
+            throw new Error("An error has occurred")
         }
 
     } catch (error) {

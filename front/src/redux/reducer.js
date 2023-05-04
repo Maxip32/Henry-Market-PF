@@ -3,6 +3,7 @@ const initialState = {
     products: [],
     favorite: [],
     shoppingCart: [],
+   category: []
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -40,14 +41,18 @@ const initialState = {
       case "GET_PRODUCTS_NAME":
         return {
           ...state,
-          products: action.payload,
+          favorite: action.payload,
         };
-      case "GET_PRODUCTS_BY_CATEGORY":
-        return {
-          ...state,
-          products: action.payload,
-        };
-      case "POST_PRODUCTS":
+        
+       
+            case "GET_PRODUCTS_BY_CATEGORY":
+              return {
+                ...state,
+                category: action.payload
+              }
+            
+        
+        case "POST_PRODUCTS":
         return {
           ...state,
           products: [...state.products, action.payload],
@@ -93,10 +98,17 @@ const initialState = {
         products: aux2,
       };
 
+      case "CLEAN":
+      return {
+        ...state,
+        clean: [],
+      };
+
+
 
       default:
         return state;
     }
-  };
+  }
   export default rootReducer;
     

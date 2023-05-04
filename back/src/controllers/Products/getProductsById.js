@@ -9,15 +9,15 @@ const getProductById = async (req, res) => {
         console.log(productFoundData)
         
         if(productFoundData){
-            return res.json(productFoundData)
+            return res.status(200).json(productFoundData)
         }
         else{
             const productFoundDb = await ProductsName.findByPk(id);
-            return res.json(productFoundDb)
+            return res.status(200).json(productFoundDb)
         }
 
     } catch (error) {
-        return  res.status(500).json({ error: error.message })
+        return  res.status(404).json({ error: error.message })
     }
 
 };
