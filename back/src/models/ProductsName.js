@@ -48,6 +48,11 @@ module.exports = (sequelize) => {
       sizes: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+      },
     },
     {
       timestamps: false, // no actualiza fecha y hora de creacion en la db

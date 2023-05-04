@@ -24,8 +24,8 @@ function App() {
         <Route exact path='/home' element={<Home/>} />
         <Route exact path='/formProducts' element={<FormProducts />} />
         <Route exact path= "/mailValidate" element={<MailValidate/>}/>
-        <Route path="/detail/:id" element={<ProductsDetail/>}/>
-        
+        <Route exact  path="/detail" element={<ProductsDetail/>}/>
+          
       </Routes>
       
       
