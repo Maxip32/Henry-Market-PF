@@ -1,12 +1,16 @@
 const { ProductsName } = require("../../db");
 const { data } = require("../../utils/data");
-
+const { Op } = require("sequelize");
 
 const getByCategory = async (req, res) => {
   try {
     const { category } = req.params;
     const dbProducts = await ProductsName.findAll({
-      where: { category: category.toLowerCase() },
+      where: {
+        category: {
+          [Op.iLike]: category,
+        },
+      },
     });
     const dataProducts = data.filter(
       (p) => p.category.toLowerCase() === category.toLowerCase()
