@@ -3,7 +3,6 @@ const initialState = {
     products: [],
     favorite: [],
     shoppingCart: [],
-   category: []
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -33,7 +32,7 @@ const initialState = {
           ...state,
           products: action.payload,
         };
-      case "GET_PRODUCTS_DETAIL":
+      case "GET_PRODUCTS_ID":
         return {
           ...state,
           products: action.payload,
@@ -41,18 +40,14 @@ const initialState = {
       case "GET_PRODUCTS_NAME":
         return {
           ...state,
-          favorite: action.payload,
+          products: action.payload,
         };
-        
-       
-            case "GET_PRODUCTS_BY_CATEGORY":
-              return {
-                ...state,
-                category: action.payload
-              }
-            
-        
-        case "POST_PRODUCTS":
+      case "GET_PRODUCTS_BY_CATEGORY":
+        return {
+          ...state,
+          products: action.payload,
+        };
+      case "POST_PRODUCTS":
         return {
           ...state,
           products: [...state.products, action.payload],
@@ -84,31 +79,9 @@ const initialState = {
           ...state,
           shoppingCart: action.payload,
         };
-        
-        case "FILTER_BY_NAME":
-      const filterName = state.products;
-      const aux2 =
-        action.payload === "All Products"
-          ? filterName
-          : filterName.filter((e) =>
-              e.products?.includes(action.payload) ? e : null
-            );
-      return {
-        ...state,
-        products: aux2,
-      };
-
-      case "CLEAN":
-      return {
-        ...state,
-        clean: [],
-      };
-
-
-
       default:
         return state;
     }
-  }
+  };
   export default rootReducer;
     

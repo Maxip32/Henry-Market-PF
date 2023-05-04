@@ -91,7 +91,7 @@ export const allProductsId = (id) => {
     try {
       const response = await axios.get(`/products/${id}`);
       dispatch({
-        type: "GET_PRODUCTS_DETAIL",
+        type: "GET_PRODUCTS_ID",
         payload: response.data,
       });
     } catch (error) {
@@ -103,7 +103,7 @@ export const allProductsId = (id) => {
 export const allProductsName = (name) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/products/name/${name}`);
+      const response = await axios.get(`/products/${name}`);
       dispatch({
         type: "GET_PRODUCTS_NAME",
         payload: response.data,
@@ -114,20 +114,16 @@ export const allProductsName = (name) => {
   };
 };
 
-
 export const getProductsByCategory = (category) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/products/category/${category}`);
-      console.log("Products by category!!!!!:", response.data);
+      const response = await axios.get(`/products/category/${category}`);
       dispatch({
         type: "GET_PRODUCTS_BY_CATEGORY",
         payload: response.data,
-        
       });
     } catch (error) {
       console.error(error);
-      
     }
   };
 };
@@ -216,16 +212,5 @@ export const putProductsId = (id, product) => {
 	};
   };
   
-  export const filterByName = (payload) => {
-    return {
-      type: "FILTER_BY_NAME",
-      payload,
-    };
-  };
   
-  export const clean = (payload) => {
-    return {
-      type: "CLEAN",
-      payload,
-    };
-  };
+  
