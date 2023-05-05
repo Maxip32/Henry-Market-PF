@@ -1,5 +1,6 @@
 const { ProductsName } = require("../../db");
 const { data } = require("../../utils/data");
+const { Op } = require('sequelize');
 
 const getByName = async (req, res) => {
   try {
@@ -12,7 +13,11 @@ const getByName = async (req, res) => {
       return res.json(productFoundData);
     } else {
       const productFoundDb = await ProductsName.findOne({
-        where: { name: name.toLowerCase() },
+        where: {
+          name: {
+            [Op.iLike]: name
+          }
+        }
       });
       if (productFoundDb) {
         return res.json(productFoundDb);

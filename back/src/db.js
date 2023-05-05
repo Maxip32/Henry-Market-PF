@@ -42,20 +42,20 @@ const {Address, User, ProductsName, ShoppingCart, Review, Order, OrderDetail} = 
 
 // Aca vendrian las relaciones
 
-// User.hasMany(Address)
-// Address.belongsTo(User);
+User.hasMany(Adress, { as: "adress" });
+Adress.belongsToMany(User, { through: "user_adress" });
 
-// User.belongsToMany(ProductsName, { through: "UserProductsNameFavorite" });
-// ProductsName.belongsToMany(User, { through: "UserProductsNameFavorite" });
+User.belongsToMany(ProductsName, { through: "user_products_name_favorite" });
+ProductsName.belongsToMany(User, { through: "user_products_name_favorite" });
 
-// User.hasMany(ShoppingCart);
-// ShoppingCart.hasMany(User);
+User.hasMany(ShoppingCart, { as: "shoppingcart" });
+ShoppingCart.belongsTo(User, { as: "user" });
 
-// ShoppingCart.belongsToMany(ProductsName, { through: "products_name_cart" });
-// ProductsName.belongsToMany(ShoppingCart, { through: "products_name_cart" });
+ShoppingCart.belongsToMany(ProductsName, { through: "products_name_cart" });
+ProductsName.belongsToMany(ShoppingCart, { through: "products_name_cart" });
 
-// ProductsName.hasMany(Review, { foreignKey: "products_name_id" });
-// Review.belongsTo(ProductsName, { foreignKey: "products_name_id" });
+ProductsName.hasMany(Review, { foreignKey: "products_name_id" });
+Review.belongsTo(ProductsName, { foreignKey: "products_name_id" });
 
 // order - user relations
 User.hasMany(Order, {foreignKey: "userId"});
@@ -73,7 +73,7 @@ module.exports = {
     User: sequelize.models.User,
     ProductsName: sequelize.models.ProductsName,
     ShoppingCart: sequelize.models.ShoppingCart,
-    Address: sequelize.models.Address,
+    Adress: sequelize.models.Address,
     Review: sequelize.models.Review,
     Order: sequelize.models.Order,
     OrderDetail: sequelize.models.OrderDetail,
