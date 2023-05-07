@@ -62,7 +62,7 @@
       font-size: 14px;
     }
   }*/
-  .searchBtn {
+  /* .searchBtn {
     background-color: #ffe600;
     border: 1px solid #ccc;
     color: #333;
@@ -73,7 +73,7 @@
     align-items: center;
     position:relative;
     top: -170px; /* Mueve el elemento 20px hacia arriba */
-    left: 20px; 
+    /* left: 20px; 
    
     margin: 0;
     width: 96%;
@@ -82,6 +82,6 @@
   .searchBtn svg {
     margin-right: 5px;
   }
-  
+   */ 
     
   
