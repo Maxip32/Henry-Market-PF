@@ -40,7 +40,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const {Adress, User, ProductsName, ShoppingCart, Review, Order, OrderDetail} = sequelize.models;
 
-// Aca vendrian las relaciones
+//Aca vendrian las relaciones
 
 User.hasMany(Adress, { as: "adress" });
 Adress.belongsToMany(User, { through: "user_adress" });
