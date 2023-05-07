@@ -1,19 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {allProductsId} from "../../redux/actions";
+import { allProductsId } from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
+import ShoppingCart from "../shoppingCart/ShoppingCart";
 
 const image = "";
 
 const ProductsDetail = () => {
-
   const dispatch = useDispatch();
   const { id } = useParams();
-  const allProduct= useSelector((state) => state.products);
+  const allProduct = useSelector((state) => state.products);
   const [selectedDetail, setSelectedDetail] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  /*const addToCart = (item) => {
+    setCartItems([...cartItems, item]);
+  };*/
 
   const handleSelect = (event) => {
     setSelectedDetail(event.target.value);
@@ -21,8 +26,7 @@ const ProductsDetail = () => {
 
   const handleSelectCategory = (event) => {
     setSelectedCategory(event.target.value);
-
-    setSelectedDetail(""); // Reiniciar la selección de tamaño cuando se cambia de categoría
+    setSelectedDetail("");
   };
 
   useEffect(() => {
@@ -31,76 +35,48 @@ const ProductsDetail = () => {
 
   return (
     <div className={styles.productsDetailContainer}>
+       <p>
       <Link to="/home">
         <button className={styles.select}>Go Henry Market</button>
       </Link>
-      <p>
-      <label htmlFor="Category">All Products:</label>
-      <select
-        name="Category"
-        id="Category"
-        value={selectedCategory}
-        onChange={handleSelectCategory}
-      >
-        <option value="Select">Select</option>
-        <option value="Home">Home</option>
-        <option value="Dress">Dress</option>
-        <option value="Technology">Technology</option>
-      </select>
-      </p>
-      {selectedCategory === "Dress" && ( // Solo mostrar el selector de tamaño si se selecciona la categoría "Dress"
-        <select
-          name="Size"
-          id="Size"
-          value={selectedDetail}
-          onChange={handleSelect}
-        >
-          
-          <option value="">Size</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-          <option value="XXXL">XXXL</option>
-        </select>
-      )}
-      <div className={styles.productCard}>
+     </p>
+     <div className={styles.card}>
         {allProduct.length === 0 ? (
           <div></div>
         ) : (
           <>
             <img
-              className={styles.productImage}
+           className={styles.card}
               src={allProduct.image ? allProduct.image : image}
               alt={`img-${allProduct.name}`}
             />
             <section>
               <div className={styles.productInfo}>
                 <h1 className={styles.productName}>{allProduct.name}</h1>
-                {selectedCategory === "Dress" && allProduct.products ? ( // Solo mostrar el tamaño si se selecciona la categoría "Dress"
+                {selectedCategory === "Dress" && allProduct.products ? (
                   <p>
                     <b>Size: </b> {allProduct.products}
                   </p>
                 ) : (
                   <p>
-                    <b>Category:</b> {allProduct.category}
+                    <b>Description: </b> {allProduct.description}
+                    <br />
+                    <b>Price: </b> {allProduct.price} USD
+                     <br />
+                    <b>Category: </b> {allProduct.category}
                   </p>
                 )}
               </div>
               <button>Buy</button>
+              {/*<button onClick={() => addToCart(allProduct)}>Buy</button>
+              <ShoppingCart cartItems={cartItems} />*/}
+             
             </section>
           </>
         )}
       </div>
-   
     </div>
   );
 };
 
 export default ProductsDetail;
-
-
-
-

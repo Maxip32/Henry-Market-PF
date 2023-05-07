@@ -103,16 +103,15 @@ export const allProductsId = (id) => {
 export const allProductsName = (name) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/products/name/${name}`);
-      dispatch({
-        type: "GET_PRODUCTS_NAME",
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
+    const {data} = await axios.get(`/products/name/${name}`)
+    dispatch({type: "PUT_PRODUCT_BY_NAME", 
+    payload: data})
+} catch (error) {
+    alert("The product you are looking for is not available");
+  }
+}
+}
+
 
 
 export const getProductsByCategory = (category) => {
@@ -144,6 +143,13 @@ export const postProducts = (product) => {
       console.error(error);
     }
   };
+};
+export const filterPrice= (minimum, maximum) => {
+  return { type: 'FILTER_PRODUCTS_PRICE', payload: { minimum, maximum } };
+};
+
+export const orderPrice = (order) => {
+  return { type: 'ORDER_PRODUCTS_PRICE', payload: order };
 };
 
 export const putProductsId = (id, product) => {
@@ -187,6 +193,19 @@ export const putProductsId = (id, product) => {
 	  }
 	};
   };
+  export const addToCart = (item) => {
+    return {
+      type: "ADD_TO_CART",
+      payload: item,
+    };
+  };
+  
+  export const removeFromCart = (item) => {
+    return {
+      type: "REMOVE_FROM_CART",
+      payload: item,
+    };
+  };
   
   export const shoppingCart = () => {
 	return async function (dispatch) {
@@ -226,6 +245,12 @@ export const putProductsId = (id, product) => {
   export const clean = (payload) => {
     return {
       type: "CLEAN",
+      payload,
+    };
+  };
+  export const orderBy = (payload) => {
+    return {
+      type: "ORDER",
       payload,
     };
   };

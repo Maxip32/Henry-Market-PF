@@ -17,6 +17,7 @@ const store = createStore(
   applyMiddleware(thunk, logger)
 );
 
+
 const persistor = persistStore(store);
 
 export { store, persistor };
