@@ -1,4 +1,4 @@
-.etiqueta {
+/* .etiqueta {
     background-color: #ffe600;
     border: none;
     color: #000;
@@ -9,7 +9,7 @@
     margin-left: -1000px;
     position:relative;
   top: -60px; /* Mueve el elemento 20px hacia arriba */
-  left: 0px;
+  /* left: 0px;
    
   }
   .etiqueta:hover{
@@ -47,7 +47,7 @@
   background-color: #ffe600;
   cursor: pointer;
   position:relative;
-  top: 50px; /* Mueve el elemento 20px hacia arriba */
+  top: 50px; 
   left: 70px;
   font-size: 20px;
   }
@@ -81,5 +81,5 @@
   .popupheader:after {
     left: auto;
     right: 16px;
-  }
+  }  */
   
