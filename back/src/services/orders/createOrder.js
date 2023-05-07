@@ -2,7 +2,7 @@ const {Order, OrderDetail, ProductsName} = require("../../db");
 const mercadoPago = require("mercadopago")
 
 mercadoPago.configure({
-    access_token: "ACCESS_TOKEN"
+    access_token: "TEST-7665525809094325-050618-44b625e0eb6a48b5f2446b984fa77f04-39069965"
 })
 
 // model example for order
@@ -25,39 +25,39 @@ const orderDataExample = {
 // create order - orderDetail and mercadoPago data, update products stock
 const createOrder = async (order) => {
     try {
-        // format order data to create
-        const formatOrder = {
-            orderAmount: order.orderAmount,
-            orderTotal: order.orderTotal,
-            userId: order.userId
-        }
+        /*        // format order data to create
+                       const formatOrder = {
+                           orderAmount: order.orderAmount,
+                           orderTotal: order.orderTotal,
+                           userId: order.userId
+                       }
 
-        const newOrder = await Order.create(formatOrder); // create new order
-        const getNewOrder = await Order.findByPk(newOrder.id) // get new order
-        // format orderDetails data
-        const formatOrderDetail = order.items.map(item => {
-            return {
-                orderId: getNewOrder.id,
-                productsNameId: item.id,
-                detailAmount: item.quantity,
-                detailTotal: item.unit_price,
-            }
-        })
-        await OrderDetail.bulkCreate(formatOrderDetail); // create orderDetails for new order
+                       const newOrder = await Order.create(formatOrder); // create new order
+                       const getNewOrder = await Order.findByPk(newOrder.id) // get new order
+                       // format orderDetails data
+                       const formatOrderDetail = order.items.map(item => {
+                           return {
+                               orderId: getNewOrder.id,
+                               productsNameId: item.id,
+                               detailAmount: item.quantity,
+                               detailTotal: item.unit_price,
+                           }
+                       })
+                       await OrderDetail.bulkCreate(formatOrderDetail); // create orderDetails for new order
 
-        let allProductsPromises = []
-        for (let i = 0; i < order.items.length; i++) {
-            allProductsPromises.push(ProductsName.findByPk(order.items[i].id)) // array of products promises
-        }
-        const allProducts = await Promise.all(allProductsPromises); // get all products
+                       let allProductsPromises = []
+                       for (let i = 0; i < order.items.length; i++) {
+                           allProductsPromises.push(ProductsName.findByPk(order.items[i].id)) // array of products promises
+                       }
+                       const allProducts = await Promise.all(allProductsPromises); // get all products
 
-        let stockPromises = []
-        for (let i = 0; i < allProducts.length; i++) {
-            stockPromises.push(
-                allProducts[i].update({stock: allProducts[i].stock - order.items[i].quantity}) // array update stock of products
-            )
-        }
-        await Promise.all(stockPromises); // update stocks
+                       let stockPromises = []
+                       for (let i = 0; i < allProducts.length; i++) {
+                           stockPromises.push(
+                               allProducts[i].update({stock: allProducts[i].stock - order.items[i].quantity}) // array update stock of products
+                           )
+                       }
+                       await Promise.all(stockPromises); // update stocks*/
 
         const dataToSend = {
             items: order.items,
