@@ -10,12 +10,12 @@ import ProductsDetail from "./components/ProductsDetail/ProductsDetail";
 import CategoryFilter from './components/categoryFilter/CategoryFilter';
 import OrderByProducts from './components/orderByProducts/OrderByProducts';
 import axios from "axios";
+import Payment from './components/payment/Payment';
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
 
 function App() {
-     
 
   return (
     
@@ -37,6 +37,7 @@ function App() {
         <Route exact  path="/account" element={<ValidateMail/>}/>
         <Route exact  path="/category" element={<CategoryFilter/>}/>
         <Route exact  path="/filterPrice" element={<OrderByProducts/>}/>
+        <Route exact  path="/payment" element={<Payment/>}/>
         
       </Routes>
       

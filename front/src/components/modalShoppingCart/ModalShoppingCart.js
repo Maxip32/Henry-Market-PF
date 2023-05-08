@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from 'react-router-dom'
 import {addQuantity, RemoveOneFromCart, RemoveAllProductFromCart, clearShoppingCart} from '../../redux/actions'
 import './modalShoppingCart.css'
 
@@ -11,6 +11,7 @@ const ModalShoppingCart = ({ isOpen, closeModal }) => {
   const handleModalContainerClick = (e) => { e.stopPropagation()}
 
   let total = 0
+
 
   return (
     <div className={`modal ${isOpen && 'is-open'}`} onClick={closeModal}>
@@ -29,14 +30,16 @@ const ModalShoppingCart = ({ isOpen, closeModal }) => {
                                 <button onClick={()=>{dispatch(RemoveOneFromCart(p.id))}}>-</button>
                                 <button onClick={()=>{dispatch(RemoveAllProductFromCart(p.id))}}
                                         style={{marginLeft:'10px'}}
-                                >Quitar del carrito</button>
+                                >Remove</button>
                             </p>
                             <p>{p.price * p.quantity}</p>
                         </div>
             )} )}
             <p>Total: {total} </p>
-            <button onClick={()=>{dispatch(clearShoppingCart())}}>Limpiar carrito</button>
+            <button onClick={()=>{dispatch(clearShoppingCart())}}>Clear cart</button>
             <button className='modal-close' onClick={closeModal}>X</button>
+            <Link to='/payment'><button>Checkout</button></Link>
+            
 
         </div>
     </div>
