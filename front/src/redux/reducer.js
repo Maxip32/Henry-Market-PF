@@ -129,7 +129,7 @@ const initialState = {
           })
         };
       case 'ORDER_PRODUCTS_PRICE':
-        const order = action.payload === 'menorAMayor' ? 'ASC' : 'DESC';
+        const order = action.payload === 'Lowest to highest' ? 'ASC' : 'DESC';
         return {
           ...state,
           products: state.products.slice().sort((a, b) => {

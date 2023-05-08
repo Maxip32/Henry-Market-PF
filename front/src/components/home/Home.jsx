@@ -74,12 +74,14 @@ export default function Home() {
         currentItems.map((product) => (
           <div key={product.id} className={styles.card}>
           <Link to={`/detail/ ${product.id}`} style={{ textDecoration: "none" }}>
+            <div>
             <p>
-              <img src={product.image} alt={product.name} />
+              <img className={styles.cardimg} src={product.image} alt={product.name} />
             </p>
-            <p className={styles.cardInfo} style={{ color: "black" }}>Name: {product.name}</p>
-            <p style={{ color: "black" }}>{product.description}</p>
-            <p style={{ color: "black" }}>Price: USD{product.price}</p>
+            <p className={styles.name} style={{ color: "black" }}>Name: {product.name}</p>
+            <p className={styles.description}style={{ color: "black" }}>{product.description}</p>
+            <p className style={{ color: "black" }}>Price: USD{product.price}</p>
+            </div>
           </Link>
         </div>
         

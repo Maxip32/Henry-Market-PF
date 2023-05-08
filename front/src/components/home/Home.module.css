@@ -1,18 +1,37 @@
-/* .product {
-  margin: auto;
-  width: 80%;
+.product {
+
+  width: 10%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
  
 }
+.name{
+  font-family: Verdana, Geneva, sans-serif;
+  width: 350px;
+  font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.description{
+  font-family: Verdana, Geneva, sans-serif;
+  width: 300px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.price{
+  font-size: 1em;
+  font-family: Verdana, Geneva, sans-serif;
+
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  margin-top: 30px;
-  }
+}
 
 
 .input {
@@ -23,39 +42,44 @@
   color: rgb(1, 1, 1);
   background-color: #ffe600;
   cursor: pointer;
-  margin-left: 1000px;
+  margin-left: 1350px;
   position:relative;
   top: 60px; /* Mueve el elemento 20px hacia arriba */
-  /* left: 0px;
-   
+  left: 0px;
+  
 }
 .input:hover{
-  background-color: #c7b40c;
+  background-color: #ffe600;
 }
 .buttons {
   
-    margin-left: 20px;
-    margin-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   
   
 }
 
 .card {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 4px;
+  width: 80%;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  margin-left: 3.5rem;
+  filter: drop-shadow(0 0 5px #cbcbcb);
+  border: solid  1px black;
+  background-color: transparent;
+}
+ .cardimg {
+    border-radius: 30px;
+    margin: 10px;
+    display: flex;
+    margin-left: 4.5rem;
+    width: 200px;
+    height: 200px;
   }
-  
-  .card img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  }
+
   
   .card h2 {
   margin-bottom: 5px;
@@ -75,18 +99,11 @@
   cursor: pointer;
   }
   
-  .cardInfo {
-  font-weight: bold;
-  }
   
   
   
   
-.product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 .button-container {
   align-self: flex-start;
@@ -95,4 +112,4 @@
 
 .card {
   margin-bottom: 1rem;
-}  */
+}  

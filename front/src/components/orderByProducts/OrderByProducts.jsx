@@ -27,7 +27,7 @@ const FilterByPrice = (props) => {
     <div>
       <div className={styles.searchresults}>
         <Link to="/home">
-          <button>Go Henry Market</button>
+          <button className={styles.btn}>Go Henry Market</button>
         </Link>
         <div>
           <label htmlFor="priceMinimum">Min Price:</label>
@@ -50,20 +50,22 @@ const FilterByPrice = (props) => {
         <button className={styles.select} onClick={handleFiltrarClick}>
           Search price
         </button>
-        <button onClick={handleOrderMinMax}>Min</button>
-        <button onClick={handleOrderMaxMin}>Max</button>
+        <button className={styles.min} onClick={handleOrderMinMax}>Min</button>
+        <button className={styles.max} onClick={handleOrderMaxMin}>Max</button>
         <div className={styles.grid}>
           {products.map((product) => (
-            <div key={product.id} className={styles.card}>
+            <div key={product.id}>
+              <div className={styles.card}>
               <Link
                 to={`/detail/${product.id}`}
-                style={{ color: "black" }}
+                style={{ textDecoration: "none" }}
               >
-                <img src={product.image} alt={product.name} />
-                <p>Name: {product.name}</p>
-                <p>{product.description}</p>
-                <p>Price: ${product.price}</p>
+                <img className={styles.cardimg} src={product.image} alt={product.name} />
+                <p className={styles.name} style={{ color: "black" }}>Name: {product.name}</p>
+                <p className={styles.description} style={{ color: "black" }}>{product.description}</p>
+                <p className={styles.price} style={{ color: "black" }}>Price: ${product.price}</p>
               </Link>
+              </div>
             </div>
           ))}
         </div>

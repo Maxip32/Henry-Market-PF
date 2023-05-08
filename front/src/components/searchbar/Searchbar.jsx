@@ -27,26 +27,28 @@ export default function SearchBar() {
     }
   
     return (
-        <div className={styles.searchBtn}>
-        
-       
-            <input type='search' placeholder="Search product..." value={productName} onChange={handleInput}/>
+        <div >
+          <div className={styles.searchBtn}>
+            <input className={styles.search} type='search' placeholder="Search product..." value={productName} onChange={handleInput}/>
             <button type="submit" onClick={handleClick}>
   <FontAwesomeIcon icon={faSearch} />
 </button>
-
+  </div>
               
                {searched && products && products.id &&
                  <div key={products.id}>
+                   <div className={styles.card}>
             <Link
             to={`/detail/${products.id}`}
             style={{ textDecoration: "none" }}>
-          <h2>Name: {products.name}</h2>
-          <img src={products.image} alt={products.name} />
-          <p>{products.description}</p>
-          <p>Price: ${products.price}</p>
+          <h2 className={styles.name} style={{ color: "black" }}>Name: {products.name}</h2>
+          <img className={styles.cardimg} src={products.image} alt={products.name} />
+          <p className={styles.description} style={{ color: "black" }}>{products.description}</p>
+          <p className={styles.price} style={{ color: "black" }}>Price: ${products.price}</p>
           </Link>
           </div>
+          </div>
+         
       }
               </div>           
     ) 
