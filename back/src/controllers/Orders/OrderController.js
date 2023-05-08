@@ -1,11 +1,9 @@
-const {
-    getOrderById,
-    getAllOrders,
-    createOrder,
-    getOrderByProductId,
-    getOrderByUserId,
-    getOrderByUserIdAndProductId
-} = require("../../services/orderService");
+const {getOrderById} = require("../../services/orders/getOrderById");
+const {getOrderByUserId} = require("../../services/orders/getOrderByUserId");
+const {getOrderByProductId} = require("../../services/orders/getOrderByProductId");
+const {getOrderByUserIdAndProductId} = require("../../services/orders/getOrderByUserIdAndProductId");
+const {getAllOrders} = require("../../services/orders/getAllOrders");
+const {createOrder} = require("../../services/orders/createOrder");
 
 module.exports = {
     getOrderById: async (req, res) => {
@@ -48,6 +46,12 @@ module.exports = {
             res.status(404).send(error.message);
         }
     },
+    // TODO: get feedback logic
+    /*    getFeedBack: async (req, res) => {
+            if (req.query.status !== "approved") {
+                delete order and details
+            }
+        },*/
     createOrder: async (req, res) => {
         try {
             const response = await createOrder(req.body);
