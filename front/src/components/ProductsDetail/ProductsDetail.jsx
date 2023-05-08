@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { allProductsId } from "../../redux/actions";
+import { allProductsId, addSToShoppingCart } from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 
@@ -15,10 +15,6 @@ const ProductsDetail = () => {
   const allProduct = useSelector((state) => state.products);
   const [selectedDetail, setSelectedDetail] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  /*const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-  };*/
 
   const handleSelect = (event) => {
     setSelectedDetail(event.target.value);
@@ -32,7 +28,7 @@ const ProductsDetail = () => {
   useEffect(() => {
     dispatch(allProductsId(id));
   }, [dispatch, id]);
-
+  
   return (
     <div className={styles.productsDetailContainer}>
        <p>
@@ -68,8 +64,7 @@ const ProductsDetail = () => {
                 )}
               </div>
               <button>Buy</button>
-              {/*<button onClick={() => addToCart(allProduct)}>Buy</button>
-              <ShoppingCart cartItems={cartItems} />*/}
+              <button onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add to cart</button>
              
             </section>
           </>
