@@ -1,6 +1,7 @@
-/* body {
-    overflow: hidden;
-} */
+
+body {
+    overflow: visible;
+}
 
 .modal{
     position: fixed;

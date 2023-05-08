@@ -54,6 +54,10 @@ export default function Home() {
     openModal()
   }
 
+  useEffect(()=>{
+    document.body.style.overflow = 'auto'
+  },[])
+
   return (
     <div>
       <Link to="/home"></Link>  
