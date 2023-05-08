@@ -69,7 +69,7 @@ const ProductsDetail = () => {
               
 
               <button className={styles.btn}>Buy</button>
-              <button onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add to cart</button>
+              <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add to cart</button>
 
              
             </section>
