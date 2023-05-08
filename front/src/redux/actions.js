@@ -112,8 +112,6 @@ export const allProductsName = (name) => {
 }
 }
 
-
-
 export const getProductsByCategory = (category) => {
   return async function (dispatch) {
     try {
@@ -193,47 +191,6 @@ export const putProductsId = (id, product) => {
 	  }
 	};
   };
-  export const addToCart = (item) => {
-    return {
-      type: "ADD_TO_CART",
-      payload: item,
-    };
-  };
-  
-  export const removeFromCart = (item) => {
-    return {
-      type: "REMOVE_FROM_CART",
-      payload: item,
-    };
-  };
-  
-  export const shoppingCart = () => {
-	return async function (dispatch) {
-	  try {
-		const response = await axios.get(`/shoppingCart`);
-		dispatch({
-		  type: "SHOPPING_CART",
-		  payload: response.data,
-		});
-	  } catch (error) {
-		console.error(error);
-	  }
-	};
-  };
-  
-  export const shoppingCartId = (id) => {
-	return async function (dispatch) {
-	  try {
-		const response = await axios.get(`/shoppingCart/${id}`);
-		dispatch({
-		  type: "SHOPPING_CART_ID",
-		  payload: response.data,
-		});
-	  } catch (error) {
-		console.error(error);
-	  }
-	};
-  };
   
   export const filterByName = (payload) => {
     return {
@@ -254,3 +211,72 @@ export const putProductsId = (id, product) => {
       payload,
     };
   };
+
+  
+  // ***** SHOPPING CART  *****
+
+export const addSToShoppingCart = (product) => {
+  return function (dispatch) {
+    try {
+    dispatch({
+      type: "ADDTOSHOPPINGCART",
+      payload: product,
+    });
+    } catch (error) {
+    console.error(error);
+    }
+  };
+  };
+
+  export const addQuantity = (id)=>{
+    return function (dispatch) {
+      try {
+      dispatch({
+        type: "ADDQUANTITY",
+        payload: id,
+      });
+      } catch (error) {
+      console.error(error);
+      }
+    };
+  }
+
+  export const RemoveOneFromCart = (id)=>{
+    return function (dispatch) {
+      try {
+      dispatch({
+        type: "REMOVEONEFROMCART",
+        payload: id,
+      });
+      } catch (error) {
+      console.error(error);
+      }
+    };
+  }
+
+
+  export const RemoveAllProductFromCart = (id)=>{
+    return function (dispatch) {
+      try {
+      dispatch({
+        type: "REMOVEALLPRODUCTFROMCART",
+        payload: id,
+      });
+      } catch (error) {
+      console.error(error);
+      }
+    };
+  }
+  
+  export const clearShoppingCart = () => {
+    return function (dispatch) {
+      try {
+      dispatch({
+        type: "CLEARSHOPPINGCART"
+      });
+      } catch (error) {
+      console.error(error);
+      }
+    };
+  }
+  

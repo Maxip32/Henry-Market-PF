@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Popup from "../popup/Popup";
 import Pagination from "../pagination/Pagination";
+import ShoppingCartImage from '../image/shoppingcart.svg'
+import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 
 
 export default function Home() {
@@ -42,6 +44,16 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  // lógica para mostrar el carrito de compras
+  const [isOpen, setIsOpen] = useState(false)
+  const openModal = () =>{setIsOpen(true) ; document.body.style.overflow = 'hidden';}
+  const closeModal = () =>{setIsOpen(false); document.body.style.overflow = 'auto';}
+  const shoppingCart = useSelector((state) => state.shoppingCart);
+
+  function showShoppingCart (){
+    openModal()
+  }
+
   return (
     <div>
       <Link to="/home"></Link>  
@@ -62,6 +74,21 @@ export default function Home() {
       </Link>
       </div>
       <Popup />
+
+      {/* Mostramos la imagen del carrito de compras */}
+
+      <div style={{display:'inline-block'}} onClick={showShoppingCart}>
+        <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
+        <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
+                      justifyContent:'center', alignItems:'center', position:'relative', top:'-15px', left:'-5px'}}>
+          <span  style={{color:'white'}} >{shoppingCart.length}</span>
+        </div>
+      </div>
+
+      {/* Mostramos el modal del carrito de compras */}
+      {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
+      
+
       <SearchBar />
      
 
