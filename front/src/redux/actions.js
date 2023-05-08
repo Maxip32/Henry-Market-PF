@@ -112,6 +112,8 @@ export const allProductsName = (name) => {
 }
 }
 
+
+
 export const getProductsByCategory = (category) => {
   return async function (dispatch) {
     try {
@@ -191,6 +193,47 @@ export const putProductsId = (id, product) => {
 	  }
 	};
   };
+  export const addToCart = (item) => {
+    return {
+      type: "ADD_TO_CART",
+      payload: item,
+    };
+  };
+  
+  export const removeFromCart = (item) => {
+    return {
+      type: "REMOVE_FROM_CART",
+      payload: item,
+    };
+  };
+  
+  export const shoppingCart = () => {
+	return async function (dispatch) {
+	  try {
+		const response = await axios.get(`/shoppingCart`);
+		dispatch({
+		  type: "SHOPPING_CART",
+		  payload: response.data,
+		});
+	  } catch (error) {
+		console.error(error);
+	  }
+	};
+  };
+  
+  export const shoppingCartId = (id) => {
+	return async function (dispatch) {
+	  try {
+		const response = await axios.get(`/shoppingCart/${id}`);
+		dispatch({
+		  type: "SHOPPING_CART_ID",
+		  payload: response.data,
+		});
+	  } catch (error) {
+		console.error(error);
+	  }
+	};
+  };
   
   export const filterByName = (payload) => {
     return {
@@ -211,7 +254,6 @@ export const putProductsId = (id, product) => {
       payload,
     };
   };
-
   
   // ***** SHOPPING CART  *****
 

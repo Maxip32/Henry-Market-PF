@@ -1,6 +1,6 @@
-body {
+/* body {
     overflow: hidden;
-}
+} */
 
 .modal{
     position: fixed;
@@ -63,4 +63,16 @@ input[type='submit']{
   .card{
     display: flex;
     gap: 20px;
+  }
+  .carrito{
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    z-index: 1000;
+    cursor: pointer;
+    
+  }
+
+  .carrito:hover{
+    font-size: 1.2em;
   }

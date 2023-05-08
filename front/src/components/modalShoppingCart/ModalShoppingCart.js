@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {addQuantity, RemoveOneFromCart, RemoveAllProductFromCart, clearShoppingCart} from '../../redux/actions'
 import './modalShoppingCart.css'
@@ -29,13 +29,13 @@ const ModalShoppingCart = ({ isOpen, closeModal }) => {
                                 <button onClick={()=>{dispatch(RemoveOneFromCart(p.id))}}>-</button>
                                 <button onClick={()=>{dispatch(RemoveAllProductFromCart(p.id))}}
                                         style={{marginLeft:'10px'}}
-                                >Quitar del carrito</button>
+                                >Quit to cart</button>
                             </p>
                             <p>{p.price * p.quantity}</p>
                         </div>
             )} )}
             <p>Total: {total} </p>
-            <button onClick={()=>{dispatch(clearShoppingCart())}}>Limpiar carrito</button>
+            <button onClick={()=>{dispatch(clearShoppingCart())}}>Clean cart</button>
             <button className='modal-close' onClick={closeModal}>X</button>
 
         </div>

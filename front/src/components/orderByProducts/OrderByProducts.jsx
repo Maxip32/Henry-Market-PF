@@ -50,8 +50,8 @@ const FilterByPrice = (props) => {
         <button className={styles.select} onClick={handleFiltrarClick}>
           Search price
         </button>
-        <button className={styles.min} onClick={handleOrderMinMax}>Min</button>
-        <button className={styles.max} onClick={handleOrderMaxMin}>Max</button>
+        
+        
         <div className={styles.grid}>
           {products.map((product) => (
             <div key={product.id}>
