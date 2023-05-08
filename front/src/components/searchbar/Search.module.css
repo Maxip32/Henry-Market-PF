@@ -148,8 +148,29 @@ background-color: #ffe600;
 background-color: #ffe600;
 }
   
-  .searchBtn svg {
-    margin-right: 5px;
+  .searchsearchButton svg {
+    background-color: #ffe600;
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  .searchButton{
+    background-color:#fff066;
+    position: absolute;
+    top: 0.6rem;
+    right: 52rem;
+    z-index: 1000;
+    cursor: pointer;
+    font-size: 16.5px;
+    padding-top: 5px;
+    padding-left: 10px;
+
+  }
+
+  .searchButton:hover{
+    font-size: 1.1rem;
   }
     
     
