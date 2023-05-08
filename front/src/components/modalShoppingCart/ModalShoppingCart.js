@@ -31,12 +31,15 @@ const ModalShoppingCart = ({ isOpen, closeModal }) => {
                                 <button onClick={()=>{dispatch(RemoveAllProductFromCart(p.id))}}
                                         style={{marginLeft:'10px'}}
                                 >Remove</button>
+
                             </p>
                             <p>{p.price * p.quantity}</p>
                         </div>
             )} )}
             <p>Total: {total} </p>
+
             <button onClick={()=>{dispatch(clearShoppingCart())}}>Clear cart</button>
+
             <button className='modal-close' onClick={closeModal}>X</button>
             <Link to='/payment'><button>Checkout</button></Link>
             

@@ -37,17 +37,6 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           products: Array.isArray(action.payload) ? action.payload : [],
         };
-
-      case 'ORDER_PRODUCTS_PRICE':
-        const order = action.payload === 'Lowest to highest' ? 'ASC' : 'DESC';
-        return {
-          ...state,
-          products: state.products.slice().sort((a, b) => {
-            if (order === 'ASC') {
-              return a.price - b.price;
-            } else {
-              return b.price - a.price;
-
       
     case "GET_PRODUCTS_DETAIL":
       return {
@@ -62,7 +51,6 @@ const rootReducer = (state = initialState, action) => {
             return {
               ...state,
               category: action.payload
-
             }
           
       
@@ -88,7 +76,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favorite: [...state.favorite, action.payload],
       };
-
+    case "SHOPPING_CART":
+      return {
+        ...state,
+        shoppingCart: action.payload,
+      };
+    case "SHOPPING_CART_ID":
+      return {
+        ...state,
+        shoppingCart: action.payload,
+      };
+      
       case "FILTER_BY_NAME":
     const filterName = state.products;
     const aux2 =
@@ -130,21 +128,21 @@ const rootReducer = (state = initialState, action) => {
           return product.price >= action.payload.minimum && product.price <= action.payload.maximum;
         })
       };
-    case 'ORDER_PRODUCTS_PRICE':
-      const order = action.payload === 'menorAMayor' ? 'ASC' : 'DESC';
-      return {
-        ...state,
-        products: state.products.slice().sort((a, b) => {
-          if (order === 'ASC') {
-            return a.price - b.price;
-          } else {
-            return b.price - a.price;
-          }
-        }),
-        priceOrder: action.payload
-      };
+      case 'ORDER_PRODUCTS_PRICE':
+  const order = action.payload === 'Lowest to highest' ? 'ASC' : 'DESC';
+  return {
+    ...state,
+    products: [...state.products].sort((a, b) => {
+      if (order === 'ASC') {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    })
+  };
 
-      
+
+
  // ***** SHOPPING CART  *****
 
     // Añadir al carrito
@@ -197,6 +195,6 @@ const rootReducer = (state = initialState, action) => {
     default:
     return state;
   }
-}
+  }
 export default rootReducer;
   

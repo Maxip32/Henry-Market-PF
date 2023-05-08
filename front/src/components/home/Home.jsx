@@ -81,10 +81,10 @@ export default function Home() {
 
       {/* Mostramos la imagen del carrito de compras */}
 
-      <div style={{display:'inline-block'}} onClick={showShoppingCart}>
+      <div className="carrito" onClick={showShoppingCart}>
         <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
         <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
-                      justifyContent:'center', alignItems:'center', position:'relative', top:'-15px', left:'-5px'}}>
+                      justifyContent:'center', alignItems:'center', top:'-40px', left:'-45px'}}>
           <span  style={{color:'white'}} >{shoppingCart.length}</span>
         </div>
       </div>
