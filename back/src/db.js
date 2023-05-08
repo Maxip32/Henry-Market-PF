@@ -42,8 +42,8 @@ const {Adress, User, ProductsName, ShoppingCart, Review, Order, OrderDetail} = s
 
 //Aca vendrian las relaciones
 
-User.hasMany(Adress, { as: "adress" });
-Adress.belongsToMany(User, { through: "user_adress" });
+// User.hasMany(Adress, { as: "adress" });
+// Adress.belongsToMany(User, { through: "user_adress" });
 
 User.belongsToMany(ProductsName, { through: "user_products_name_favorite" });
 ProductsName.belongsToMany(User, { through: "user_products_name_favorite" });

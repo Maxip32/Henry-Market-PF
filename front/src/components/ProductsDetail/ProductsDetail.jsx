@@ -30,20 +30,20 @@ const ProductsDetail = () => {
   }, [dispatch, id]);
   
   return (
-    <div className={styles.productsDetailContainer}>
+    <div >
        <p>
       <Link to="/home">
-        <button className={styles.select}>Go Henry Market</button>
+        <button className={styles.btn1}>Go Henry Market</button>
       </Link>
      </p>
-     <div className={styles.card}>
+     <div className={styles.card} >
         {allProduct.length === 0 ? (
           <div></div>
         ) : (
           <>
             <img
-           className={styles.card}
-              src={allProduct.image ? allProduct.image : image}
+           className={styles.cardimg}
+              src ={allProduct.image ? allProduct.image : image}
               alt={`img-${allProduct.name}`}
             />
             <section>
@@ -63,8 +63,14 @@ const ProductsDetail = () => {
                   </p>
                 )}
               </div>
-              <button>Buy</button>
+
+             
+             
+              
+
+              <button className={styles.btn}>Buy</button>
               <button onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add to cart</button>
+
              
             </section>
           </>

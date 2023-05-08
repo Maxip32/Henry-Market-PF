@@ -37,6 +37,17 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           products: Array.isArray(action.payload) ? action.payload : [],
         };
+
+      case 'ORDER_PRODUCTS_PRICE':
+        const order = action.payload === 'Lowest to highest' ? 'ASC' : 'DESC';
+        return {
+          ...state,
+          products: state.products.slice().sort((a, b) => {
+            if (order === 'ASC') {
+              return a.price - b.price;
+            } else {
+              return b.price - a.price;
+
       
     case "GET_PRODUCTS_DETAIL":
       return {
@@ -51,6 +62,7 @@ const rootReducer = (state = initialState, action) => {
             return {
               ...state,
               category: action.payload
+
             }
           
       
