@@ -121,13 +121,22 @@ const rootReducer = (state = initialState, action) => {
           return product.price >= action.payload.minimum && product.price <= action.payload.maximum;
         })
       };*/
-      case  'FILTER_PRODUCTS_PRICE':
-      return {
-        ...state,
-        products: state.products.filter(product => {
-          return product.price >= action.payload.minimum && product.price <= action.payload.maximum;
-        })
-      };
+      // case  'FILTER_PRODUCTS_PRICE':
+      // return {
+      //   ...state,
+      //   products: state.products.filter(product => {
+      //     return product.price >= action.payload.minimum && product.price <= action.payload.maximum;
+      //   })
+      // };
+      case 'FILTER_PRODUCTS_PRICE':
+  const filteredProducts = state.products.filter(product => {
+    return product.price >= action.payload.minimum && product.price <= action.payload.maximum;
+  });
+  const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price);
+  return {
+    ...state,
+    products: sortedProducts
+  };
       case 'ORDER_PRODUCTS_PRICE':
   const order = action.payload === 'Lowest to highest' ? 'ASC' : 'DESC';
   return {
