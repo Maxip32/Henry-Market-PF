@@ -1,6 +1,6 @@
 const { Review } = require("../../db");
 
-const allReviewsbyProduct = async (req, res) => {
+const allReviewsByProduct = async (req, res) => {
     try {
         const { productId } = req.params;
         const reviews = await Review.findAll({ where: { productId } });
@@ -10,4 +10,4 @@ const allReviewsbyProduct = async (req, res) => {
     }
 };
 
-module.exports = { allReviewsbyProduct };
+module.exports = { allReviewsByProduct };
