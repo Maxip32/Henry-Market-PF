@@ -10,6 +10,10 @@ import Popup from "../popup/Popup";
 import Pagination from "../pagination/Pagination";
 import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
+import { LogInButton } from "../logs/logIn";
+import { LogOutButton } from "../logs/logOut";
+import { Profile } from "../logs/profile";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Home() {
@@ -58,6 +62,7 @@ export default function Home() {
     document.body.style.overflow = 'auto'
   },[])
 
+ // const { isAuthenticated } = useAuth0();
   return (
     <div>
       <Link to="/home"></Link>  
@@ -72,10 +77,13 @@ export default function Home() {
       </Link>
       </div>
       
-      <div>
-      <Link to="/mailValidate">
+      <div >
+        <LogInButton/>
+        <Profile/>
+        <LogOutButton/>
+      {/* <Link to="/mailValidate">
         <button className={styles.input}>-Login-</button>
-      </Link>
+      </Link> */}
       </div>
       <Popup />
 
