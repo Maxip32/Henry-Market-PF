@@ -11,6 +11,7 @@ import CategoryFilter from './components/categoryFilter/CategoryFilter';
 import OrderByProducts from './components/orderByProducts/OrderByProducts';
 import axios from "axios";
 import Payment from './components/payment/Payment';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -20,7 +21,10 @@ function App() {
   return (
     
     <div className='App'>
-         
+               <Auth0Provider 
+      domain='dev-wjsrjkvvbr55wssc.us.auth0.com' 
+      clientId='BiKcEixIVCOkQy4xcnUeydfUkKn1MWVO' 
+      redirectUrl={window.location.origin}>
       <Routes>
         <Route exact path='/' element={<LandingPage/>} />
         <Route exact path='/home' element={<Home/>} />
@@ -40,7 +44,7 @@ function App() {
         <Route exact  path="/payment" element={<Payment/>}/>
         
       </Routes>
-      
+      </Auth0Provider>
       
     </div>
     
