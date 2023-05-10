@@ -1,13 +1,13 @@
 const data = [
   {
     id: 1,
-    name: "Suitcase",
-    description:  "Rigid luggage for business trips, weekend getaways or as international carry-on baggage.",
-    price: 75.59,
-    colors: ["yellow"],
-    sizes: [""],
-    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682814364/imagenes%20henry/maleta_de_viaje_Henry_juye8n.png",
-    category: "Bookshop",
+    name: "short sleeve t-shirt",
+    description:  "made of cotton and polyester",
+    price: 22.59,
+    colors: ["white", "grey", "yellow","black"],
+    sizes: ["XS","S", "M", "L","XL","XXL"],
+    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682814589/imagenes%20henry/Remera_negra_-_Henry_sxe1cn.jpg",
+    category: "Dress",
     stock: 8
      
   },
@@ -222,13 +222,13 @@ const data = [
   },
   {
     id: 21,
-    name: "Trash can",
-    description:  "Trash can with Henry's logo.",
-    price: 12.75,
-    colors: ["red", "blue", "black"],
+    name: "Backpack",
+    description:  "Backpack with Henry's logo",
+    price: 30.75,
+    colors: ["red", "blue", "black", "yellow"],
     sizes: [""],
-    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682877234/imagenes%20henry/Cesto_azul_-_Henry_cpmrrh.jpg",
-    category: "Home",
+    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682814487/imagenes%20henry/Mochila_Am_Logo_atceij.jpg",
+    category: "Dress",
     stock: 41
   },
   {
@@ -244,12 +244,12 @@ const data = [
   },
   {
     id: 23,
-    name: "Mate",
-    description:  "Thermal matte with Henry's logo.",
-    price: 20.00,
-    colors: ["yellow", "white"],
+    name: "mate and thermos set",
+    description:  "mate and thermos set with Henry's logo.",
+    price: 27.00,
+    colors: ["yellow", "white","black"],
     sizes: [""],
-    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682815666/imagenes%20henry/Mate_termico_-_Henry_gchq0a.jpg",
+    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1683689255/imagenes%20henry/equipo_de_mate_henry_qa0lkf.jpg",
     category: "Home",
     stock: 28
   },
@@ -281,8 +281,8 @@ const data = [
     description:  "High quality computer mouse with Henry logo.",
     price: 26.59,
     colors: ["yellow", "white", "black"],
-    sizes: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1682800364/imagenes%20henry/mouse-inalambrico0_med6pw.png",
-    image: " /mouse.jpg",
+    sizes: [""],
+    image: "https://res.cloudinary.com/dyeknjnsi/image/upload/v1683416296/imagenes%20henry/Mouse_Henry_Blanco_yg1dv0.jpg",
     category: "Technology",
     stock: 29
   },

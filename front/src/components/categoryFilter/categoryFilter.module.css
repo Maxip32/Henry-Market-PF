@@ -46,7 +46,10 @@
     }
     
     .btn:hover{
-      background-color: #ffe600;
+      color: #ffe600;
+      background-color: #000000;
+      transform:scale(1.1);
+      transition: 600ms;
     }
     .btn1{
       padding: 10px;

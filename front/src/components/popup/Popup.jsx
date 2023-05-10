@@ -41,13 +41,9 @@ function Popup() {
          <Link to="/account" className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Account</Link>
          </p>
          <p>
-         <Link to='/category'className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
-
+         <Link to='/category' className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
          </p>
-         <p>
-         <Link to='/filterPrice'className={styles.letraspoup} style={{ color: 'black', textDecoration: 'blink', fontWeight: 'bold' }}>-Filter by price</Link>
-
-         </p>
+         
          
         
           <button className={styles.input} onClick={toggleVisibility}>Close</button>
