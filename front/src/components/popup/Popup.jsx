@@ -38,14 +38,14 @@ function Popup() {
          {/*<Link to="/record" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Record</Link>*/}
          </p>
          <p>
-         <Link to="/account" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Account</Link>
+         <Link to="/account" className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Account</Link>
          </p>
          <p>
-         <Link to='/category' style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
+         <Link to='/category'className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
 
          </p>
          <p>
-         <Link to='/filterPrice' style={{ color: 'black', textDecoration: 'blink', fontWeight: 'bold' }}>-Filter by price</Link>
+         <Link to='/filterPrice'className={styles.letraspoup} style={{ color: 'black', textDecoration: 'blink', fontWeight: 'bold' }}>-Filter by price</Link>
 
          </p>
          

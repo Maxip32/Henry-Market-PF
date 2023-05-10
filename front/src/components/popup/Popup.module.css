@@ -13,7 +13,10 @@
    
   }
   .etiqueta:hover{
-    background-color: #c7b40c;
+    color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
   }
   
   .contenedor {
@@ -37,7 +40,7 @@
     text-align: justify;
 }
 .popupContent:hover {
-  text-decoration-color:#303030
+  text-decoration-color:#303030;
   
 }
 .input {
@@ -54,7 +57,10 @@
   font-size: 20px;
   }
   .input:hover {
-    background-color:  #c7b40c;
+    color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
   }
   
   .popupheader {
@@ -77,11 +83,16 @@
     transform: translateY(-50%);
     width: 24px;
     height: 2px;
-    background-color: #000;
+    background-color: #fff700;
   }
   
   .popupheader:after {
     left: auto;
     right: 16px;
   }  
+
+  .letraspoup:hover{
+
+    background-color: #ffe600;
+  }
   

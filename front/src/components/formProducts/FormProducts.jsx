@@ -154,7 +154,7 @@ const FormProducts = () => {
         <h3>Create products</h3>
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div>
-                <label htmlFor="name" className={styles.label}>
+                <label htmlFor="name" className={styles.input}>
                   Name:
                   </label>
                 <input 
@@ -163,12 +163,12 @@ const FormProducts = () => {
                 value={form.name} 
                 onChange={handleChange} 
                 required
-                className={styles.input}
+                className={styles.label}
                 pattern="[A-Za-z0-9 ]+"
                 title="Please enter only letters or numbers." />
             </div>
              <div>
-                <label htmlFor="Price"  className={styles.label}>
+                <label htmlFor="Price"  className={styles.input}>
                   Price:
                   </label>
                 <input 
@@ -177,17 +177,17 @@ const FormProducts = () => {
                 value={form.price}  
                 onChange={handleChange}
                 required
-                className={styles.input} 
+                className={styles.label} 
                 pattern="^(USD|\$)?\d{1,3}(,\d{3})*(\.\d{2})?$"
                  title="Enter a value expressed in dollars." 
 />
             </div>
             <div>
-      <label htmlFor="colors"  className={styles.label}>
+      <label htmlFor="colors"  className={styles.input}>
       Select color: {selectedColor}</label>
       <select name="colors" 
       required
-      className={styles.input}
+      className={styles.input2}
       
       id="colors" 
       value={selectedColor} 
@@ -203,11 +203,11 @@ const FormProducts = () => {
     </div>
 
     <div>
-    <label htmlFor="Size"  className={styles.label}>
+    <label htmlFor="Size"  className={styles.input}>
   Select size:</label>
   <select name="sizes"  
    required
-   className={styles.input}
+   className={styles.input2}
    
   onChange={handleSelectSizes}>
     <option value="">Select size {selectedSize}</option>
@@ -220,12 +220,11 @@ const FormProducts = () => {
   </select>
 </div>
  <div>
-                <label htmlFor="Category" className={styles.input}>
-                  Category:</label>
+                <label htmlFor="Category" className={styles.input}>Select category:</label>
                 <select name="category" 
                     defaultValue=""
                      required
-                     className={styles.input}
+                     className={styles.input2}
                     
                      onChange={handleChange}>
                         <option value="">Select category</option>
@@ -245,7 +244,7 @@ const FormProducts = () => {
                 value={form.description} 
                  onChange={handleChange} 
                  required
-                 className={styles.input}
+                 className={styles.label}
                  
                   />
             </div>
@@ -258,20 +257,21 @@ const FormProducts = () => {
                  value={form.stock} 
                  onChange={handleChange} 
                  required
-                 className={styles.input}
+                 className={styles.label}
                  pattern="[0-9]+(\.[0-9]+)?"
                  title="Please enter only numbers."
 
                  />
             </div>
              <div>
-                <label htmlFor="Image" className={styles.label}>
+                <label htmlFor="Image" className={styles.imageupload}>
                  Image:
                   </label>
                 <input 
                 type="file" 
                 name="image"
                 placeholder="Url..." 
+                className={styles.imageupload}
                 
                 autoComplete={"off"}
                 onChange={handleImage} />
