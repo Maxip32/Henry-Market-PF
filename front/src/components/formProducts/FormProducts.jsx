@@ -4,6 +4,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import styles from "./FormProducts.module.css"
+import { ToastContainer, toast } from 'react-toastify' 
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 //import "./FormProducts.css"
 
@@ -117,7 +121,7 @@ const FormProducts = () => {
       const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
       const resJson = await resFound.json()
   
-      if(resJson) return console.log('Product created')
+      if(resJson.id) return console.log('Product created')
   
       const IMAGEURL = await uploadImage()
   
@@ -131,14 +135,14 @@ const FormProducts = () => {
         })
         const data = await res.json()
 
+        toast.success("Product created")
+        window.location.href = "/home";
+
+
 
         if(data.error) return console.log('producto ya existe')
         else return console.log(data)
 
-        console.log(data)
-
-        // Show success message
-        alert('Product created successfully!')
     } catch (error) {
         console.log('Product could not be created')
 
@@ -178,8 +182,8 @@ const FormProducts = () => {
                 onChange={handleChange}
                 required
                 className={styles.input} 
-                pattern="^(USD|\$)?\d{1,3}(,\d{3})*(\.\d{2})?$"
-                 title="Enter a value expressed in dollars." 
+                pattern="[0-9]+(\.[0-9]+)?"
+                title="Please enter only numbers."
 />
             </div>
             <div>
@@ -283,6 +287,8 @@ const FormProducts = () => {
         </button>
         </p>
         </form>
+        <ToastContainer />
+
     </div>
   );
 };

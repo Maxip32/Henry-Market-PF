@@ -6,9 +6,7 @@ import Home from "./components/home/Home";
 import FormProducts from './components/formProducts/FormProducts';
 import ValidateMail from "./components/validateMail/ValidateMail";  
 import ProductsDetail from "./components/ProductsDetail/ProductsDetail";
-
 import CategoryFilter from './components/categoryFilter/CategoryFilter';
-import OrderByProducts from './components/orderByProducts/OrderByProducts';
 import axios from "axios";
 import Payment from './components/payment/Payment';
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -40,7 +38,6 @@ function App() {
         {/*<Route exact  path="/record" element={</>}/>*/}
         <Route exact  path="/account" element={<ValidateMail/>}/>
         <Route exact  path="/category" element={<CategoryFilter/>}/>
-        <Route exact  path="/filterPrice" element={<OrderByProducts/>}/>
         <Route exact  path="/payment" element={<Payment/>}/>
         
       </Routes>

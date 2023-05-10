@@ -42,12 +42,8 @@ function Popup() {
          </p>
          <p>
          <Link to='/category' style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
-
          </p>
-         <p>
-         <Link to='/filterPrice' style={{ color: 'black', textDecoration: 'blink', fontWeight: 'bold' }}>-Filter by price</Link>
-
-         </p>
+         
          
         
           <button className={styles.input} onClick={toggleVisibility}>Close</button>
