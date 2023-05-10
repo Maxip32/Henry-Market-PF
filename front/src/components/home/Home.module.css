@@ -49,7 +49,10 @@
   
 }
 .input:hover{
-  background-color: #c0af17;
+  color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
 }
 .buttons {
   
@@ -69,7 +72,12 @@
   margin-left: 3.5rem;
   filter: drop-shadow(0 0 5px #cbcbcb);
   border: solid  1px black;
-  background-color: transparent;
+  background-color:beige;
+}
+
+.card:hover{
+  transform:scale(1.1);
+  transition: 600ms;
 }
  .cardimg {
     border-radius: 30px;

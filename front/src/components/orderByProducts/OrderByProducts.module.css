@@ -38,8 +38,8 @@
   margin-top: 10px;
   border: none;
   cursor: pointer;
-  color: #ffe600; 
-  background-color: black;
+  color: #000000; 
+  background-color: #ffe600;
 }
 .max{
   padding: 9px;
@@ -48,15 +48,21 @@
   margin-top: 10px;
   border: none;
   cursor: pointer;
-  color: #ffe600;
-  background-color: black;
+  color: #000000;
+  background-color: #ffe600;
 }
 
 .min:hover{
-  background-color: #c7b40c;
+  color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
 }
 .max:hover{
-  background-color: #c7b40c;
+  color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
 }
 
 .card {
@@ -125,15 +131,18 @@
 button.select {
   margin-bottom: 20px;
   padding: 10px 20px;
-  background-color: black;
+  background-color:#ffe600;
   border: none;
   border-radius: 4px;
-  color: #ffe600;
+  color: #000000;
   cursor: pointer;
 }
 
 button.select:hover {
-  background-color: #c7b40c;
+  color: #ffe600;
+  background-color: #000000;
+  transform:scale(1.1);
+  transition: 600ms;
 }
 
 button:hover {
