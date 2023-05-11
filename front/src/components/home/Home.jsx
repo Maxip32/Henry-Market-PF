@@ -13,7 +13,6 @@ import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import { LogInButton } from "../logs/logIn";
 import { LogOutButton } from "../logs/logOut";
 import { Profile } from "../logs/profile";
-import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Home() {
