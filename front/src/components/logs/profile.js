@@ -6,15 +6,16 @@ export const Profile = () => {
 
     if(isLoading){
         return <div>Loading...</div>
-    };
-
+    }else
     return (
         isAuthenticated && (
             <div>
             <img src={user.image} alt={user.name} />
             <h2>{user.name}</h2>
             <p>Email: {user.email}</p>
+            console.log(user.name)
             </div>
+            
         )
     )
 };
