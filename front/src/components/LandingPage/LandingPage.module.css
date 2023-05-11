@@ -1,0 +1,45 @@
+.landingSection {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  background-image: url("../image/landing2.jpg");
+   background-size: cover;
+  background-position: center 0;
+  height: 100vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  image-rendering: pixelated;
+  padding-left: 10px;
+}
+.landingHeading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.landingButton {
+  background-color: #e6f200;
+  color: #000000;
+  padding: 0rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: fixed;
+  top: 182px;
+  left: 610px;
+ }
+.landingButton {
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.5s;
+}.landingButton:after {content: '\00bb';position: absolute;
+  right: -20px;
+  transition: 0.5s;
+}.landingButton:hover {
+  padding-right: 25px;
+  background-color: #eaf16f;
+}.landingButton:hover:after {
+  opacity: 1;
+  right: 0;
+}
