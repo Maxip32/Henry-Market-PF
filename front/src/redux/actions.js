@@ -13,6 +13,7 @@ export const getUser = () => {
       console.error(error);
     }
   };
+  
 };
 
 export const newUser = (user) => {
@@ -107,7 +108,7 @@ export const allProductsName = (name) => {
     dispatch({type: "PUT_PRODUCT_BY_NAME", 
     payload: data})
 } catch (error) {
-    alert("The product you are looking for is not available");
+  console.error(error);
   }
 }
 }

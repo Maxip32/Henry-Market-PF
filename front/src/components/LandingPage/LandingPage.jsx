@@ -8,6 +8,7 @@ export default function LandingPage() {
       <div className={styles.landingBox}>
         <h1 className={`${styles.landingTitle} ${styles.welcome}`}>
          
+
         </h1>
         <Link to="/home">
           <button className={styles.landingButton}>Get in</button>

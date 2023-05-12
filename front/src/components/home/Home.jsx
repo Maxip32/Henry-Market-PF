@@ -67,27 +67,6 @@ export default function Home() {
       <Link to="/home"></Link>  
     
 <div>
-      <button  className={styles.input}onClick={refreshPage}>Refresh</button>
-      </div>
-
-<div className={styles.buttons}>
-      <Link to="/formProducts">
-        <button className={styles.input}>-Create-</button>
-      </Link>
-      </div>
-      
-      <div >
-        <LogInButton/>
-        <Profile/>
-        <LogOutButton/>
-      {/* <Link to="/mailValidate">
-        <button className={styles.input}>-Login-</button>
-      </Link> */}
-      </div>
-      <Popup />
-
-      {/* Mostramos la imagen del carrito de compras */}
-
       <div className="carrito" onClick={showShoppingCart}>
         <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
         <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
@@ -101,9 +80,30 @@ export default function Home() {
       
 
       <SearchBar />
+      <button  className={styles.input}onClick={refreshPage}>Refresh</button>
+      </div>
+
+<div className={styles.buttons}>
+      <Link to="/formProducts">
+        <button className={styles.input}>-Create-</button>
+      </Link>
+      </div>
+      
+      <div >
+      </div>
+        <LogInButton/>
+        <Profile/>
+        <LogOutButton/>
+      {/* <Link to="/mailValidate">
+        <button className={styles.input}>-Login-</button>
+      </Link> */}
      
 
+      {/* Mostramos la imagen del carrito de compras */}
+
+
       <p></p>
+      <Popup />
 
      
       {/* Mostramos solo los productos de la página actual */}

@@ -113,20 +113,22 @@ const FilterByPrice = () => {
     <div>
       <div className={styles.searchresults}>
         <div>
-          <label  htmlFor="priceMinimum" className={styles.input}>Min Price:</label>
+          <label  htmlFor="priceMinimum" className={styles.input}></label>
           <input
             type="number"
             id="priceMinimum"
+            placeholder="Set min price..."
             value={priceMinimum}
             onChange={(e) => setPriceMinimum(e.target.value)}
             min="0"
           />
         </div>
         <div>
-          <label htmlFor="priceMaximum" >Max Price:</label>
+          <label htmlFor="priceMaximum" ></label>
           <input
             type="number"
             id="priceMaximum"
+            placeholder="Set max price..."
             value={priceMaximum}
             onChange={(e) => setPriceMaximum(e.target.value)}
             min="0"

@@ -9,6 +9,7 @@
       filter: drop-shadow(0 0 5px #cbcbcb);
       
     }
+    
     .cardimg:hover{
       transform:scale(1.1);
       transition: 600ms;

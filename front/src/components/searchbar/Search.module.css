@@ -70,22 +70,23 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    position:relative;
+    margin-left: 2rem;
     top: -190px;  
      left: 20px; 
    
-    margin: 0;
     width: 96%;
   }
  .search{
    border: solid 1px rgb(137, 136, 136);
    width: 500px;
    border-radius: 5px;
+ 
   } 
   .card {
     width: 30%;
   border-radius: 5px;
   display: flex;
+  margin-top: 2rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -132,6 +133,7 @@
 .btn{
 padding: 10px;
 border-radius: 4px;
+margin-right: 7rem;
 border: none;
 cursor: pointer;
 color: #ffe600;
