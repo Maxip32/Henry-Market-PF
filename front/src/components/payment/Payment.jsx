@@ -44,6 +44,7 @@ const Payment = () => {
 
   useEffect(() => {
     handleClick()
+    // eslint-disable-next-line
   }, [])
  
 
