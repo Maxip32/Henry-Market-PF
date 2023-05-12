@@ -35,6 +35,27 @@
       color: #000;
       cursor: pointer;
     }
+    .name{
+      font-family: Verdana, Geneva, sans-serif;
+      width: 350px;
+      font-size: 1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .description{
+      font-family: Verdana, Geneva, sans-serif;
+      width: 350px;
+      font-size: 0.8em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .price{
+      font-size: 1em;
+      font-family: Verdana, Geneva, sans-serif;
+    
+    }
     
     .btn{
       padding: 10px;
