@@ -10,6 +10,7 @@ import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import { useEffect } from "react";
 import {  useSelector } from "react-redux";
+import SearchBar from "../searchbar/Searchbar";
 
 //import "./FormProducts.css"
 
@@ -176,6 +177,9 @@ useEffect(()=>{
         </div>
       </div>
       {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
+
+      <SearchBar />
+
         <Link to="/home"><button className={styles.landingButtonn}>Henry Market</button></Link>
         <h3>Create products</h3>
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
