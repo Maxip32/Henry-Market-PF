@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import styles from "./FormProducts.module.css"
 import { ToastContainer, toast } from 'react-toastify' 
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import ShoppingCartImage from '../image/shoppingcart.svg'
+import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
+import { useEffect } from "react";
+import {  useSelector } from "react-redux";
+import SearchBar from "../searchbar/Searchbar";
 
 //import "./FormProducts.css"
 
@@ -148,12 +151,35 @@ const FormProducts = () => {
 
     }
 }
+const [isOpen, setIsOpen] = useState(false)
+const openModal = () =>{setIsOpen(true) ; document.body.style.overflow = 'hidden';}
+const closeModal = () =>{setIsOpen(false); document.body.style.overflow = 'auto';}
+const shoppingCart = useSelector((state) => state.shoppingCart);
+
+function showShoppingCart (){
+  openModal()
+}
+
+useEffect(()=>{
+  document.body.style.overflow = 'auto'
+},[])
 
   
   
 
   return (
     <div className={styles.createdog}>
+      <div className="carrito" onClick={showShoppingCart}>
+        <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
+        <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
+                      justifyContent:'center', alignItems:'center', top:'-40px', left:'-45px'}}>
+          <span  style={{color:'white'}} >{shoppingCart.length}</span>
+        </div>
+      </div>
+      {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
+
+      <SearchBar />
+
         <Link to="/home"><button className={styles.landingButtonn}>Henry Market</button></Link>
         <h3>Create products</h3>
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
