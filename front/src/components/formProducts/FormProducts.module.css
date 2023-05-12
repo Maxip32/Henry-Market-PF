@@ -3,7 +3,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 30px;
-  background-color: #dcd7d7;
+  background-color: #a9a8a8;
   border: 1px solid #000000;
   border-radius: 5px;
 }
@@ -21,8 +21,8 @@
 } 
 
  .goHomeButton {
-  background-color: #ffe600;
-  color: rgb(0, 0, 0);
+  background-color: #000000;
+  color: #ffe600;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -54,7 +54,7 @@ select {
   width: 95%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 5px;
   display:inline-block;
 } 
@@ -67,8 +67,8 @@ select {
  .createButton {
   display: block;
   margin: 0 auto;
-  background-color: #ffe600;
-  color: rgb(0, 0, 0);
+  background-color: #000000;
+  color: #ffe600;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -107,10 +107,10 @@ select {
   outline: none;
   border-radius: 5px;
   z-index: 0;
-  background: #ffe600;
+  background: #000000;
   overflow: hidden;
-  border: 2px solid #ffe600;
-  color: #000000;
+  /* border: 2px solid #ffe600; */
+  color: #ffe600;
 }
 
 .landingButtonn:hover {

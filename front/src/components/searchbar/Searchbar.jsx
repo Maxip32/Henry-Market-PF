@@ -30,7 +30,7 @@ export default function SearchBar() {
         <div >
           <div className={styles.searchBtn}>
             <input className={styles.search} type='search' placeholder="Search product..." value={productName} onChange={handleInput}/>
-            <button className={styles.searchButton} type="submit" onClick={handleClick}><FontAwesomeIcon icon={faSearch}/>Search</button>
+            <button className={styles.searchButton} type="submit" onClick={handleClick}><FontAwesomeIcon style={{color:"yellow"}} icon={faSearch}/>Search</button>
   </div>
               
                {searched && products && products.id &&
