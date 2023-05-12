@@ -113,7 +113,7 @@ const FilterByPrice = () => {
     <div>
       <div className={styles.searchresults}>
         <div>
-          <label htmlFor="priceMinimum">Min Price:</label>
+          <label  htmlFor="priceMinimum" className={styles.input}>Min Price:</label>
           <input
             type="number"
             id="priceMinimum"
@@ -123,7 +123,7 @@ const FilterByPrice = () => {
           />
         </div>
         <div>
-          <label htmlFor="priceMaximum">Max Price:</label>
+          <label htmlFor="priceMaximum" >Max Price:</label>
           <input
             type="number"
             id="priceMaximum"

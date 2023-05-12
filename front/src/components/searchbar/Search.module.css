@@ -62,28 +62,29 @@
       font-size: 14px;
     }
   } .searchBtn {
-    background-color: #ffe600;
-    border: 1px solid #ccc;
-    color: #333;
+    background-color: #949090;
+    border: 1px solid #bcbbbb;
+    color: #ffe600;
     padding: 2px;
     border-radius: 3px;
     cursor: pointer;
     display: flex;
     align-items: center;
     position:relative;
-    top: -170px;  
+    top: -190px;  
      left: 20px; 
    
     margin: 0;
     width: 96%;
   }
  .search{
-   border: solid 1px black;
+   border: solid 1px rgb(137, 136, 136);
    width: 500px;
+   border-radius: 5px;
   } 
   .card {
     width: 30%;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,6 +92,11 @@
   margin-left: 30rem;
   filter: drop-shadow(0 0 5px #cbcbcb);
   border: solid  1px black;
+  background-color: #a9a8a8
+  }
+  .card:hover{
+    transform:scale(1.1);
+    transition: 600ms;
   }
    .cardimg {
     border-radius: 30px;
@@ -128,8 +134,8 @@ padding: 10px;
 border-radius: 4px;
 border: none;
 cursor: pointer;
-color: rgb(1, 1, 1);
-background-color: #ffe600;
+color: #ffe600;
+background-color: #000000;
 }
 .btn1{
 margin-right: 1rem;
@@ -137,19 +143,19 @@ padding: 10px;
 border-radius: 4px;
 border: none;
 cursor: pointer;
-color: rgb(1, 1, 1);
-background-color: #ffe600;
+color: #ffe600;
+background-color: #000000;
 }
 
 .btn1:hover{
-background-color: #ffe600;
+background-color: #000000;
 }
 .btn:hover{
-background-color: #ffe600;
+background-color: #000000;
 }
   
   .searchsearchButton svg {
-    background-color: #ffe600;
+    background-color: #000000;
     position: absolute;
     top: 1.5rem;
     right: 2.5rem;
@@ -157,7 +163,9 @@ background-color: #ffe600;
     cursor: pointer;
   }
   .searchButton{
-    background-color:#fff066;
+    background-color:#000000;
+    color:#ffe600;
+    border-radius: 5px;
     position: absolute;
     top: 0.6rem;
     right: 52rem;

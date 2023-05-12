@@ -1,5 +1,6 @@
 .login{
-    background-color: #ffe600;
+    background-color: #000000;
+    color:#ffe600;
     padding: 10px;
     margin-left: 850px;
     margin-top: -20px;
@@ -10,7 +11,8 @@
     }
     
     .logout{
-    background-color: #ffe600;
+    background-color: #000000;
+    color:#ffe600;
     padding: 10px;
     margin: 4px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
