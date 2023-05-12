@@ -9,6 +9,7 @@ import ProductsDetail from "./components/ProductsDetail/ProductsDetail";
 import CategoryFilter from './components/categoryFilter/CategoryFilter';
 import axios from "axios";
 import Payment from './components/payment/Payment';
+import SearchBar from './components/searchbar/Searchbar';
 
 
 axios.defaults.baseURL = "http://localhost:3001/";
@@ -26,7 +27,8 @@ function App() {
         <Route exact path='/formProducts' element={<FormProducts />} />
         <Route exact path= "/mailValidate" element={<ValidateMail/>}/>
         <Route exact  path="/detail/:id" element={<ProductsDetail/>}/>
-       
+        <Route exact  path="/search" element={<SearchBar/>}/>
+
         {/*<Route exact  path="/Notifications" element={</>}/>*/}
         {/*<Route exact  path="/Myshopping" element={</>}/>*}
        

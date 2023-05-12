@@ -34,22 +34,23 @@ const CategoryFilter = () => {
     document.body.style.overflow = 'auto'
   },[])
   return (
-    <div className={styles.product}>
+    <div >
+      <div className="carrito" onClick={showShoppingCart}>
+       <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
+       <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
+                     justifyContent:'center', alignItems:'center', top:'-40px', left:'-45px'}}>
+         <span  style={{color:'white'}} >{shoppingCart.length}</span>
+       </div>
+     </div>
+     {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
+     
+
+     <SearchBar />
+     <div className={styles.product}>
       <div className={styles.searchresults}>
         <Link to="/home">
           <button className={styles.btn}>Go Henry Market</button>
         </Link>
-       <div className="carrito" onClick={showShoppingCart}>
-        <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px' />
-        <div style={{borderRadius:'50%', height:'25px', width:'25px', backgroundColor:'purple', display:'inline-flex', 
-                      justifyContent:'center', alignItems:'center', top:'-40px', left:'-45px'}}>
-          <span  style={{color:'white'}} >{shoppingCart.length}</span>
-        </div>
-      </div>
-      {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
-      
-
-      <SearchBar />
       <p></p>
         <div className={styles.filter}>
           <label htmlFor="category-filter"></label>
@@ -100,6 +101,7 @@ const CategoryFilter = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

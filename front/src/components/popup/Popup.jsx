@@ -19,9 +19,9 @@ function Popup() {
            
           </div>
           <div className={styles.popupContent}>
-           {/* <p>
+            {/* <p>
           <Link to="/search" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>-Search</Link>
-      </p>*/}
+      </p> */}
           <p>
          {/* <Link to="/Notifications" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Notifications</Link>*/}
          </p>

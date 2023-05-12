@@ -55,6 +55,7 @@ const ProductsDetail = () => {
       </div>
       {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
       <SearchBar />
+      
        <p>
       <Link to="/home">
         <button className={styles.btn1}>Go Henry Market</button>
