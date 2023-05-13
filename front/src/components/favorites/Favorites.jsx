@@ -19,25 +19,28 @@ function Rating({ productId }) {
   };
 
   return (
-    <div>
-      {[1].map((value) => {
-        const filled = value <= rating;
-        return (
-          <span
-            key={value}
-            onClick={() => handleRatingClick(value)}
-            style={{
-              color: filled ? 'orange' : 'grey',
-              cursor: 'pointer',
-              fontSize: '2rem',
-              marginRight: '5px'
-            }}
-          >
-            ♥
-          </span>
-        );
-      })}
-    </div>
+    <div style={{ position: 'relative' }}>
+  {[1].map((value) => {
+    const filled = value <= rating;
+    return (
+      <span
+        key={value}
+        onClick={() => handleRatingClick(value)}
+        style={{
+          color: filled ? 'red' : 'grey',
+          cursor: 'pointer',
+          fontSize: '2rem',
+          position: 'absolute',
+          top: '9px', // Mueve el corazón hacia arriba
+          left: '111px', // Mueve el corazón hacia la derecha
+          zIndex:'1',
+        }}
+      >
+        ♥
+      </span>
+    );
+  })}
+</div>
   );
 }
 

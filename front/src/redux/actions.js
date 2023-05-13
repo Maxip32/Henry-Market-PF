@@ -76,7 +76,7 @@ export const adressPost = (adress) => {
 export const allProducts = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/products`);
+      const response = await axios.get(`/products/create/data`);
       dispatch({
         type: "ALL_PRODUCTS",
         payload: response.data,
