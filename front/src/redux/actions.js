@@ -180,6 +180,28 @@ export const updateProductRating = (id, rating) => async (dispatch) => {
   }
 };
 //***************************************************************//
+export const toggleFavorite = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`/favorite`, { id });
+      const { message } = response.data;
+
+      const products = getState().products.map((product) => {
+        if (product.id === id) {
+          return { ...product, isFavorite: !product.isFavorite };
+        }
+        return product;
+      });
+
+      dispatch({
+        type: "TOGGLE_FAVORITE",
+        payload: { products, message }
+      });
+    } catch (error) {
+      console.error(error);
+      console.error(error.response.data);
+    }
+  };}
   
   export const getFavoriteId = (id) => {
 	return async function (dispatch) {

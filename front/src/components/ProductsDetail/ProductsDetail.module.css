@@ -55,3 +55,45 @@
   color: #ffe600;
   background-color: #000000;
 }
+.heartBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: gray;
+  transition: color 0.3s ease;
+  margin-top: 5px;
+  }
+  
+  .heartBtn:hover,
+  .heartBtn:focus,
+  .heartBtn:active { /* Agregada la pseudoclase :active */
+  color: rgb(149, 142, 145);
+  }
+  
+  .imageContainer {
+  display: flex;
+  align-items: center;
+  width: 290px; /* ancho fijo para el contenedor */
+  position: relative;
+  }
+  
+  
+  .heartBtn.marked {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 25px;
+  color: rgb(239, 208, 10);
+  transition: color 0.3s ease;
+  margin-top: 5px;
+  }
+  
