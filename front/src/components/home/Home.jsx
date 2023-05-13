@@ -15,6 +15,7 @@ import { LogOutButton } from "../logs/logOut";
 import { Profile } from "../logs/profile";
 
 
+
 export default function Home() {
   const dispatch = useDispatch();
   let products = useSelector((state) => state.products);
@@ -120,6 +121,7 @@ export default function Home() {
             <p className={styles.description}style={{ color: "black" }}>{product.description}</p>
             <p className style={{ color: "black" }}>Price: USD{product.price}</p>
             </div>
+           
           </Link>
         </div>
         
