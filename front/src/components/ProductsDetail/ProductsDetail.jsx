@@ -1,23 +1,30 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { allProductsId, addSToShoppingCart } from "../../redux/actions";
+import { allProductsId, addSToShoppingCart, toggleFavorite } from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
 import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import SearchBar from "../searchbar/Searchbar";
-import RatingStart from "../ratingStart/RatingStart"
+import RatingStart from "../ratingStart/RatingStart";
+
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from '@fortawesome/free-regular-svg-icons';
+
 
 const image = "";
 
-const ProductsDetail = () => {
+const ProductsDetail = () => {   
   const dispatch = useDispatch();
   const { id } = useParams();
   const allProduct = useSelector((state) => state.products);
   const [selectedDetail, setSelectedDetail] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleSelect = (event) => {
     setSelectedDetail(event.target.value);
@@ -44,6 +51,16 @@ const ProductsDetail = () => {
   useEffect(()=>{
     document.body.style.overflow = 'auto'
   },[])
+
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorite(allProduct.id));
+    const heartBtn = document.querySelector(`.${styles.heartBtn}`);
+    heartBtn.classList.toggle(styles.marked);
+  };
+  
+  /*const handleToggleFavorite = (productId) => {
+    dispatch(toggleFavorite(productId));
+  };*/
   
   return (
     <div >
@@ -63,15 +80,25 @@ const ProductsDetail = () => {
       </Link>
      </p>
      <div className={styles.card} >
+    
+
         {allProduct.length === 0 ? (
           <div></div>
         ) : (
           <>
-            <img
-           className={styles.cardimg}
-              src ={allProduct.image ? allProduct.image : image}
-              alt={`img-${allProduct.name}`}
-            />
+           
+           <div className={styles.imageContainer}>
+  <img
+    className={styles.cardimg}
+    src ={allProduct.image ? allProduct.image : image}
+    alt={`img-${allProduct.name}`}
+  />
+ <button className={`${styles.heartBtn} ${allProduct.isFavorite ? styles.marked : ''}`} onClick={handleToggleFavorite}>
+  <FontAwesomeIcon icon={allProduct.isFavorite ? faBookmark : faHeartRegular} />
+</button>
+
+</div>
+
             <section>
               <div className={styles.productInfo}>
                 <h1 className={styles.productName}>{allProduct.name}</h1>
@@ -107,6 +134,5 @@ const ProductsDetail = () => {
       </div>
     </div>
   );
-};
-
+}
 export default ProductsDetail;

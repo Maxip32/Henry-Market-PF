@@ -1,3 +1,4 @@
+import { ActionTypes } from "../components/constants/Constants";
 const initialState = {
   users: [],
   products: [],
@@ -21,6 +22,13 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
       //*********************************//
+      case ActionTypes.TOGGLE_FAVORITE:
+        const updatedProducts = state.products.map((product) =>
+          product.id === action.payload ? { ...product, isFavorite: !product.isFavorite } : product
+        );
+        const updatedFavorites = updatedProducts.filter((product) => product.isFavorite);
+        return { ...state, products: updatedProducts, favorites: updatedFavorites };
+      
     case "GET_USERS":
       return {    
         ...state,
