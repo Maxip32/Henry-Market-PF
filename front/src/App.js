@@ -12,6 +12,7 @@ import Payment from './components/payment/Payment';
 import SearchBar from './components/searchbar/Searchbar';
 
 
+
 axios.defaults.baseURL = "http://localhost:3001/";
 
 
@@ -32,12 +33,13 @@ function App() {
         {/*<Route exact  path="/Notifications" element={</>}/>*/}
         {/*<Route exact  path="/Myshopping" element={</>}/>*}
        
-        {/*<Route exact  path="/favorites" element={</>}/>*/}
+       
         {/*<Route exact  path="/discounts" element={</>}/>*/}  
         {/*<Route exact  path="/record" element={</>}/>*/}
         <Route exact  path="/account" element={<ValidateMail/>}/>
         <Route exact  path="/category" element={<CategoryFilter/>}/>
         <Route exact  path="/payment" element={<Payment/>}/>
+        
         
       </Routes>
       

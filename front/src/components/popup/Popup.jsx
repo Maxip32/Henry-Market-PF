@@ -29,7 +29,7 @@ function Popup() {
          {/* <Link to="/Myshopping" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>My shopping</Link>*/}
          </p>
          <p>
-         {/*<Link to="/favorites" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Favorite</Link>*/}
+         <Link to="/favorites" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Favorite</Link>
          </p>
          <p>
          {/*<Link to="/discounts" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Discounts</Link>*/} 
