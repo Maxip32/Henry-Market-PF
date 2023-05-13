@@ -7,9 +7,6 @@ import styles from "./FormProducts.module.css"
 import { ToastContainer, toast } from 'react-toastify' 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useEffect } from "react";
-import {  useSelector } from "react-redux";
-import SearchBar from "../searchbar/Searchbar";
 
 //import "./FormProducts.css"
 
@@ -158,7 +155,7 @@ const FormProducts = () => {
   return (
     <div className={styles.createdog}>
       
-      <SearchBar />
+
 
         <Link to="/home"><button className={styles.landingButtonn}>Henry Market</button></Link>
         <h3>Create products</h3>
