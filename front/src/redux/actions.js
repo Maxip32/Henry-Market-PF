@@ -166,6 +166,20 @@ export const putProductsId = (id, product) => {
 	  }
 	};
   };
+
+//******************** RATING START ***************************//
+export const updateProductRating = (id, rating) => async (dispatch) => {
+  try {
+    // Envía una solicitud PUT a la API para actualizar la calificación del producto en la base de datos
+    const response = await axios.put(`/products/${id}`, { rating });
+
+    // Actualiza la calificación del producto en el estado de Redux
+    dispatch({ type: 'UPDATE_PRODUCT_RATING', payload: { id, rating: response.data.rating } });
+  } catch (error) {
+    console.log(error);
+  }
+};
+//***************************************************************//
   
   export const getFavoriteId = (id) => {
 	return async function (dispatch) {

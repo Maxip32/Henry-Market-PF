@@ -12,6 +12,15 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    //**************RATING START**********//
+    case 'UPDATE_PRODUCT_RATING':
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          product.id === action.payload.productId ? { ...product, rating: action.payload.rating } : product
+        ),
+      };
+      //*********************************//
     case "GET_USERS":
       return {    
         ...state,

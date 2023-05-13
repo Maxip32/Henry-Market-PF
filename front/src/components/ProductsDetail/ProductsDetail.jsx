@@ -8,6 +8,7 @@ import styles from "./ProductsDetail.module.css";
 import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import SearchBar from "../searchbar/Searchbar";
+import RatingStart from "../ratingStart/RatingStart"
 
 const image = "";
 
@@ -87,12 +88,15 @@ const ProductsDetail = () => {
                     <b>Category: </b> {allProduct.category}
                   </p>
                 )}
+                <p>
+                 <RatingStart productId={allProduct.id} />
+                 </p>
               </div>
 
              
              
               
-
+             
               <button className={styles.btn}>Buy</button>
               <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add to cart</button>
 
