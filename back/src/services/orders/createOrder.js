@@ -24,22 +24,21 @@ const orderDataExample = {
 
 // create order - orderDetail and mercadoPago data, update products stock
 const createOrder = async (order) => {
-    //const transaction = await conn.transaction() // start transaction for revert in case of error
+    const transaction = await conn.transaction() // start transaction for revert in case of error
 
     try {
         // format order data to create
-        /*const formatOrder = {
+        const formatOrder = {
             orderAmount: order.orderAmount,
             orderTotal: order.orderTotal,
             userId: order.userId
         }
 
         const newOrder = await Order.create(formatOrder, {transaction}); // create new order
-        const getNewOrder = await Order.findByPk(newOrder.id) // get new order
         // format orderDetails data
         const formatOrderDetail = order.items.map(item => {
             return {
-                orderId: getNewOrder.id,
+                orderId: newOrder.id,
                 productsNameId: item.id,
                 detailAmount: item.quantity,
                 detailTotal: item.unit_price,
@@ -72,8 +71,10 @@ const createOrder = async (order) => {
 
         const preference = await mercadoPago.preferences.create(dataToSend); // send data to mercadoPago - id property is necessary in frontend
         await transaction.commit() // commit transaction in case of success
-        return preference*/
-        const dataToSend = {
+        return preference
+
+        // this code is without save to db and only mercadopago
+        /*const dataToSend = {
             items: order.items,
             back_urls: {
                 success: "https://localhost:3000/feedback",
@@ -83,7 +84,7 @@ const createOrder = async (order) => {
             auto_return: "approved",
         }
         const preference = await mercadoPago.preferences.create(dataToSend); // send data to mercadoPago - id property is necessary in frontend
-        return preference
+        return preference*/
     } catch (error) {
         //await transaction.rollback() // rollback transaction in case of error
         return {error: error.message};

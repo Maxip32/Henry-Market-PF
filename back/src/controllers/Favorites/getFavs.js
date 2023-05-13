@@ -1,17 +1,17 @@
-const { User } = require('../../db');
+const {User} = require('../../db');
 
 const getFav = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const {userId} = req.params;
 
         const user = await User.findByPk(userId);
-        const products = await user.getProductsName();
+        const products = await user.getProductsNames();
 
-        return res.json({ products });
+        return res.json({products});
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({error: error.message});
     }
-    
+
 };
 
 module.exports = {getFav};

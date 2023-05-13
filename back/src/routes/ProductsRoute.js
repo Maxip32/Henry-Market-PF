@@ -7,6 +7,7 @@ const {createProducts} = require('../controllers/Products/CreateProducts')
 const {deleteProducts} = require('../controllers/Products/DeleteProducts')
 const {editeProducts} = require('../controllers/Products/EditeProduct')
 const {getProductById} = require('../controllers/Products/getProductsById')
+const {createProductsFromData} = require("../controllers/Products/CreateProductsFromDataUtils");
 
 
 productsRouter.get('/', getAllProducts);
@@ -17,5 +18,7 @@ productsRouter.get('/:id', getProductById)
 productsRouter.post('/', createProducts);
 productsRouter.delete('/:id', deleteProducts);
 productsRouter.put('/:id', editeProducts);
+
+productsRouter.get('/create/data', createProductsFromData)
 
 module.exports = productsRouter;
