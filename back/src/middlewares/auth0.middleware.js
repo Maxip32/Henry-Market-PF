@@ -3,10 +3,13 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+/*AUTH0_AUDIENCE=HenryPfMarket
+AUTH0_DOMAIN=dev-yimkvuigive5f1vc.us.auth0.com*/
+
 const validateAccessToken = auth({
     secret: 'Vtx8BwsxXyEAokybfi1ESyHlgSoKy9px',
-    audience: process.env.AUTH0_AUDIENCE,
-    issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`,
+    audience: process.env.AUTH0_AUDIENCE, // "HenryPfMarket"
+    issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`, // "https://dev-yimkvuigive5f1vc.us.auth0.com"
     tokenSigningAlg: 'HS256'
 });
 const checkRequiredPermissions = (requiredPermissions) => {

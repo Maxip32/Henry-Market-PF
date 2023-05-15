@@ -10,14 +10,15 @@ const {getProductById} = require('../controllers/Products/getProductsById')
 const {createProductsFromData} = require("../controllers/Products/CreateProductsFromDataUtils");
 
 const {validateAccessToken} = require("../middlewares/auth0.middleware.js");
+const {checkRequiredPermissions} = require("../middlewares/auth0.middleware");
 
 
-productsRouter.get('/', validateAccessToken, getAllProducts);
+productsRouter.get('/', getAllProducts);
 productsRouter.get('/category/:category', getByCategory);
 productsRouter.get('/name/:name', getByName);
-productsRouter.get('/:id', validateAccessToken, getProductById)
+productsRouter.get('/:id', getProductById)
 
-productsRouter.post('/', createProducts);
+productsRouter.post('/', validateAccessToken, checkRequiredPermissions(["read:all-users"]), createProducts);
 productsRouter.delete('/:id', deleteProducts);
 productsRouter.put('/:id', editeProducts);
 
