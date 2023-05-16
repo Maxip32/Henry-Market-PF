@@ -30,7 +30,26 @@ userRouter.get("/create/users", async (req, res) => {
                 deleted: false
             }
         })
-        await User.bulkCreate([...formatedUsers]) // bulkCreate from users in auth0
+
+        const usersFromDB = await User.findAll();
+        const usersFromDbFormated = usersFromDB.map((user) => {
+            return {
+                mail: user.mail,
+                name: user.name,
+                surname: user.surname,
+                isAdmin: !!user.isAdmin,
+                deleted: !!user.deleted
+            }
+        })
+
+        // check if user already exists in db
+        const usersToCreate = formatedUsers.filter((user) => {
+            return !usersFromDbFormated.some((dbUser) => {
+                return dbUser.mail === user.mail
+            })
+        })
+
+        await User.bulkCreate([...usersToCreate]) // bulkCreate from users in auth0
         res.status(200).json(await User.findAll());
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -38,7 +57,7 @@ userRouter.get("/create/users", async (req, res) => {
 })
 
 // get users from DB
-userRouter.get("/", validateAccessToken, checkRequiredPermissions(["read:all-users"]), async (req, res) => {
+userRouter.get("/", validateAccessToken, async (req, res) => {
     try {
         const users = await getUsersFromDB();
         res.status(200).json(users);
