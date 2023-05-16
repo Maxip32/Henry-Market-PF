@@ -64,8 +64,11 @@
 
 .card {
   display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
+}
+.buttonedit{
+  grid-column: 3;
 }
 .cardinfo {
   text-align: center;
@@ -74,10 +77,10 @@
   font-weight: bolder;
 }
 
-.card:hover{
+/* .card:hover{
   transform:scale(1.1);
   transition: 600ms;
-}
+} */
  .cardimg {
     border-radius: 30px;
     margin: 10px;

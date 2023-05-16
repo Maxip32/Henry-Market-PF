@@ -150,8 +150,14 @@ export default function Dashboard() {
                                     <p className={styles.name} style={{color: "black"}}>Name: {product.name}</p>
                                     <p className={styles.description} style={{color: "black"}}>{product.description}</p>
                                     <p className= {styles.name}>Price: USD{product.price}</p>
-
                                     </div>
+
+                                    <div key={product.id} className={styles.buttonedit}>
+
+                                    <Link to={`/edit-product/${product.id}`}>Editar</Link>
+                                    
+                                    </div>
+
                                 </div>
 
                             </Link>

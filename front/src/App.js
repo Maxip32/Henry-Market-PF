@@ -13,6 +13,7 @@ import SearchBar from './components/searchbar/Searchbar';
 import {useAuth0} from "@auth0/auth0-react";
 import {AuthenticationGuard} from "./components/authentication-guard";
 import Dashboard from './components/Dashboard/Dashboard';
+import EditProductPage from './components/Dashboard/Editprod';
 
 
 axios.defaults.baseURL = "http://localhost:3001/";
@@ -36,6 +37,7 @@ function App() {
                 <Route exact path="/mailValidate" element={<ValidateMail/>}/>
                 <Route exact path="/detail/:id" element={<ProductsDetail/>}/>
                 <Route exact path="/search" element={<SearchBar/>}/>
+                <Route exact path="/edit-product" element={<EditProductPage/>}/>
 
                 {/*<Route exact  path="/Notifications" element={</>}/>*/}
                 {/*<Route exact  path="/Myshopping" element={</>}/>*}
