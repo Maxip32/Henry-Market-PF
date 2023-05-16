@@ -1,18 +1,14 @@
 import axios from "axios";
 
 
-export const getUser = ({accessToken}) => {
+export const getUser = (user) => {
     return async function (dispatch) {
         try {
-            const user = await axios.get(`/users`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
+            
+            
             dispatch({
-                type: "GET_USERS",
-                payload: user.data,
+                type: "GET_USER",
+                payload: user,
             });
         } catch (error) {
             console.error(error);
@@ -194,13 +190,13 @@ export const toggleFavorite = ({productId, userId}) => {
             const response = await axios.post(`/favorite`, {userId, productId});
             const {message} = response.data;
 
-            // getState().products her is an object not an array
-            /*const products = getState().products.map((product) => {
-                if (product.id === productId) {
-                    return {...product, isFavorite: !product.isFavorite};
-                }
-                return product;
-            });*/
+            // getState().products 
+            // const products = getState().products.map((product) => {
+            //     if (product.id === productId) {
+            //         return {...product, isFavorite: !product.isFavorite};
+            //     }
+            //     return product;
+            // });
 
             dispatch({
                 type: "TOGGLE_FAVORITE",

@@ -2,6 +2,7 @@ import {ActionTypes} from "../components/constants/Constants";
 
 const initialState = {
     users: [],
+    user: {},
     products: [],
     favorite: {message: '', products: []},
     shoppingCart: [],
@@ -36,10 +37,10 @@ const rootReducer = (state = initialState, action) => {
         const updatedFavorites = updatedProducts.filter((product) => product.isFavorite);
         return { ...state, products: updatedProducts, favorites: updatedFavorites };*/
 
-        case "GET_USERS":
+        case "GET_USER":
             return {
                 ...state,
-                users: action.payload,
+                user: action.payload,
             };
         case "POST_USERS":
             return {

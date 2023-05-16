@@ -12,6 +12,7 @@ import Payment from './components/payment/Payment';
 import SearchBar from './components/searchbar/Searchbar';
 import {useAuth0} from "@auth0/auth0-react";
 import {AuthenticationGuard} from "./components/authentication-guard";
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 axios.defaults.baseURL = "http://localhost:3001/";
@@ -30,6 +31,7 @@ function App() {
             <Routes>
                 <Route exact path='/' element={<LandingPage/>}/>
                 <Route exact path='/home' element={<Home/>}/>
+                <Route exact path='/admin' element={<Dashboard/>}/>
                 <Route exact path='/formProducts' element={<AuthenticationGuard component={FormProducts}/>}/>
                 <Route exact path="/mailValidate" element={<ValidateMail/>}/>
                 <Route exact path="/detail/:id" element={<ProductsDetail/>}/>

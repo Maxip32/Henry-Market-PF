@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
-
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {allProducts, clean, getUser} from "../../redux/actions";
+import {allProducts, clean} from "../../redux/actions";
 import SearchBar from "../searchbar/Searchbar";
 import {Link} from "react-router-dom";
-import styles from "./Home.module.css";
+import styles from "./Dashboard.module.css";
 import Popup from "../popup/Popup";
 import Pagination from "../pagination/Pagination";
 import ShoppingCartImage from '../image/shoppingcart.svg'
@@ -16,7 +14,7 @@ import {Profile} from "../logs/profile";
 import {useAuth0} from "@auth0/auth0-react";
 
 
-export default function Home() {
+export default function Dashboard() {
     const dispatch = useDispatch();
     let products = useSelector((state) => state.products);
     if (!Array.isArray(products)) {
@@ -31,16 +29,12 @@ export default function Home() {
         dispatch(allProducts());
         dispatch(clean());
     }, [dispatch]);
-    
-    // const refreshPage = () => {
-    //     window.location.reload();
-    //     dispatch(allProducts());
-    //     dispatch(clean());
-    // };
-    const {isAuthenticated, user} = useAuth0();
-    console.log(user)
-   
 
+    const refreshPage = () => {
+        window.location.reload();
+        dispatch(allProducts());
+        dispatch(clean());
+    };
 
     // Lógica para calcular el índice de inicio y fin de la página actual
     const lastIndex = currentPage * itemsPerPage;
@@ -72,9 +66,11 @@ export default function Home() {
         document.body.style.overflow = 'auto'
     }, [])
 
+    const {isAuthenticated} = useAuth0();
     return (
         <div>
-            <Link to="/home"></Link>
+            <Link to="/admin"></Link>
+            
 
             <div>
                 {isAuthenticated === true ?
@@ -105,16 +101,20 @@ export default function Home() {
 
 
                 <SearchBar/>
-                {/* <button className={styles.input} onClick={refreshPage}>Refresh</button> */}
+                <button className={styles.input} onClick={refreshPage}>Refresh</button>
             </div>
-
-            
             <div className={styles.buttons}>
-                <Link to="/admin">
-                    <button className={styles.input}>-Dashboard-</button>
+                <Link to="/home">
+                    <button className={styles.input}>-Home-</button>
                 </Link>
             </div>
-            
+
+            <div className={styles.buttons}>
+                <Link to="/formProducts">
+                    <button className={styles.input}>-Create-</button>
+                </Link>
+                
+            </div>
 
             <div>
             </div>
@@ -137,15 +137,21 @@ export default function Home() {
             <div className={styles.grid}>
                 {currentItems.length > 0 &&
                     currentItems.map((product) => (
-                        <div key={product.id} className={styles.card}>
+                        <div key={product.id}>
                             <Link to={`/detail/${product.id}`} style={{textDecoration: "none"}}>
-                                <div>
+                                <div className={styles.card}>
                                     <p>
+                                        <div className={styles.cardcolumns}>
+
                                         <img className={styles.cardimg} src={product.image} alt={product.name}/>
+                                        </div>
                                     </p>
+                                    <div className={styles.cardinfo}>
                                     <p className={styles.name} style={{color: "black"}}>Name: {product.name}</p>
                                     <p className={styles.description} style={{color: "black"}}>{product.description}</p>
-                                    <p className style={{color: "black"}}>Price: USD{product.price}</p>
+                                    <p className= {styles.name}>Price: USD{product.price}</p>
+
+                                    </div>
                                 </div>
 
                             </Link>
@@ -164,4 +170,3 @@ export default function Home() {
         </div>
     );
 }
-

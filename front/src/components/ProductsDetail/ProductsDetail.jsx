@@ -11,7 +11,7 @@ import SearchBar from "../searchbar/Searchbar";
 import RatingStart from "../ratingStart/RatingStart";
 import Favorites from "../favorites/Favorites"
 import {useAuth0} from "@auth0/auth0-react";
-import logger from "redux-logger";
+//import logger from "redux-logger";
 
 const image = "";
 
@@ -109,24 +109,24 @@ const ProductsDetail = () => {
             <div className={styles.card}>
 
 
-                {allProduct.length === 0 ? (
-                    <div></div>
-                ) : (
-                    <>
-                        {allProduct.id !== undefined ? userLogId !== undefined ? (
-                            <Favorites productId={allProduct.id} userId={userLogId.id}/>
-                        ) : null : null}
                         <div className={styles.imageContainer}>
 
                             <img
                                 className={styles.cardimg}
                                 src={allProduct.image ? allProduct.image : image}
                                 alt={`img-${allProduct.name}`}
-                            />
+                                />
 
 
                         </div>
 
+                                {allProduct.length === 0 ? (
+                                    <div></div>
+                                    ) : (
+                                        <>
+                                        {allProduct.id == undefined ? userLogId !== undefined ? (
+                                            <Favorites productId={allProduct.id} userId={userLogId.id}/>
+                                            ) : null : null}
                         <section>
                             <div className={styles.productInfo}>
                                 <h1 className={styles.productName}>{allProduct.name}</h1>
@@ -145,6 +145,7 @@ const ProductsDetail = () => {
                                 )}
                                 <p>
                                     <RatingStart productId={allProduct.id}/>
+                                    
                                 </p>
                             </div>
 
@@ -153,10 +154,10 @@ const ProductsDetail = () => {
                                 to cart
                             </button>
                         </section>
-                    </>
-                )}
+                        </>
+                        )}
             </div>
         </div>
-    );
+        );
 }
 export default ProductsDetail;

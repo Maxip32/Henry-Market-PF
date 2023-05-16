@@ -1,37 +1,58 @@
 .login{
-    background-color: #000000;
-    color:#ffe600;
-    padding: 10px;
-    margin-left: 850px;
-    margin-top: -20px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    border-radius: 5px;
-    font-size: medium;
-    
-    }
-    
-    .logout{
-    background-color: #000000;
-    color:#ffe600;
-    padding: 10px;
-    margin: 4px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    border-radius: 5px;
-    font-size: medium;
-    
-    }
-    .logout:hover{
-  color: #ffe600;
   background-color: #000000;
-  transform:scale(1.1);
-  transition: 600ms;
-    }
+  color:#ffe600;
+  padding: 10px;
+  margin-left: 850px;
+  margin-top: -20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5px;
+  font-size: medium;
+  
+  }
+  
+  .logout{
+  background-color: #000000;
+  color:#ffe600;
+  display: flex;
+  padding: 10px;
+  margin: 4px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5px;
+  font-size: medium;
+  margin-left: 1010px;
+  margin-top: -52px;
+  
+  }
+  .logout:hover{
+color: #ffe600;
+background-color: #000000;
+transform:scale(1.1);
+transition: 600ms;
+  }
 
-    .login:hover{
-  color: #ffe600;
-  background-color: #000000;
-  transform:scale(1.1);
-  transition: 600ms;
-    }
+  .login:hover{
+color: #ffe600;
+background-color: #000000;
+transform:scale(1.1);
+transition: 600ms;
+  }
+
+  .user{
+    display: flex;
+    width: 10px;
+    height: 10px;
+    margin-left: 800px;
+
+  }
+  .letrasuser{
+    font-family: fantasy;
+    font-size: medium;
+    margin-top: -145px;
+    margin-left: 30px;
+  }
+  .imguser{
+    margin-top: -145px;
+    margin-left: 250px;
+  }
     
     

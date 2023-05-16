@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react';
+import React from 'react';
+import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {toggleFavorite} from '../../redux/actions';
 
