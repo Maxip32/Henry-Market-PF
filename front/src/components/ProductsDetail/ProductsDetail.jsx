@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-self-compare */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,12 +21,13 @@ const ProductsDetail = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const allProduct = useSelector((state) => state.products);
+    const userLog = useSelector((state) => state.users);
+    const [userLogId, setUserLogId] = useState("");
+
     const [selectedDetail, setSelectedDetail] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
-    const [useLogin, setuseLogin]= useState("");
-    const userlog = useSelector((state)=> state.users);  
 
-   
+    const {user} = useAuth0()
 
     const handleSelect = (event) => {
         setSelectedDetail(event.target.value);
@@ -40,26 +43,21 @@ const ProductsDetail = () => {
         const token = async () => {
             const accessToken = await getAccessTokenSilently();
             dispatch(allProductsId({id, accessToken}));
-
-            console.log('accessToken ', accessToken)
         }
         token().catch(err => console.log(err))
-        // dispatch(allProductsId(id));
     }, [dispatch, id, getAccessTokenSilently]);
-
-
 
     useEffect(() => {
         const token = async () => {
             const accessToken = await getAccessTokenSilently();
-            dispatch( getUser({accessToken}));
+            dispatch(getUser({accessToken}));
 
-            console.log('accessToken ', accessToken)
+            setUserLogId(() => userLog.find(user => {
+                return user.mail === user.mail
+            }))
         }
         token().catch(err => console.log(err))
-        // dispatch(allProductsId(id));
-    }, [dispatch, id, getAccessTokenSilently]);
-
+    }, [dispatch, getAccessTokenSilently]);
 
     const [isOpen, setIsOpen] = useState(false)
     const openModal = () => {
@@ -83,9 +81,10 @@ const ProductsDetail = () => {
     const handleToggleFavorite = () => {
         dispatch(toggleFavorite(allProduct.id));
     };
+
     return (
         <div>
-            {JSON.stringify(userlog)}
+            {JSON.stringify(userLog)}
             <div className="carrito" onClick={showShoppingCart}>
                 <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
@@ -117,8 +116,11 @@ const ProductsDetail = () => {
                     <div></div>
                 ) : (
                     <>
-                        <Favorites productId={allProduct.id}/>
+                        {allProduct.id !== undefined ? userLogId !== undefined ? (
+                            <Favorites productId={allProduct.id} userId={userLogId.id}/>
+                        ) : null : null}
                         <div className={styles.imageContainer}>
+                           
 
                             <img
                                 className={styles.cardimg}

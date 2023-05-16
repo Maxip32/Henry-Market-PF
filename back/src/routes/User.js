@@ -57,7 +57,7 @@ userRouter.get("/create/users", async (req, res) => {
 })
 
 // get users from DB
-userRouter.get("/", validateAccessToken, checkRequiredPermissions(["read:all-users"]), async (req, res) => {
+userRouter.get("/", validateAccessToken, async (req, res) => {
     try {
         const users = await getUsersFromDB();
         res.status(200).json(users);

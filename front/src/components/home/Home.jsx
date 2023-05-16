@@ -73,6 +73,10 @@ export default function Home() {
   return (
     <div>
       <Link to="/home"></Link>
+      <Link to="/favorite">
+          <button className={styles.input}>-Favorites-</button>
+        </Link>
+
 
       <div>
         {isAuthenticated === true ? (
@@ -112,14 +116,8 @@ export default function Home() {
             Category
           </Link>
         </p>
-        <p>
-          <Link style={{ color: "black" }} to="/favorites">
-            Favorites
-          </Link>
-        </p>
-        <p>
-            <Link to="/account">mailValidate</Link>
-        </p>
+       
+       
 
         <button className={styles.input} onClick={refreshPage}>
           Refresh
@@ -131,7 +129,7 @@ export default function Home() {
           <button className={styles.input}>-Create-</button>
         </Link>
       </div>
-
+    
       <div></div>
       {!isAuthenticated && (
         <>
