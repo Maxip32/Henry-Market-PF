@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {store} from './redux/store';
-import {Auth0Provider} from '@auth0/auth0-react';
+
 import {Auth0ProviderWithNavigate} from "./auth0-provider-with-navigate";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

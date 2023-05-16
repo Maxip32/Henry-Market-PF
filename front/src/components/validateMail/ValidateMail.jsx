@@ -1,81 +1,89 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
-import styles from './ValidateMail.module.css'; // Archivo CSS separado
+import React, { useState } from 'react'
+import axios from 'axios'
+import './Validate.css';
 
-const initialValues = {
-  name: '',
-  password: '',
-};
 
-const validate = (values) => {
-  const errors = {};
+const initialState = {
+  users: {},
+  error: null,
+  loading: false
+}
 
-  if (!values.name) {
-    errors.name = 'Required';
+// Reducer
+const usersReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'CREATE_USER_REQUEST':
+      return { ...state, loading: true }
+    case 'CREATE_USER_SUCCESS':
+      return { ...state, users: [...state.users, action.payload], loading: false }
+    case 'CREATE_USER_FAILURE':
+      return { ...state, error: action.payload, loading: false }
+    default:
+      return state
+  }
+}
+
+// Action Creator
+
+
+export const createUser = ( mail,name,surname,) => {
+  return dispatch => {
+    axios.get('/users/create/users', {  mail,name,surname, })
+      .then(response => {
+        dispatch({
+          type: 'CREATE_USER_SUCCESS',
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: 'CREATE_USER_FAILURE',
+          payload: error.message
+        })
+      })
+  }
+}
+
+
+// Componente del Formulario
+const CreateUserForm = () => {
+  const [formData, setFormData] = useState({
+    surname: '',
+    name: '',
+    mail: ''
+  })
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    createUser(formData.firstName, formData.lastName, formData.email)
   }
 
-  if (!values.password) {
-    errors.password = 'Required';
-  } else if (values.password.length < 6) {
-    errors.password = 'Password must be at least 6 characters long';
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
   }
 
-  return errors;
-};
-
-const onSubmit = (values) => {
-  console.log(values);
-};
-
-const MyForm = () => {
   return (
-    <div className={styles.formContainer}>
-      <Link to="/home">
-        <button className={styles.homeButton}>Henry Market</button>
-      </Link>
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={onSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.label}>
-                Username
-              </label>
-              <Field
-                id="name"
-                name="name"
-                className={styles.input}
-                placeholder="Enter your username"
-              />
-              <ErrorMessage name="name" className={styles.error} />
-            </div>
+    <form onSubmit={handleSubmit} className="form-container">
+      <label>
+         SurName:
+        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+      </label>
+      <label>
+         Name:
+        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+      </label>   
+      <label>
+        Email:
+        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+      </label>
+      <button type="submit">Create User</button>
+    </form>
+  )
+}
 
-            <div className={styles.formGroup}>
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <Field
-                id="password"
-                name="password"
-                type="password"
-                className={styles.input}
-                placeholder="Enter your password"
-              />
-              <ErrorMessage name="password" className={styles.error} />
-            </div>
+export default CreateUserForm
+export { usersReducer }
 
-            <button type="submit" className={styles.submitButton}>
-              Log in
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
-
-export default MyForm;

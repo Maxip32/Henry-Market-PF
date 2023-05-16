@@ -9,11 +9,10 @@ export const Profile = () => {
     }else
     return (
         isAuthenticated && (
-            <div>
-            <img src={user.image} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>Email: {user.email}</p>
-            console.log(user.name)
+            <div className='user' >
+            <img className='imguser' src={user.picture} alt={user.name} height={"35px"} width={"35px"} />
+            <h2 className='letrasuser'>{user.name}</h2>
+            {/* <p>Email: {user.email}</p> */}
             </div>
             
         )

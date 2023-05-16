@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router-dom";
-import {allProductsId, addSToShoppingCart, toggleFavorite} from "../../redux/actions";
+import {allProductsId, addSToShoppingCart, toggleFavorite, getUser} from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
 import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
@@ -21,6 +21,10 @@ const ProductsDetail = () => {
     const allProduct = useSelector((state) => state.products);
     const [selectedDetail, setSelectedDetail] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [useLogin, setuseLogin]= useState("");
+    const userlog = useSelector((state)=> state.users);  
+
+   
 
     const handleSelect = (event) => {
         setSelectedDetail(event.target.value);
@@ -42,6 +46,20 @@ const ProductsDetail = () => {
         token().catch(err => console.log(err))
         // dispatch(allProductsId(id));
     }, [dispatch, id, getAccessTokenSilently]);
+
+
+
+    useEffect(() => {
+        const token = async () => {
+            const accessToken = await getAccessTokenSilently();
+            dispatch( getUser({accessToken}));
+
+            console.log('accessToken ', accessToken)
+        }
+        token().catch(err => console.log(err))
+        // dispatch(allProductsId(id));
+    }, [dispatch, id, getAccessTokenSilently]);
+
 
     const [isOpen, setIsOpen] = useState(false)
     const openModal = () => {
@@ -67,6 +85,7 @@ const ProductsDetail = () => {
     };
     return (
         <div>
+            {JSON.stringify(userlog)}
             <div className="carrito" onClick={showShoppingCart}>
                 <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
@@ -131,7 +150,7 @@ const ProductsDetail = () => {
                                 </p>
                             </div>
 
-                            <button className={styles.btn}>Buy</button>
+                           
                             <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add
                                 to cart
                             </button>
