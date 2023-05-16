@@ -1,10 +1,15 @@
 import axios from "axios";
 
 
-export const getUser = () => {
+export const getUser = ({accessToken}) => {
     return async function (dispatch) {
         try {
-            const user = await axios.get(`/users`);
+            const user = await axios.get(`/users`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
             dispatch({
                 type: "GET_USERS",
                 payload: user.data,
@@ -183,23 +188,28 @@ export const updateProductRating = (id, rating) => async (dispatch) => {
     }
 };
 //***************************************************************//
-export const toggleFavorite = (id) => {
+export const toggleFavorite = ({productId, userId}) => {
     return async (dispatch, getState) => {
         try {
-            const response = await axios.post(`/favorite`, {id});
+            const response = await axios.post(`/favorite`, {userId, productId});
             const {message} = response.data;
 
-            const products = getState().products.map((product) => {
-                if (product.id === id) {
+            // getState().products her is an object not an array
+            /*const products = getState().products.map((product) => {
+                if (product.id === productId) {
                     return {...product, isFavorite: !product.isFavorite};
                 }
                 return product;
-            });
+            });*/
 
             dispatch({
                 type: "TOGGLE_FAVORITE",
-                payload: {products, message}
-            });
+                payload: {message},
+            })
+            // dispatch({
+            //     type: "TOGGLE_FAVORITE",
+            //     payload: {products, message}
+            // });
         } catch (error) {
             console.error(error);
             console.error(error.response.data);
@@ -207,13 +217,15 @@ export const toggleFavorite = (id) => {
     };
 }
 
-export const getFavoriteId = (id) => {
+export const getFavoriteId = (userId) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`/getfavorites/${id}`);
+            const response = await axios.get(`/favorite/${userId}`);
+            const {products} = response.data
+
             dispatch({
                 type: "GET_FAVORITE_ID",
-                payload: response.data,
+                payload: products,
             });
         } catch (error) {
             console.error(error);
@@ -221,13 +233,15 @@ export const getFavoriteId = (id) => {
     };
 };
 
-export const postFavoriteId = (id) => {
+export const postFavoriteId = ({productId, userId}) => {
     return async function (dispatch) {
         try {
-            const response = await axios.post(`/postfavorites/${id}`);
+            const response = await axios.post(`/favorite`, {userId, productId});
+            const {message} = response.data;
+
             dispatch({
                 type: "POST_FAVORITE_ID",
-                payload: response.data,
+                payload: message,
             });
         } catch (error) {
             console.error(error);

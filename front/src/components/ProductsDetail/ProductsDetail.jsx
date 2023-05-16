@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router-dom";
-import {allProductsId, addSToShoppingCart, toggleFavorite} from "../../redux/actions";
+import {allProductsId, addSToShoppingCart, toggleFavorite, getUser} from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
 import ShoppingCartImage from '../image/shoppingcart.svg'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
@@ -19,8 +19,13 @@ const ProductsDetail = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const allProduct = useSelector((state) => state.products);
+    const userLog = useSelector((state) => state.users);
+    const [userLogId, setUserLogId] = useState("");
+
     const [selectedDetail, setSelectedDetail] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
+
+    const {user} = useAuth0()
 
     const handleSelect = (event) => {
         setSelectedDetail(event.target.value);
@@ -36,12 +41,21 @@ const ProductsDetail = () => {
         const token = async () => {
             const accessToken = await getAccessTokenSilently();
             dispatch(allProductsId({id, accessToken}));
-
-            console.log('accessToken ', accessToken)
         }
         token().catch(err => console.log(err))
-        // dispatch(allProductsId(id));
     }, [dispatch, id, getAccessTokenSilently]);
+
+    useEffect(() => {
+        const token = async () => {
+            const accessToken = await getAccessTokenSilently();
+            dispatch(getUser({accessToken}));
+
+            setUserLogId(() => userLog.find(user => {
+                return user.mail === user.mail
+            }))
+        }
+        token().catch(err => console.log(err))
+    }, [dispatch, getAccessTokenSilently]);
 
     const [isOpen, setIsOpen] = useState(false)
     const openModal = () => {
@@ -65,6 +79,7 @@ const ProductsDetail = () => {
     const handleToggleFavorite = () => {
         dispatch(toggleFavorite(allProduct.id));
     };
+
     return (
         <div>
             <div className="carrito" onClick={showShoppingCart}>
@@ -98,7 +113,9 @@ const ProductsDetail = () => {
                     <div></div>
                 ) : (
                     <>
-                        <Favorites productId={allProduct.id}/>
+                        {allProduct.id !== undefined ? userLogId !== undefined ? (
+                            <Favorites productId={allProduct.id} userId={userLogId.id}/>
+                        ) : null : null}
                         <div className={styles.imageContainer}>
 
                             <img
