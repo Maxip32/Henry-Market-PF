@@ -25,18 +25,18 @@ const ModalShoppingCart = ({ isOpen, closeModal }) => {
                             <img src={p.image} alt={p.name} width='80px' height='80px' />
                             <p style={{width:'100px'}}>{p.name}</p>
                             <p>
-                                <button onClick={()=>{dispatch(addQuantity(p.id))}}>+</button>
-                                <span style={{margin:'10px'}}>{p.quantity}</span>
                                 <button onClick={()=>{dispatch(RemoveOneFromCart(p.id))}}>-</button>
+                                <span style={{margin:'10px'}}>{p.quantity}</span>
+                                <button onClick={()=>{dispatch(addQuantity(p.id))}}>+</button>
                                 <button onClick={()=>{dispatch(RemoveAllProductFromCart(p.id))}}
                                         style={{marginLeft:'10px'}}
                                 >Remove</button>
 
                             </p>
-                            <p>{p.price * p.quantity}</p>
+                            <p>{(p.price * p.quantity).toFixed(2)}</p>
                         </div>
             )} )}
-            <p>Total: {total} </p>
+            <p>Total: {(total).toFixed(2)}</p>
 
             <button onClick={()=>{dispatch(clearShoppingCart())}}>Clear cart</button>
 
