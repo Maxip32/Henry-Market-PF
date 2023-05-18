@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require("./routes/index");
+const cors = require('cors')
 
 require('./db');
 const {errorHandler} = require("./middlewares/error.middleware");
@@ -37,13 +38,13 @@ server.use((req, res, next) => {
     res.contentType("application/json; charset=utf-8");
     next();
 });
-server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
+ server.use((req, res, next) => {
+     res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+     res.header('Access-Control-Allow-Credentials', 'true');
+     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+     next();
+ });
 
 server.use('/', routes);
 server.use(errorHandler)

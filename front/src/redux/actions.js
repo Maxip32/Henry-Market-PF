@@ -1,15 +1,12 @@
 import axios from "axios";
 
 
-export const getUser = ({accessToken}) => {
+export const getUser = () => {
     return async function (dispatch) {
         try {
-            const user = await axios.get(`/users`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
+            const user = await axios.get(`/users`);
+
+            console.log(`this is userdata ${user.data}`)
             dispatch({
                 type: "GET_USERS",
                 payload: user.data,
@@ -78,19 +75,29 @@ export const adressPost = (adress) => {
     };
 };
 
-export const allProducts = () => {
+export const allProducts = (borrado) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`/products/create/data`);
+            const response = await axios.get(`https://henrypfbackmarket.onrender.com/products`);
+           const products= response.data.filter( p=>{
+            if(borrado === true){
+                return p.deleted === false;
+                
+            }if(borrado === false){
+                return p
+            }})
             dispatch({
                 type: "ALL_PRODUCTS",
-                payload: response.data,
+                payload: products,
             });
         } catch (error) {
             console.error(error);
         }
     };
 };
+                
+                
+                
 
 export const allProductsId = ({id, accessToken}) => {
     return async function (dispatch) {
@@ -123,14 +130,22 @@ export const allProductsName = (name) => {
         }
     }
 }
-export const getProductsByCategory = (category) => {
+export const getProductsByCategory = (category, borrado) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`http://localhost:3001/products/category/${category}`);
+            const response = await axios.get(`https://henrypfbackmarket.onrender.com/products/category/${category}`);
+            const products= response.data.filter( p=>{
+                if(borrado === true){
+                    return p.deleted === false;
+                    
+                }if(borrado === false){
+                    return p
+                }})
             console.log("Products by category!!!!!:", response.data);
+
             dispatch({
                 type: "GET_PRODUCTS_BY_CATEGORY",
-                payload: response.data,
+                payload: products,
 
             });
         } catch (error) {
@@ -191,6 +206,7 @@ export const updateProductRating = (id, rating) => async (dispatch) => {
 export const toggleFavorite = ({productId, userId}) => {
     return async (dispatch, getState) => {
         try {
+            console.log(`userId: ${userId} productId: ${productId}`);
             const response = await axios.post(`/favorite`, {userId, productId});
             const {message} = response.data;
 
@@ -217,9 +233,35 @@ export const toggleFavorite = ({productId, userId}) => {
     };
 }
 
+// export const toggleFavorite = ({ productId, userId }) => {
+//   return async (dispatch, getState) => {
+//     try {
+//       const response = await axios.post(`/favorite`, { userId, productId });
+//       const { message } = response.data;
+
+//       const products = getState().favorite.products.map((product) => {
+//         if (product.id === productId) {
+//           return { ...product, isFavorite: !product.isFavorite };
+//         }
+//         return product;
+//       });
+
+//       dispatch({
+//         type: "TOGGLE_FAVORITE",
+//         payload: { products, message },
+//       });
+//     } catch (error) {
+//       console.error(error);
+//       console.error(error.response.data);
+//     }
+//   };
+// };
+
+
 export const getFavoriteId = (userId) => {
     return async function (dispatch) {
         try {
+            console.log(`userId into action getfavorite: ${userId}`);
             const response = await axios.get(`/favorite/${userId}`);
             const {products} = response.data
 

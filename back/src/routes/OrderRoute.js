@@ -7,6 +7,6 @@ orderRouter.get("/:id", orderController.getOrderById);
 orderRouter.get("/user/:userId", orderController.getOrderByUserId);
 orderRouter.get("/product/:productId", orderController.getOrderByProductId);
 orderRouter.get("/:userId/:productId", orderController.getOrderByUserIdAndProductId);
-orderRouter.post("/", validateAccessToken, orderController.createOrder);
+orderRouter.post("/", orderController.createOrder);
 
 module.exports = orderRouter;

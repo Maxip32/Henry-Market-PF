@@ -1,7 +1,6 @@
 .landingSection {
-  padding: 2rem;
   background-color: #f9f9f9;
-  background-image: url("../image/landing2.jpg");
+  background-image: url("../image/landing3.jpg");
    background-size: cover;
   background-position: center 0;
   height: 100vh;
@@ -18,16 +17,15 @@
   margin-bottom: 1rem;
 }
 .landingButton {
-  background-color: #e6f200;
-  color: #000000;
-  padding: 0rem 1rem;
+  background-color: #E3E32C;
+  color: #363432;
+  padding: 1.3rem 6rem;
   border: none;
-  border-radius: 0.25rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
   position: fixed;
-  top: 182px;
-  left: 610px;
+  top: 465px;
+  left: 135px;
  }
 .landingButton {
   cursor: pointer;
@@ -37,7 +35,8 @@
   right: -20px;
   transition: 0.5s;
 }.landingButton:hover {
-  padding-right: 25px;
+  padding-right: 110px;
+  padding-bottom: 30px;
   background-color: #eaf16f;
 }.landingButton:hover:after {
   opacity: 1;

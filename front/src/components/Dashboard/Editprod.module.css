@@ -1,0 +1,49 @@
+.container{
+  width: 400px;
+  
+  height: fit-content;
+  padding-top: 20px;
+  padding-left: 580px;
+  display: grid;
+  grid-column: 1fr 1fr;
+  grid-row: 1fr 1fr;
+}
+.landingButtonn {
+  min-width: 130px;
+  text-transform: initial;
+  text-shadow: #0d0d0d00;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  height: 40px;
+  color: #0d0d0d00;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  border-radius: 5px;
+  z-index: 0;
+  color: #E3E32C;
+  background: #0d0d0d00;
+  overflow: hidden;
+  
+}
+.landingButtonn:hover {
+  color: #000000;
+  background-color: #ffe600;
+  transform:scale(1.1);
+  transition: 600ms;
+}
+.label{
+  font-weight: bolder;
+  font-size: larger;
+  font-family: 'Courier New', Courier, monospace;
+}
+.input{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 200px;
+}
+
+
+
+   

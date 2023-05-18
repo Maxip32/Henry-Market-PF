@@ -18,7 +18,7 @@ productsRouter.get('/category/:category', getByCategory);
 productsRouter.get('/name/:name', getByName);
 productsRouter.get('/:id', getProductById)
 
-productsRouter.post('/', validateAccessToken, checkRequiredPermissions(["read:all-users"]), createProducts);
+productsRouter.post('/',createProducts);
 productsRouter.delete('/:id', deleteProducts);
 productsRouter.put('/:id', editeProducts);
 
