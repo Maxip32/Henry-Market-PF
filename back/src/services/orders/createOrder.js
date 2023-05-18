@@ -77,8 +77,8 @@ const createOrder = async (order) => {
         const dataToSend = {
             items: order.items,
             back_urls: {
-                success: "http://localhost:3000/home",
-                failure: "http://localhost:3000/home",
+                success: "https://beamish-alpaca-c3ecac.netlify.app/home",
+                failure: "https://beamish-alpaca-c3ecac.netlify.app/home",
                 pending: ""
             },
             auto_return: "approved",
