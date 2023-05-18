@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useDispatch, useSelector} from "react-redux";
 import {getProductsByCategory} from "../../redux/actions";
 import {useState} from "react";
@@ -21,7 +22,8 @@ const CategoryFilter = () => {
     const handleCategoryChange = (event) => {
         const category = event.target.value;
         setSelectedCategory(category);
-        dispatch(getProductsByCategory(category));
+        dispatch(getProductsByCategory(category, true));
+        
     };
 
     const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +43,10 @@ const CategoryFilter = () => {
 
     useEffect(() => {
         document.body.style.overflow = 'auto'
+
     }, [])
+
+   
     return (
         <div>
             <div className="carrito" onClick={showShoppingCart}>
@@ -64,6 +69,7 @@ const CategoryFilter = () => {
 
 
             <SearchBar/>
+
             <div className={styles.product}>
                 <div className={styles.searchresults}>
                     <Link to="/home">
@@ -91,8 +97,17 @@ const CategoryFilter = () => {
                     </div>
                     <div></div>
                     <div className={styles.grid}>
-                        {categories.map((category) => (
-                            <div key={category.id}>
+                    {categories.map((category, index) => {
+    const previousCategories = categories.slice(0, index);
+    const isDuplicate = previousCategories.some((prevCategory) => prevCategory.name === category.name);
+
+    if (isDuplicate) {
+      return null; // No renderizar si es un producto duplicado
+    }
+
+    return (
+      <div key={category.id}>
+           <div key={category.id}>
                                 <Link
                                     to={`/detail/${category.id}`}
                                     style={{textDecoration: "none"}}
@@ -118,8 +133,10 @@ const CategoryFilter = () => {
                                     </div>
                                 </Link>
                             </div>
-                        ))}
-                    </div>
+      </div>
+    );
+  })}
+                        </div>
                 </div>
             </div>
         </div>

@@ -12,6 +12,10 @@ const {User} = require("../db");
 
 // create users from auth0 to postgres db
 const tokenAuth0 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Rldi15aW1rdnVpZ2l2ZTVmMXZjLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJFWXgwV2hxaWkxSU9ZOTdCWlVYNFRzS0NWYW50VWJGVkBjbGllbnRzIiwiYXVkIjoiSGVucnlQZk1hcmtldCIsImlhdCI6MTY4NDM2NTA0MSwiZXhwIjoxNjg0NDUxNDQxLCJhenAiOiJFWXgwV2hxaWkxSU9ZOTdCWlVYNFRzS0NWYW50VWJGViIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsInBlcm1pc3Npb25zIjpbXX0.vfVKtrLzIEok3k0i7GMxLAQyULWbPpt5ozqJ8dH_Rl8"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
 userRouter.get("/create/users", async (req, res) => {
     try {
         const usersFriomAuth0 = await axios.get("https://dev-yimkvuigive5f1vc.us.auth0.com/api/v2/users", {
@@ -57,8 +61,9 @@ userRouter.get("/create/users", async (req, res) => {
 })
 
 // get users from DB
-userRouter.get("/", validateAccessToken, async (req, res) => {
+userRouter.get("/", async (req, res) => {
     try {
+        console.log()
         const users = await getUsersFromDB();
         res.status(200).json(users);
     } catch (error) {

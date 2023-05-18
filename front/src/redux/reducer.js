@@ -1,15 +1,17 @@
-import {ActionTypes} from "../components/constants/Constants";
+//import {ActionTypes} from "../components/constants/Constants";
 
 const initialState = {
     users: [],
     products: [],
-    favorite: {message: '', products: []},
+  
+
     shoppingCart: [],
     category: [],
     clean: [],
     detail: [],
     cartItems: [],
     priceOrder: '',
+    favorite:{ produscts:[]}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,12 +25,20 @@ const rootReducer = (state = initialState, action) => {
                 ),
             };
         //*********************************//
-        case ActionTypes.TOGGLE_FAVORITE:
-
+        case "TOGGLE_FAVORITE":
             return {
-                ...state,
-                favorite: {...state.favorite, message: action.payload.message},
-            }
+              ...state,
+              favorite: {
+                ...state.favorite,
+                message: action.payload.message,
+              },
+            };
+            case "GET_FAVORITE_ID":
+                return {
+                    ...state,
+                    favorite: {...state.favorite, products: action.payload},
+                }
+  
         // favorites will be filled with your own action
         /*const updatedProducts = state.products.map((product) =>
           product.id === action.payload ? { ...product, isFavorite: !product.isFavorite } : product
@@ -90,11 +100,7 @@ const rootReducer = (state = initialState, action) => {
                     product.id === action.payload.id ? action.payload : product
                 ),
             };
-        case "GET_FAVORITE_ID":
-            return {
-                ...state,
-                favorite: {...state.favorite, products: action.payload},
-            }
+      
         case "POST_FAVORITE_ID":
             return {
                 ...state,
