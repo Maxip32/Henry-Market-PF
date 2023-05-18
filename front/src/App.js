@@ -16,7 +16,7 @@ import FavoriteList from "./components/favorites/FavoriteList"
 import EditProductPage from "./components/Dashboard/Editprod"
 import Dashboard from './components/Dashboard/Dashboard';
 
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://henrypfbackmarket.onrender.com";
 
 function App() {
     // const {isLoading} = useAuth0()
@@ -43,7 +43,7 @@ function App() {
                     <Route exact path="/category" element={<CategoryFilter/>}/>
                     <Route exact path="/payment" element={<AuthenticationGuard component={Payment}/>}/>
                     <Route exact path="/edit-product/:id" element={<EditProductPage/>}/>
-                    <Route exact path='/admin' element={<Dashboard/>}/>
+                    <Route exact path="/admin" element={<Dashboard/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

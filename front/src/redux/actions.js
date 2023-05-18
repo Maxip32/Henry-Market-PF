@@ -133,7 +133,7 @@ export const allProductsName = (name) => {
 export const getProductsByCategory = (category, borrado) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`http://localhost:3001/products/category/${category}`);
+            const response = await axios.get(`https://henrypfbackmarket.onrender.com/products/category/${category}`);
             const products= response.data.filter( p=>{
                 if(borrado === true){
                     return p.deleted === false;

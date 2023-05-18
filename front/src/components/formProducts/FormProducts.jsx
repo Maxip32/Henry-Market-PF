@@ -119,7 +119,7 @@ const FormProducts = () => {
     const handleSubmit = async (e) =>{
       e.preventDefault()
   
-      const resFound = await fetch(`http://localhost:3001/products/name/${form.name}`)
+      const resFound = await fetch(`https://henrypfbackmarket.onrender.com/products/name/${form.name}`)
       const resJson = await resFound.json()
   
       if(resJson.id) return console.log('Product created')
@@ -129,7 +129,7 @@ const FormProducts = () => {
       try {
         console.log({...form, image:IMAGEURL})
         const token = await getAccessTokenSilently()
-        const res = await axios.post('http://localhost:3001/products',{
+        const res = await axios.post('https://henrypfbackmarket.onrender.com/products',{
           ...form, image:IMAGEURL
 
         } , { headers: {
@@ -137,7 +137,7 @@ const FormProducts = () => {
                    
               },})
               console.log(res.data)
-        // const res = await fetch('http://localhost:3001/products/',{
+        // ,{
         //     method:'POST',      
         //     headers: {
         //         'Content-Type': 'application/json', 

@@ -28,7 +28,7 @@ const Payment = () => {
 
             console.log(`this is orderData ${JSON.stringify(orderData)}`)
 
-            const response = await fetch("http://localhost:3001/order", {
+            const response = await fetch("https://henrypfbackmarket.onrender.com/order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
