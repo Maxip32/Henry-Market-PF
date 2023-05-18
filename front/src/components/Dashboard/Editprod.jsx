@@ -45,11 +45,15 @@ const EditProductPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  //  alert("Deleted")
     try {
       await axios.put(`/products/${id}`, form);
       dispatch(putProductsId(id, form));
-      console.log('Producto actualizado exitosamente');
+      toast.success('Successfully modified product');
+      setTimeout(() =>{
+        window.location.href = "/admin";
+
+      },2000)
     } catch (error) {
       console.error(error);
     }
@@ -68,15 +72,16 @@ const EditProductPage = () => {
          <Link to="/home">
            <button className={styles.landingButtonn}>Henry Market</button>
          </Link>
-       <h2>Editar Producto</h2>
+       <h2>Edit Product</h2>
        <form onSubmit={handleSubmit}>
-         <label className={styles.label}>Nombre:</label>
+         <label className={styles.label}>Name:</label>
          <input
            type="text"
            name="name"
            value={form.name}
            onChange={handleChange}
            className={styles.input}
+           required
          />
          <div>
            <label className={styles.label}>Price:</label>
@@ -98,7 +103,7 @@ const EditProductPage = () => {
              name="colors"
              value={form.colors}
              onChange={handleChange}
-             required
+             
              className={styles.input}
            />
          </div>
@@ -107,7 +112,7 @@ const EditProductPage = () => {
            <input
              type="text"
              name="sizes"
-             required
+             
              className={styles.input}
              value={form.sizes}
              onChange={handleChange}
@@ -150,7 +155,7 @@ const EditProductPage = () => {
            />
          </div>
          <p>
-         <button type="button" onClick={handleDelete}>
+         <button className={styles.landingButtonn} type="button" onClick={handleDelete}>
             {form.deleted ? 'Undelete' : 'Delete'}
           </button>
          </p>
@@ -159,8 +164,8 @@ const EditProductPage = () => {
              Submit
            </button>
          </p>
-         <ToastContainer />
        </form>
+         <ToastContainer />
      </div>
   );
 };

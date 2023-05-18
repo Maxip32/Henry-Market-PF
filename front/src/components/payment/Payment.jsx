@@ -53,22 +53,26 @@ const Payment = () => {
 
     return (
         <div>
-            <h2>Checkout payment</h2>
+            <h2 style={{ fontSize: "24px", textAlign: "center", marginBottom: "20px" }}>Checkout payment</h2>
 
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                {shoppingCart.map((p) => {
-                        total += p.price * p.quantity;
-                        return (
-                            <div style={{display: 'flex', gap: '20px'}} key={p.id}>
-                                <p style={{width: '150px'}}>{p.name} X</p>
-                                <p style={{width: '100px'}}>{p.quantity}</p>
-                                <p style={{width: '150px'}}>subtotal: {p.quantity * p.price}</p>
-                            </div>
-                        )
-                    }
-                )}
-                <p>total: {total.toFixed(2)} </p>
-            </div>
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  {shoppingCart.map((p) => {
+    total += p.price * p.quantity;
+    return (
+      <div style={{ display: 'flex', gap: '20px' }} key={p.id}>
+        <p style={{ width: '150px' }}>{p.name} </p>
+        {/* <img
+            style={{ width: '100px' }}
+                                src={p.image}
+                                alt={`img-${p.name}`}
+                            /> */}
+        <p style={{ width: '100px' }}>{p.quantity}</p>
+        <p style={{ width: '150px' }}>subtotal: {p.quantity * p.price}</p>
+      </div>
+    )
+  })}
+  <p style={{ marginTop: "10px" }}>total: {total.toFixed(2)}</p>
+</div>
 
             <div id="wallet_container">
                 {preferenceId && <Wallet initialization={{preferenceId: preferenceId}}/>}

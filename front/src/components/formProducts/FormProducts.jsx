@@ -146,10 +146,14 @@ const FormProducts = () => {
         //     body: JSON.stringify({...form, image:IMAGEURL})
         // })
         // const data = await res.json()
-
+        
+        
         toast.success("Product created")
-        window.location.href = "/home";
-
+        setTimeout(() =>{
+          window.location.href = "/home";
+      },2000)
+      
+      
 
 
         // if(data.error) return console.log('producto ya existe')

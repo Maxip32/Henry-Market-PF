@@ -3,14 +3,15 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 30px;
-  background-color: #a9a8a8;
-  border: 1px solid #000000;
-  border-radius: 5px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  
 }
 
  /* Estilos para el título del formulario  */
  .createdog h1 {
   margin-top: 0;
+  color: white;
   text-align: center;
 }
 
@@ -21,10 +22,9 @@
 } 
 
  .goHomeButton {
-  background-color: #000000;
-  color: #ffe600;
+  background-color: #E3E32C;
+  color: #363432;;
   border: none;
-  border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -67,10 +67,9 @@ select {
  .createButton {
   display: block;
   margin: 0 auto;
-  background-color: #000000;
-  color: #ffe600;
+  background-color: #E3E32C;
+  color: #363432;
   border: none;
-  border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -86,7 +85,7 @@ select {
 }
 .parrafo {
   background-color: #ffe600;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 20px;
   padding: 10px;
   border-radius: 5px;
@@ -99,7 +98,8 @@ select {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: larger;
   height: 40px;
-  color: #000000;
+  background-color: #E3E32C;
+  color: #363432;;
   padding: 5px 10px;
   font-weight: bold;
   cursor: pointer;
@@ -107,10 +107,10 @@ select {
   outline: none;
   border-radius: 5px;
   z-index: 0;
-  background: #000000;
+  
   overflow: hidden;
   /* border: 2px solid #ffe600; */
-  color: #ffe600;
+  color: #363432;;
 }
 
 .landingButtonn:hover {

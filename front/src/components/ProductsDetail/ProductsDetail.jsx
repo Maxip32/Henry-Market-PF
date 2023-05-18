@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {useParams} from "react-router-dom";
 import {allProductsId, addSToShoppingCart, toggleFavorite, getUser} from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
-import ShoppingCartImage from '../image/shoppingcart.svg'
+import ShoppingCartImage from '../image/shoppingcart.png'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import SearchBar from "../searchbar/Searchbar";
 import RatingStart from "../ratingStart/RatingStart";
@@ -25,10 +25,9 @@ const ProductsDetail = () => {
     const allProduct = useSelector((state) => state.products);
     const userLog = useSelector((state) => state.users);
     const [userLogId, setUserLogId] = useState("");
-
     const [selectedDetail, setSelectedDetail] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
-
+    const [selectedColor, setSelectedColor] = useState("");
     const {user, isLoading} = useAuth0()
 
     const handleSelect = (event) => {
@@ -39,6 +38,11 @@ const ProductsDetail = () => {
         setSelectedCategory(event.target.value);
         setSelectedDetail("");
     };
+
+    const handleSelectColor = (event) => {
+        setSelectedColor(event.target.value);
+        setSelectedDetail("");
+      };
 
     const {getAccessTokenSilently} = useAuth0()
     useEffect(() => {
@@ -131,14 +135,22 @@ const ProductsDetail = () => {
                 JSON.stringify([...savedComments, newComment])
             );
 
-            const dataResponse = await axios.post("review", {
+            // const dataResponse = await axios.post("review", {
+            //     title: allProduct.name,
+            //     body: comment,
+            //     rating: localEstrellitas,
+            //     productId: id
+            // })
+
+            // console.log(`dataResponse: ${JSON.stringify(dataResponse)}`)
+           
+            await axios.post("review", {
                 title: allProduct.name,
                 body: comment,
                 rating: localEstrellitas,
-                productId: id
+                productId: id,
+                email: user?.email
             })
-
-            console.log(`dataResponse: ${JSON.stringify(dataResponse)}`)
 
         }
     };
@@ -150,19 +162,19 @@ const ProductsDetail = () => {
     return (
         <div>
             <div className="carrito" onClick={showShoppingCart}>
-                <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
+                <img className={styles.cart} src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
                     borderRadius: '50%',
-                    height: '25px',
-                    width: '25px',
-                    backgroundColor: 'purple',
+                    height: '20px',
+                    width: '20px',
+                    backgroundColor: 'yellow',
                     display: 'inline-flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     top: '-40px',
                     left: '-45px'
                 }}>
-                    <span style={{color: 'white'}}>{shoppingCart.length}</span>
+                    <span style={{color: 'grey'}}>{shoppingCart.length}</span>
                 </div>
             </div>
             {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal}/>}
@@ -173,7 +185,7 @@ const ProductsDetail = () => {
                     <button className={styles.btn1}>Go Henry Market</button>
                 </Link>
             </p>
-            <div className={styles.card}>
+            <div className={styles.card_container}>
 
 
                 {allProduct.length === 0 ? (
@@ -186,10 +198,11 @@ const ProductsDetail = () => {
                         {!isLoading ? user !== undefined ? userLogId !== undefined ? (
                             <Favorites productId={allProduct.id} userId={userLogId.id}/>
                         ) : null : null : null}
-                        <div className={styles.imageContainer}>
+                        <div className={styles.card}>
+                           
 
                             <img
-                                className={styles.cardimg}
+                                className={styles.card_img}
                                 src={allProduct.image ? allProduct.image : image}
                                 alt={`img-${allProduct.name}`}
                             />
@@ -199,17 +212,54 @@ const ProductsDetail = () => {
                         <section>
                             <div className={styles.productInfo}>
                                 <h1 className={styles.productName}>{allProduct.name}</h1>
-                                {selectedCategory === "Dress" && allProduct.products ? (
-                                    <p>
-                                        <b>Size: </b> {allProduct.products}
-                                    </p>
+                                {"Dress" && allProduct.category === "Dress" ? (
+                  <>
+                  <p className={styles.parrafo}>
+                    <select
+                      name="Size"
+                      id="Size"
+                      value={selectedDetail}
+                      onChange={handleSelect}
+                    >
+                      <option disabled selected>Size</option>
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                      <option value="XXXL">XXXL</option>
+                    </select>
+                    <select
+                      name="Color"
+                      id="Color"
+                      value={selectedColor}
+                      onChange={handleSelectColor}
+                    >
+                      <option disabled selected>Colour</option>
+                      <option value="White">White</option>
+                      <option value="Black">Black</option>
+                      <option value="Grey">Grey</option>
+                      <option value="Yellow">Yellow</option>
+                    </select>
+                    <p >
+                      <b>Description: </b> {allProduct.description}
+                      <br />
+                      <b>Price: </b> {allProduct.price} USD
+                      <br />
+                      <b>Category: </b> {allProduct.category}
+                    </p>
+                    </p>
+                  </>
                                 ) : (
                                     <p>
-                                        <b>Description: </b> {allProduct.description}
+                                        <b className={styles.desc}>  Description:</b>{allProduct.description}
                                         <br/>
-                                        <b>Price: </b> {allProduct.price} USD
+                                        <b className={styles.price}>Price:  {allProduct.price} USD </b>
                                         <br/>
                                         <b>Category: </b> {allProduct.category}
+                                        <br/>
+                                        <b>Stock: </b> {allProduct.stock}
                                     </p>
                                 )}
                                 <p>
@@ -217,29 +267,53 @@ const ProductsDetail = () => {
                                 </p>
                             </div>
 
-
+                           
                             <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add
                                 to cart
                             </button>
 
                             {/* Nueva sección de código para agregar comentarios */}
-                            <section>
-                                <h2>Add a comment or question:</h2>
-                                <form onSubmit={handleSubmitComment}>
-                                    <label htmlFor="comment">Comment:</label>
-                                    <textarea id="comment" value={comment} onChange={handleCommentChange}></textarea>
-                                    <button type="submit">Submit</button>
-                                </form>
+                            <section className={styles.questions}>
+                                <h2 className={styles.quest} style={{ fontSize: "20px" }}>Add a comment or question:</h2>
+                                <form onSubmit={handleSubmitComment} style={{  display: "flex", flexDirection: "column", maxWidth: "300px" }}>
+  <label htmlFor="comment" style={{ marginBottom: "10px" }}>Comment:</label>
+  <textarea
+    id="comment"
+    value={comment}
+    onChange={handleCommentChange}
+    style={{
+      marginBottom: "10px",
+      padding: "5px",
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      resize: "vertical"
+    }}
+  ></textarea>
+  <button
+    type="submit"
+    style={{
+      backgroundColor: "#4CAF50",
+      marginBottom: "10px",
+      color: "white",
+      padding: "8px 16px",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer"
+    }}
+  >
+    Submit
+  </button>
+</form>
                                 {productComments.length > 0 && (
-                                    <div>
-                                        <h3>Comments and questions:</h3>
-                                        {productComments.map((comment, index) => (
-                                            <div key={comment.date}>
-                                                <p style={{color: "red", fontSize: "20px"}}>{comment.text}</p>
-                                                <p>{comment.date}</p>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <div style={{ marginTop: "20px" }}>
+                                    <h3 style={{ fontSize: "20px" }}>Comments and questions:</h3>
+                                    {productComments.map((comment, index) => (
+                                      <div key={comment.date} style={{ marginBottom: "10px" }}>
+                                        <p style={{ color: "grey", fontSize: "20px" }}>{comment.text}</p>
+                                        <p style={{ fontSize: "14px" }}>{comment.date}</p>
+                                      </div>
+                                    ))}
+                                  </div>
                                 )}
                             </section>
 

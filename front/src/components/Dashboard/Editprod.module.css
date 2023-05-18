@@ -1,8 +1,9 @@
 .container{
   width: 400px;
+  
   height: fit-content;
   padding-top: 20px;
-  padding-left: 500px;
+  padding-left: 580px;
   display: grid;
   grid-column: 1fr 1fr;
   grid-row: 1fr 1fr;
@@ -10,11 +11,11 @@
 .landingButtonn {
   min-width: 130px;
   text-transform: initial;
-  text-shadow: #f8f8f8;
+  text-shadow: #0d0d0d00;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: larger;
   height: 40px;
-  color: #000000;
+  color: #0d0d0d00;
   padding: 5px 10px;
   font-weight: bold;
   cursor: pointer;
@@ -22,9 +23,10 @@
   outline: none;
   border-radius: 5px;
   z-index: 0;
-  background: #000000;
+  color: #E3E32C;
+  background: #0d0d0d00;
   overflow: hidden;
-  color: #ffe600;
+  
 }
 .landingButtonn:hover {
   color: #000000;

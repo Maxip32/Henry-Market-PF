@@ -5,11 +5,12 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./categoryFilter.module.css";
 import FilterByPrice from "../orderByProducts/OrderByProducts";
-import ShoppingCartImage from '../image/shoppingcart.svg'
+import ShoppingCartImage from '../image/shoppingcart.png'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import {useEffect} from "react";
 import SearchBar from "../searchbar/Searchbar";
 import {useAuth0} from "@auth0/auth0-react";
+
 
 
 const CategoryFilter = () => {
@@ -49,19 +50,19 @@ const CategoryFilter = () => {
     return (
         <div>
             <div className="carrito" onClick={showShoppingCart}>
-                <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
+                <img className={styles.cart} src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
                     borderRadius: '50%',
-                    height: '25px',
-                    width: '25px',
-                    backgroundColor: 'purple',
+                    height: '20px',
+                    width: '20px',
+                    backgroundColor: 'yellow',
                     display: 'inline-flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     top: '-40px',
                     left: '-45px'
                 }}>
-                    <span style={{color: 'white'}}>{shoppingCart.length}</span>
+                    <span style={{color: 'grey'}}>{shoppingCart.length}</span>
                 </div>
             </div>
             {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal}/>}
@@ -75,7 +76,8 @@ const CategoryFilter = () => {
                         <button className={styles.btn}>Go Henry Market</button>
                     </Link>
                     <p></p>
-                    <div className={styles.filter}>
+                    <div className={styles.containerfilter}>
+                    <div >
                         <label htmlFor="category-filter"></label>
                         <select
                             className={styles.btn1}
@@ -92,6 +94,7 @@ const CategoryFilter = () => {
                     </div>
 
                     <FilterByPrice/>
+                    </div>
                     <div></div>
                     <div className={styles.grid}>
                     {categories.map((category, index) => {
@@ -124,8 +127,8 @@ const CategoryFilter = () => {
                                         <p className={styles.price} style={{color: "black"}}>
                                             Stock: {category.stock} units
                                         </p>
-                                        <p className={styles.price} style={{color: "black"}}>
-                                            Price: USD {category.price}
+                                        <p className={styles.price} style={{color: "darkred"}}>
+                                            USD {category.price}
                                         </p>
                                     </div>
                                 </Link>
