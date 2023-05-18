@@ -7,12 +7,13 @@
   width: 100%;
   height: max-content;
   margin-top: 50px;
+
 }
 .card{
   display: flex;
   position: relative;
   border-radius: 10px;
-  background-color: #f6f6f6;
+  background-color: #f6f6f600;
   box-shadow: 0.2rem 0.2rem 0.5rem rgb(0 0 0 / 20%);
   height: 500px;
   font-family: Verdana, Geneva, sans-serif;
@@ -24,6 +25,9 @@
   justify-content: center;
   align-items: center;
 }
+.parrafo{
+  margin-left: 20px;
+}
 .imgContainer{
   display: flex;
   align-items: center;
@@ -34,6 +38,9 @@
   max-width: 100%;
 }
 
+.quest{
+  margin-left: -35px;
+}
 
 .desc{
   width: 100%;
@@ -93,7 +100,9 @@
   color: #E3E32C;
     background-color: #363432;
 }
-
+.questions{
+  margin-left: 55px;
+}
 .btn1:hover{
   transform:scale(1.1);
   transition: 600ms;

@@ -11,7 +11,7 @@ function Popup() {
 
   return (
     <>
-      <button className={styles.etiqueta} onClick={toggleVisibility}>-Explore Henry Market-</button>
+      <button className={styles.etiqueta} onClick={toggleVisibility}>Explore Henry Market</button>
       {visible && (
         <div className={styles.contenedor}>
           <div className={styles.popupheader}>
@@ -28,9 +28,7 @@ function Popup() {
          <p>
          {/* <Link to="/Myshopping" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>My shopping</Link>*/}
          </p>
-         <p>
-         <Link to="/favorites" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Favorite</Link>
-         </p>
+         
          <p>
          {/*<Link to="/discounts" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Discounts</Link>*/} 
          </p>
@@ -38,10 +36,10 @@ function Popup() {
          {/*<Link to="/record" style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>Record</Link>*/}
          </p>
          <p>
-         <Link to="/account" className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Account</Link>
+         <Link to="/account" className={styles.letraspoup} style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}> -Account</Link>
          </p>
          <p>
-         <Link to='/category' className={styles.letraspoup} style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
+         <Link to='/category' className={styles.letraspoup} style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}> -Category</Link>
          </p>
          
          

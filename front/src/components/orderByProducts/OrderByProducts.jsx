@@ -138,10 +138,10 @@ const FilterByPrice = () => {
           Detailed price search
         </button>
         <button className={styles.min} onClick={handleOrderMinMax}>
-          Search by min price
+          Order by min price
         </button>
         <button className={styles.max} onClick={handleOrderMaxMin}>
-          Search by max price
+          Order by max price
         </button>
       
       </div>

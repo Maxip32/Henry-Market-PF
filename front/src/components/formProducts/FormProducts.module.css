@@ -3,7 +3,9 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 30px;
-  background-color: #363432;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  
 }
 
  /* Estilos para el título del formulario  */

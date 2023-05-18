@@ -8,13 +8,9 @@ import {Link} from "react-router-dom";
 import styles from "./Home.module.css";
 
 import Pagination from "../pagination/Pagination";
-<<<<<<< HEAD
-import ShoppingCartImage from '../image/shoppingcart.png'
 import Homeimg from '../image/homeimg.jpg'
+import ShoppingCartImage from '../image/shoppingcart.png'
 
-=======
-import ShoppingCartImage from "../image/shoppingcart.svg";
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import "./Home.module.css"
 import {Profile} from "../logs/profile";
@@ -111,189 +107,111 @@ export default function Home() {
 
     return (
         <div>
-            <Link to="/home"></Link>
-            {/*<Link to="/favorite">*/}
-            {/*    <button className={styles.input}>-Favorites-</button>*/}
-            {/*</Link>*/}
+          <Link to="/home"></Link>
+          {/*<Link to="/favorite">
+              <button className={styles.input}>-Favorites-</button>
+          </Link>*/}
+      
+          <div>
+            {isAuthenticated === true ? (
+              <>
+                <div className="carrito" onClick={showShoppingCart}>
+                  <img
+                    className={styles.cart}
+                    src={ShoppingCartImage}
+                    alt="shopping-cart"
+                    width="25px"
+                    height="25px"
+                  />
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      height: "20px",
+                      width: "20px",
+                      backgroundColor: "yellow",
+                      display: "inline-flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      top: "-30px",
+                      left: "-50px",
+                    }}
+                  >
+                    <span style={{ color: "grey" }}>{shoppingCart.length}</span>
+                  </div>
+                </div>
+              </>
+            ) : null}
+      
+            {/* Mostramos el modal del carrito de compras */}
+            {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal} />}
+      
+            <SearchBar />
+          </div>
+          {/* <p>
+            <Link to="/category">
+            <button className={styles.category}>Category</button>
 
-
-            <div>
-<<<<<<< HEAD
-                {isAuthenticated === true ?
-                    (
-                        <>
-                            <div className="carrito" onClick={showShoppingCart}>
-                                <img className={styles.cart} src={ShoppingCartImage} alt="shopping-cart"  width='25px' height='25px' />
-                                <div style={{
-                                    borderRadius: '50%',
-                                    height: '20px',
-                                    width: '20px',
-                                    backgroundColor: 'yellow',
-                                    display: 'inline-flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    top: '-30px',
-                                    left: '-50px'
-                                }}>
-                                    <span style={{color: 'grey'}}>{shoppingCart.length}</span>
-                                </div>
-=======
-                {isAuthenticated === true ? (
-                    <>
-                        <div className="carrito" onClick={showShoppingCart}>
-                            <img
-                                src={ShoppingCartImage}
-                                alt="shopping-cart"
-                                width="25px"
-                                height="25px"
-                            />
-                            <div
-                                style={{
-                                    borderRadius: "50%",
-                                    height: "25px",
-                                    width: "25px",
-                                    backgroundColor: "purple",
-                                    display: "inline-flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    top: "-40px",
-                                    left: "-45px",
-                                }}
-                            >
-                                <span style={{color: "white"}}>{shoppingCart.length}</span>
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-                            </div>
-                        </div>
-                    </>
-                ) : null}
-
-                {/* Mostramos el modal del carrito de compras */}
-                {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal}/>}
-
-<<<<<<< HEAD
-    
-                <SearchBar/>
-             
-            </div>
-=======
-                <SearchBar/>
-                <p>
-                    <Link style={{color: "black"}} to="/category">
-                        Category
-                    </Link>
-                </p>
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-
-
-                {/* <button className={styles.input} onClick={refreshPage}>
-                    Refresh
-                </button> */}
-            </div>
-            {isAuthenticated && (
+            </Link>
+          </p>
+      
+          {isAuthenticated && (
             <div className={styles.buttons}>
-<<<<<<< HEAD
-                <Link to="/formProducts">
-                    <button className={styles.input}>CREATE</button>
-=======
-                <Link to="/admin">
-                    <button className={styles.input}>-Dashboard-</button>
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-                </Link>
-                
+              <Link to="/admin">
+                <button className={styles.input}>Dashboard</button>
+              </Link>
             </div>
-<<<<<<< HEAD
-            <div>
-            </div>
-            <img className={styles.homeimg} src={Homeimg} alt="shopping-cart"  width='1000px' height='550px' />
-=======
-                
-            )}
-
-            <div></div>
-            {!isAuthenticated && (
-                <>
-                    <LogInButton/>
-                </>
-            )}
-            <Profile/>
-            <LogOutButton/>
-            {/* <Link to="/mailValidate">
-        <button className={styles.input}>-Login-</button>
-      </Link> */}
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-
-            {/* Mostramos la imagen del carrito de compras */}
-<<<<<<< HEAD
-    
-       
-            {/* <Link to="/mailValidate">
-            <button className={styles.input}>-Login-</button>
-        </Link> */}
-            <p className={styles.homeimg} ></p>
-            {/* <Popup/> */}
-            
-=======
-
-            <p></p>
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-
-            {/* Mostramos solo los productos de la página actual */}
-            <div className={styles.grid}>
-                {currentItems.length > 0 &&
-                    currentItems.map((product) => (
-                        <div key={product.id} className={styles.card}>
-<<<<<<< HEAD
-                            <Favorite/>
-                            <Link to={`/detail/${product.id}`} style={{textDecoration: "none"}}>
-=======
-                            <Link
-                                to={`/detail/${product.id}`}
-                                style={{textDecoration: "none"}}
-                            >
-
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-                                <div>
-                                    <p>
-                                        <img
-                                            className={styles.cardimg}
-                                            src={product.image}
-                                            alt={product.name}
-                                        />
-                                    </p>
-                                    <p className={styles.name} style={{color: "black"}}>
-                                        Name: {product.name}
-                                    </p>
-                                    <p className={styles.description} style={{color: "black"}}>
-                                        {product.description}
-                                    </p>
-                                    <p className style={{color: "black"}}>
-                                        Price: USD{product.price}
-                                    </p>
-<<<<<<< HEAD
-                                    <p className={styles.name} style={{color: "black"}}>{product.name}</p>
-                                    <p className={styles.price} style={{color: "darkRed"}}>USD {product.price}</p>
-=======
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-                                </div>
-                            </Link>
-                                       
-
-                        </div>
-<<<<<<< HEAD
-
-))}
-=======
-                    ))}
->>>>>>> 56d4b907c9caa6f246a81cdde2fdac5a75990365
-
-                {/* Agregamos el componente Pagination */}
-                <Pagination
-                    currentPage={currentPage}
-                    itemsPerPage={itemsPerPage}
+          )} */}
+      
+          <img
+            className={styles.homeimg}
+            src={Homeimg}
+            alt="shopping-cart"
+            width="1000px"
+            height="550px"
+          />
+      
+          {/* Mostramos la imagen del carrito de compras */}
+      
+          {/* <Link to="/mailValidate">
+              <button className={styles.input}>-Login-</button>
+          </Link> */}
+          <p className={styles.homeimg}></p>
+          {/* <Popup/> */}
+      
+          {/* Mostramos solo los productos de la página actual */}
+          <div className={styles.grid}>
+            {currentItems.length > 0 &&
+              currentItems.map((product) => (
+                <div key={product.id} className={styles.card}>
+                  <Link to={`/detail/${product.id}`} style={{ textDecoration: "none" }}>
+                    <div>
+                      <p>
+                        <img
+                          className={styles.cardimg}
+                          src={product.image}
+                          alt={product.name}
+                        />
+                      </p>
+                      <p className={styles.name} style={{ color: "black" }}>
+                        {product.name}
+                      </p>
+                      <p className={styles.price} style={{ color: "darkRed" }}>
+                        USD {product.price}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+      
+            {/* Agregamos el componente Pagination */}
+            <Pagination
+              currentPage={currentPage}
+              itemsPerPage={itemsPerPage}
                     totalItems={products.length}
                     onPageChange={handlePageChange}
                     />
             </div>
+           
         </div>
     );
 }

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import Popup from "../popup/Popup";
 import Pagination from "../pagination/Pagination";
-import ShoppingCartImage from '../image/shoppingcart.svg'
+import ShoppingCartImage from '../image/shoppingcart.png'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import {LogInButton} from "../logs/logIn";
 import {LogOutButton} from "../logs/logOut";
@@ -81,19 +81,19 @@ export default function Dashboard() {
                     (
                         <>
                             <div className="carrito" onClick={showShoppingCart}>
-                                <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
+                                <img className={styles.cart} src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                                 <div style={{
-                                    borderRadius: '50%',
-                                    height: '25px',
-                                    width: '25px',
-                                    backgroundColor: 'purple',
-                                    display: 'inline-flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    top: '-40px',
-                                    left: '-45px'
+                                        borderRadius: "50%",
+                                        height: "20px",
+                                        width: "20px",
+                                        backgroundColor: "yellow",
+                                        display: "inline-flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        top: "-30px",
+                                        left: "-50px",
                                 }}>
-                                    <span style={{color: 'white'}}>{shoppingCart.length}</span>
+                                    <span style={{color: 'grey'}}>{shoppingCart.length}</span>
                                 </div>
                             </div>
                         </>
@@ -109,32 +109,38 @@ export default function Dashboard() {
             </div>
             <div className={styles.buttons}>
                 <Link to="/home">
-                    <button className={styles.input}>-Home-</button>
+                    <button className={styles.input}> Home </button>
                 </Link>
             </div>
 
             <div className={styles.buttons}>
                 <Link to="/formProducts">
-                    <button className={styles.input}>-Create-</button>
+                    <button className={styles.input}>Create</button>
                 </Link>
                 
             </div>
+            <p>
+            <Link to="/category">
+            <button className={styles.category}>Category</button>
 
+            </Link>
+          </p>
             <div>
             </div>
+            <div className={styles.account}>
             {!isAuthenticated && (<><LogInButton/></>)}
             <Profile/>
-            <LogOutButton/>
+            {/* <LogOutButton/> */}
             {/* <Link to="/mailValidate">
         <button className={styles.input}>-Login-</button>
       </Link> */}
+      </div>
 
 
             {/* Mostramos la imagen del carrito de compras */}
 
 
             <p></p>
-            <Popup/>
 
 
             {/* Mostramos solo los productos de la página actual */}
@@ -151,13 +157,13 @@ export default function Dashboard() {
                                         </div>
                                     </p>
                                     <div className={styles.cardinfo}>
-                                    <p className={styles.name} style={{color: "black"}}>Name: {product.name}</p>
+                                    <p className={styles.name} style={{color: "black"}}>{product.name}</p>
                                     <p className={styles.description} style={{color: "black"}}>{product.description}</p>
-                                    <p className= {styles.name}>Price: USD{product.price}</p>
+                                    <p className= {styles.name} style={{color: "darkred"}}>USD {product.price}</p>
                                     </div>
 
                                     <div key={product.id} className={styles.buttonedit}>
-                                    <Link to={`/edit-product/${product.id}`}>Editar</Link>
+                                    <Link   to={`/edit-product/${product.id}`}> <button className={styles.edit}>Edit</button></Link>
                                     
                                     </div>
 
