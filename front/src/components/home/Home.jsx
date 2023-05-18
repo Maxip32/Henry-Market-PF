@@ -6,9 +6,9 @@ import {allProducts, clean, getUser} from "../../redux/actions";
 import SearchBar from "../searchbar/Searchbar";
 import {Link} from "react-router-dom";
 import styles from "./Home.module.css";
-import Popup from "../popup/Popup";
+
 import Pagination from "../pagination/Pagination";
-import ShoppingCartImage from '../image/shoppingcart.svg'
+import ShoppingCartImage from "../image/shoppingcart.svg";
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import {LogInButton} from "../logs/logIn";
 import {LogOutButton} from "../logs/logOut";
@@ -19,7 +19,7 @@ import {useAuth0} from "@auth0/auth0-react";
 export default function Home() {
     const dispatch = useDispatch();
     let products = useSelector((state) => state.products);
-    products= products.filter(p=>{
+    products= products.filter( p=>{
         return p.deleted !== true;
         
         
@@ -60,104 +60,142 @@ export default function Home() {
     };
 
     // lógica para mostrar el carrito de compras
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
     const openModal = () => {
         setIsOpen(true);
-        document.body.style.overflow = 'hidden';
-    }
+        document.body.style.overflow = "hidden";
+    };
     const closeModal = () => {
         setIsOpen(false);
-        document.body.style.overflow = 'auto';
-    }
+        document.body.style.overflow = "auto";
+    };
     const shoppingCart = useSelector((state) => state.shoppingCart);
 
     function showShoppingCart() {
-        openModal()
+        openModal();
     }
 
     useEffect(() => {
-        document.body.style.overflow = 'auto'
-    }, [])
+        document.body.style.overflow = "auto";
+    }, []);
+
+   
+
+    // const {getAccessTokenSilently} = useAuth0()
+
+    useEffect(() => {
+        const token = async () => {
+            // const accessToken = await getAccessTokenSilently();
+            dispatch(getUser());
+        }
+        token().catch(err => console.log(err))
+    }, [dispatch]);
 
     return (
         <div>
             <Link to="/home"></Link>
+            {/*<Link to="/favorite">*/}
+            {/*    <button className={styles.input}>-Favorites-</button>*/}
+            {/*</Link>*/}
+
 
             <div>
-                {isAuthenticated === true ?
-                    (
-                        <>
-                            <div className="carrito" onClick={showShoppingCart}>
-                                <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
-                                <div style={{
-                                    borderRadius: '50%',
-                                    height: '25px',
-                                    width: '25px',
-                                    backgroundColor: 'purple',
-                                    display: 'inline-flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    top: '-40px',
-                                    left: '-45px'
-                                }}>
-                                    <span style={{color: 'white'}}>{shoppingCart.length}</span>
-                                </div>
+                {isAuthenticated === true ? (
+                    <>
+                        <div className="carrito" onClick={showShoppingCart}>
+                            <img
+                                src={ShoppingCartImage}
+                                alt="shopping-cart"
+                                width="25px"
+                                height="25px"
+                            />
+                            <div
+                                style={{
+                                    borderRadius: "50%",
+                                    height: "25px",
+                                    width: "25px",
+                                    backgroundColor: "purple",
+                                    display: "inline-flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    top: "-40px",
+                                    left: "-45px",
+                                }}
+                            >
+                                <span style={{color: "white"}}>{shoppingCart.length}</span>
                             </div>
-                        </>
-                    ) : null
-                }
+                        </div>
+                    </>
+                ) : null}
 
                 {/* Mostramos el modal del carrito de compras */}
                 {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal}/>}
 
-
                 <SearchBar/>
-                {/* <button className={styles.input} onClick={refreshPage}>Refresh</button> */}
-            </div>
+                <p>
+                    <Link style={{color: "black"}} to="/category">
+                        Category
+                    </Link>
+                </p>
 
+
+                {/* <button className={styles.input} onClick={refreshPage}>
+                    Refresh
+                </button> */}
+            </div>
             
             <div className={styles.buttons}>
                 <Link to="/admin">
                     <button className={styles.input}>-Dashboard-</button>
                 </Link>
             </div>
-            
 
-            <div>
-            </div>
-            {!isAuthenticated && (<><LogInButton/></>)}
+            <div></div>
+            {!isAuthenticated && (
+                <>
+                    <LogInButton/>
+                </>
+            )}
             <Profile/>
             <LogOutButton/>
             {/* <Link to="/mailValidate">
         <button className={styles.input}>-Login-</button>
       </Link> */}
 
-
             {/* Mostramos la imagen del carrito de compras */}
 
-
             <p></p>
-            <Popup/>
-
 
             {/* Mostramos solo los productos de la página actual */}
             <div className={styles.grid}>
                 {currentItems.length > 0 &&
                     currentItems.map((product) => (
                         <div key={product.id} className={styles.card}>
-                            <Link to={`/detail/${product.id}`} style={{textDecoration: "none"}}>
+                            <Link
+                                to={`/detail/${product.id}`}
+                                style={{textDecoration: "none"}}
+                            >
+
                                 <div>
                                     <p>
-                                        <img className={styles.cardimg} src={product.image} alt={product.name}/>
+                                        <img
+                                            className={styles.cardimg}
+                                            src={product.image}
+                                            alt={product.name}
+                                        />
                                     </p>
-                                    <p className={styles.name} style={{color: "black"}}>Name: {product.name}</p>
-                                    <p className={styles.description} style={{color: "black"}}>{product.description}</p>
-                                    <p className style={{color: "black"}}>Price: USD{product.price}</p>
+                                    <p className={styles.name} style={{color: "black"}}>
+                                        Name: {product.name}
+                                    </p>
+                                    <p className={styles.description} style={{color: "black"}}>
+                                        {product.description}
+                                    </p>
+                                    <p className style={{color: "black"}}>
+                                        Price: USD{product.price}
+                                    </p>
                                 </div>
-
                             </Link>
                         </div>
-
                     ))}
 
                 {/* Agregamos el componente Pagination */}
@@ -171,4 +209,3 @@ export default function Home() {
         </div>
     );
 }
-

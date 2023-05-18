@@ -1,96 +1,11 @@
-/* Estilos para el contenedor principal del formulario */
-.createdog {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #a9a8a8;
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-
- /* Estilos para el título del formulario  */
- .createdog h1 {
-  margin-top: 0;
-  text-align: center;
-}
-
- /* Estilos para el botón de regreso a la página de inicio  */
- .button-container {
-  display: flex;
-  justify-content: space-between;
-} 
-
- .goHomeButton {
-  background-color: #000000;
-  color: #ffe600;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-} 
-
-
- /* Estilos para los campos de entrada de datos  */
- .label {
-  display: flex;
-  margin-bottom: 5px;
-  left: 300px;
-}
-.input2{
-  display: flex;
-  margin-left: 5px;
-  width: 495px;
-}
-.imageupload{
-  display: flex;
-  width: 450px ;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-  width: 95%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  display:inline-block;
-} 
-
- .div select {
-  height: 100px;
-} 
-
- /* Estilos para el botón de crear  */
- .createButton {
-  display: block;
-  margin: 0 auto;
-  background-color: #000000;
-  color: #ffe600;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-.landingButton {
-  background-color: #d4d4d4;
-  color: rgb(0, 0, 0);
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-.parrafo {
-  background-color: #ffe600;
-  color: rgb(0, 0, 0);
-  font-size: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
+.container{
+  width: 400px;
+  height: fit-content;
+  padding-top: 20px;
+  padding-left: 500px;
+  display: grid;
+  grid-column: 1fr 1fr;
+  grid-row: 1fr 1fr;
 }
 .landingButtonn {
   min-width: 130px;
@@ -109,19 +24,23 @@ select {
   z-index: 0;
   background: #000000;
   overflow: hidden;
-  /* border: 2px solid #ffe600; */
   color: #ffe600;
 }
-
 .landingButtonn:hover {
-  color: #ffe600;
-  background-color: #000000;
+  color: #000000;
+  background-color: #ffe600;
   transform:scale(1.1);
   transition: 600ms;
 }
-
-
-
+.label{
+  font-weight: bolder;
+  font-size: larger;
+  font-family: 'Courier New', Courier, monospace;
+}
+.input{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 200px;
+}
 
 
 

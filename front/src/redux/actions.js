@@ -1,15 +1,12 @@
 import axios from "axios";
 
 
-export const getUser = ({accessToken}) => {
+export const getUser = () => {
     return async function (dispatch) {
         try {
-            const user = await axios.get(`/users`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
+            const user = await axios.get(`/users`);
+
+            console.log(`this is userdata ${user.data}`)
             dispatch({
                 type: "GET_USERS",
                 payload: user.data,
@@ -81,7 +78,7 @@ export const adressPost = (adress) => {
 export const allProducts = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`/products/create/data`);
+            const response = await axios.get(`/products`);
             dispatch({
                 type: "ALL_PRODUCTS",
                 payload: response.data,
@@ -191,6 +188,7 @@ export const updateProductRating = (id, rating) => async (dispatch) => {
 export const toggleFavorite = ({productId, userId}) => {
     return async (dispatch, getState) => {
         try {
+            console.log(`userId: ${userId} productId: ${productId}`);
             const response = await axios.post(`/favorite`, {userId, productId});
             const {message} = response.data;
 
@@ -217,9 +215,35 @@ export const toggleFavorite = ({productId, userId}) => {
     };
 }
 
+// export const toggleFavorite = ({ productId, userId }) => {
+//   return async (dispatch, getState) => {
+//     try {
+//       const response = await axios.post(`/favorite`, { userId, productId });
+//       const { message } = response.data;
+
+//       const products = getState().favorite.products.map((product) => {
+//         if (product.id === productId) {
+//           return { ...product, isFavorite: !product.isFavorite };
+//         }
+//         return product;
+//       });
+
+//       dispatch({
+//         type: "TOGGLE_FAVORITE",
+//         payload: { products, message },
+//       });
+//     } catch (error) {
+//       console.error(error);
+//       console.error(error.response.data);
+//     }
+//   };
+// };
+
+
 export const getFavoriteId = (userId) => {
     return async function (dispatch) {
         try {
+            console.log(`userId into action getfavorite: ${userId}`);
             const response = await axios.get(`/favorite/${userId}`);
             const {products} = response.data
 

@@ -27,64 +27,64 @@ const createOrder = async (order) => {
     const transaction = await conn.transaction() // start transaction for revert in case of error
 
     try {
-        // format order data to create
-        const formatOrder = {
-            orderAmount: order.orderAmount,
-            orderTotal: order.orderTotal,
-            userId: order.userId
-        }
+        /*        // format order data to create
+                const formatOrder = {
+                    orderAmount: order.orderAmount,
+                    orderTotal: order.orderTotal,
+                    userId: order.userId
+                }
 
-        const newOrder = await Order.create(formatOrder, {transaction}); // create new order
-        // format orderDetails data
-        const formatOrderDetail = order.items.map(item => {
-            return {
-                orderId: newOrder.id,
-                productsNameId: item.id,
-                detailAmount: item.quantity,
-                detailTotal: item.unit_price,
-            }
-        })
-        await OrderDetail.bulkCreate(formatOrderDetail, {transaction}); // create orderDetails for new order
+                const newOrder = await Order.create(formatOrder, {transaction}); // create new order
+                // format orderDetails data
+                const formatOrderDetail = order.items.map(item => {
+                    return {
+                        orderId: newOrder.id,
+                        productsNameId: item.id,
+                        detailAmount: item.quantity,
+                        detailTotal: item.unit_price,
+                    }
+                })
+                await OrderDetail.bulkCreate(formatOrderDetail, {transaction}); // create orderDetails for new order
 
-        let allProductsPromises = []
-        for (let i = 0; i < order.items.length; i++) {
-            allProductsPromises.push(ProductsName.findByPk(order.items[i].id)) // array of products promises
-        }
-        const allProducts = await Promise.all(allProductsPromises); // get all products
+                let allProductsPromises = []
+                for (let i = 0; i < order.items.length; i++) {
+                    allProductsPromises.push(ProductsName.findByPk(order.items[i].id)) // array of products promises
+                }
+                const allProducts = await Promise.all(allProductsPromises); // get all products
 
-        let stockPromises = []
-        for (let i = 0; i < allProducts.length; i++) {
-            stockPromises.push(
-                allProducts[i].update({stock: allProducts[i].stock - order.items[i].quantity}, {transaction}) // array update stock of products
-            )
-        }
-        await Promise.all(stockPromises); // update stocks
+                let stockPromises = []
+                for (let i = 0; i < allProducts.length; i++) {
+                    stockPromises.push(
+                        allProducts[i].update({stock: allProducts[i].stock - order.items[i].quantity}, {transaction}) // array update stock of products
+                    )
+                }
+                await Promise.all(stockPromises); // update stocks
 
+                const dataToSend = {
+                    items: order.items,
+                    back_urls: {
+                        success: "https://localhost:5173",
+                        failure: "https://localhost:5173",
+                        pending: ""
+                    }
+                }
+
+                const preference = await mercadoPago.preferences.create(dataToSend); // send data to mercadoPago - id property is necessary in frontend
+                await transaction.commit() // commit transaction in case of success
+                return preference*/
+
+        // this code is without save to db and only mercadopago
         const dataToSend = {
             items: order.items,
             back_urls: {
-                success: "https://localhost:3000/feedback",
-                failure: "https://localhost:3000/feedback",
-                pending: ""
-            }
-        }
-
-        const preference = await mercadoPago.preferences.create(dataToSend); // send data to mercadoPago - id property is necessary in frontend
-        await transaction.commit() // commit transaction in case of success
-        return preference
-
-        // this code is without save to db and only mercadopago
-        /*const dataToSend = {
-            items: order.items,
-            back_urls: {
-                success: "https://localhost:3000/feedback",
-                failure: "https://localhost:3000/feedback",
+                success: "http://localhost:3000/home",
+                failure: "http://localhost:3000/home",
                 pending: ""
             },
             auto_return: "approved",
         }
         const preference = await mercadoPago.preferences.create(dataToSend); // send data to mercadoPago - id property is necessary in frontend
-        return preference*/
+        return preference
     } catch (error) {
         //await transaction.rollback() // rollback transaction in case of error
         return {error: error.message};
