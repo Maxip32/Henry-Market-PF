@@ -78,7 +78,7 @@ export const adressPost = (adress) => {
 export const allProducts = (borrado) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`/products`);
+            const response = await axios.get(`https://henrypfbackmarket.onrender.com/products`);
            const products= response.data.filter( p=>{
             if(borrado === true){
                 return p.deleted === false;
