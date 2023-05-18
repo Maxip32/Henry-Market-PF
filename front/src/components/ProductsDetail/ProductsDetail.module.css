@@ -1,4 +1,50 @@
-  .card {
+.card_container{
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: max-content;
+  margin-top: 50px;
+}
+.card{
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgb(0 0 0 / 20%);
+  height: 500px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.card_img{
+  display: flex;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+}
+.imgContainer{
+  display: flex;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+}
+.imgContainer img{
+  max-width: 100%;
+}
+
+
+.desc{
+  width: 100%;
+  margin: 10px;
+  padding: 0 3px 0 20px;
+}
+
+.price{
+  color: darkRed;
+}
+  /* .card {
       width: 80%;
       border-radius: 10px;
       display: flex;
@@ -8,8 +54,10 @@
       margin-left: 9rem;
       filter: drop-shadow(0 0 5px #cbcbcb);
       
+    } */
+    .cart{
+      margin-top: -40px;
     }
-    
     .cardimg:hover{
       transform:scale(1.1);
       transition: 600ms;
@@ -25,35 +73,39 @@
       }
     
 .btn{
-  padding: 10px;
-  border-radius: 4px;
-  margin-left: 10px;
-  border: none;
-  cursor: pointer;
-  color: #ffe600;
-  background-color: #000000;
+  border: 0;
+  background: none;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid darkRed;
+  padding: 14px 40px;
+  outline: none;
+  color: #000000;
+  font-weight: 700;
+  border-radius: 24px;
+  transition: 0.5s;
 }
 .btn1{
   margin-right: 1rem;
   padding: 15px;
-  border-radius: 4px;
   border: none;
   cursor: pointer;
-  color: #ffe600;
-  background-color: #000000;
+  color: #E3E32C;
+    background-color: #363432;
 }
 
 .btn1:hover{
   transform:scale(1.1);
   transition: 600ms;
-  color: #ffe600;
-  background-color: #000000;
+  color: #E3E32C;
+  background-color: #525252;
 }
 .btn:hover{
   transform:scale(1.1);
   transition: 600ms;
-  color: #ffe600;
-  background-color: #000000;
+  color: white;
+  background-color: darkRed;
+  cursor: pointer;
 }
 .heartBtn {
   position: absolute;

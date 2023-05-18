@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-self-compare */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -5,7 +7,7 @@ import {Link} from "react-router-dom";
 import {useParams} from "react-router-dom";
 import {allProductsId, addSToShoppingCart, toggleFavorite, getUser} from "../../redux/actions";
 import styles from "./ProductsDetail.module.css";
-import ShoppingCartImage from '../image/shoppingcart.svg'
+import ShoppingCartImage from '../image/shoppingcart.png'
 import ModalShoppingCart from "../modalShoppingCart/ModalShoppingCart";
 import SearchBar from "../searchbar/Searchbar";
 import RatingStart from "../ratingStart/RatingStart";
@@ -83,19 +85,19 @@ const ProductsDetail = () => {
     return (
         <div>
             <div className="carrito" onClick={showShoppingCart}>
-                <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
+                <img className={styles.cart} src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
                     borderRadius: '50%',
-                    height: '25px',
-                    width: '25px',
-                    backgroundColor: 'purple',
+                    height: '20px',
+                    width: '20px',
+                    backgroundColor: 'yellow',
                     display: 'inline-flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     top: '-40px',
                     left: '-45px'
                 }}>
-                    <span style={{color: 'white'}}>{shoppingCart.length}</span>
+                    <span style={{color: 'grey'}}>{shoppingCart.length}</span>
                 </div>
             </div>
             {<ModalShoppingCart isOpen={isOpen} closeModal={closeModal}/>}
@@ -106,7 +108,7 @@ const ProductsDetail = () => {
                     <button className={styles.btn1}>Go Henry Market</button>
                 </Link>
             </p>
-            <div className={styles.card}>
+            <div className={styles.card_container}>
 
 
                 {allProduct.length === 0 ? (
@@ -116,10 +118,11 @@ const ProductsDetail = () => {
                         {allProduct.id !== undefined ? userLogId !== undefined ? (
                             <Favorites productId={allProduct.id} userId={userLogId.id}/>
                         ) : null : null}
-                        <div className={styles.imageContainer}>
+                        <div className={styles.card}>
+                           
 
                             <img
-                                className={styles.cardimg}
+                                className={styles.card_img}
                                 src={allProduct.image ? allProduct.image : image}
                                 alt={`img-${allProduct.name}`}
                             />
@@ -136,9 +139,9 @@ const ProductsDetail = () => {
                                     </p>
                                 ) : (
                                     <p>
-                                        <b>Description: </b> {allProduct.description}
+                                        <b className={styles.desc}>Description: </b> {allProduct.description}
                                         <br/>
-                                        <b>Price: </b> {allProduct.price} USD
+                                        <b className={styles.price}>Price:  {allProduct.price} USD </b>
                                         <br/>
                                         <b>Category: </b> {allProduct.category}
                                     </p>
@@ -148,7 +151,7 @@ const ProductsDetail = () => {
                                 </p>
                             </div>
 
-                            <button className={styles.btn}>Buy</button>
+                           
                             <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add
                                 to cart
                             </button>

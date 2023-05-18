@@ -8,7 +8,9 @@ import styles from "./Search.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom";
-
+import {LogInButton} from "../logs/logIn";
+import {LogOutButton} from "../logs/logOut";
+import {useAuth0} from "@auth0/auth0-react";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -41,10 +43,14 @@ export default function SearchBar() {
       dispatch(allProductsName(productName));
     }
   }, [location.search, dispatch]);
+  const {isAuthenticated} = useAuth0();
 
   return (
+    
     <form onSubmit={handleSubmit}>
       <div className={styles.searchBtn}>
+    
+
         <input
           className={styles.search}
           type="search"
@@ -55,24 +61,24 @@ export default function SearchBar() {
           onChange={handleInput}
         />
         <button className={styles.searchButton} type="submit">
-          <FontAwesomeIcon style={{ color: "yellow" }} icon={faSearch} />
-          Search
+          <FontAwesomeIcon  style={{ color: "white" }} icon={faSearch} />
         </button>
+      {!isAuthenticated && (<><LogInButton/></>)}
+            {/*<Profile/>*/}
+            <LogOutButton/>
       </div>
 
       {searched && products && products.id && (
         <div key={products.id}>
+
           <div className={styles.card}>
             <Link to={`/detail/${products.id}`} style={{ textDecoration: "none" }}>
-              <h2 className={styles.name} style={{ color: "black" }}>
-                Name: {products.name}
-              </h2>
               <img className={styles.cardimg} src={products.image} alt={products.name} />
-              <p className={styles.description} style={{ color: "black" }}>
-                {products.description}
-              </p>
-              <p className={styles.price} style={{ color: "black" }}>
-                Price: ${products.price}
+              <h2 className={styles.name} style={{ color: "black" }}>
+                {products.name}
+              </h2>
+              <p className={styles.price} style={{ color: "darkred" }}>
+               USD {products.price}
               </p>
             </Link>
           </div>
