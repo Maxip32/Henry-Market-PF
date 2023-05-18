@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             mail: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                unique: true,
+                // unique: true,
             },
             name: {
                 type: DataTypes.STRING,

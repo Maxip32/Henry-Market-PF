@@ -14,10 +14,12 @@ import RatingStart from "../ratingStart/RatingStart";
 import Favorites from "../favorites/Favorites"
 import {useAuth0} from "@auth0/auth0-react";
 import logger from "redux-logger";
+import axios from "axios";
 
 const image = "";
 
 const ProductsDetail = () => {
+
     const dispatch = useDispatch();
     const {id} = useParams();
     const allProduct = useSelector((state) => state.products);
@@ -27,7 +29,7 @@ const ProductsDetail = () => {
     const [selectedDetail, setSelectedDetail] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
 
-    const {user} = useAuth0()
+    const {user, isLoading} = useAuth0()
 
     const handleSelect = (event) => {
         setSelectedDetail(event.target.value);
@@ -43,21 +45,21 @@ const ProductsDetail = () => {
         const token = async () => {
             const accessToken = await getAccessTokenSilently();
             dispatch(allProductsId({id, accessToken}));
+
         }
         token().catch(err => console.log(err))
     }, [dispatch, id, getAccessTokenSilently]);
 
     useEffect(() => {
-        const token = async () => {
-            const accessToken = await getAccessTokenSilently();
-            dispatch(getUser({accessToken}));
-
-            setUserLogId(() => userLog.find(user => {
-                return user.mail === user.mail
-            }))
+        if (!isLoading && userLog && user !== undefined) {
+            setUserLogId(userLog?.find(us => us.mail === user.email))
         }
-        token().catch(err => console.log(err))
-    }, [dispatch, getAccessTokenSilently]);
+        /*if (!isLoading) {
+            setUserLogId(() => userLog?.find(us => {
+                return us.mail === user.email
+            }))
+        }*/
+    }, [dispatch, userLog, isLoading, user]);
 
     const [isOpen, setIsOpen] = useState(false)
     const openModal = () => {
@@ -82,9 +84,71 @@ const ProductsDetail = () => {
         dispatch(toggleFavorite(allProduct.id));
     };
 
+    // useEffect para comentarios
+    useEffect(() => {
+        dispatch(allProductsId(id));
+
+        // Cargar comentarios desde localStorage
+        const savedComments = localStorage.getItem("comments");
+        if (savedComments) {
+            setComments(JSON.parse(savedComments));
+        }
+    }, [dispatch, id]);
+
+    // codigo de comentario
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
+
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+    };
+
+    const [localEstrellitas, setLocalEstrellitas] = useState(0)
+    const handleEstrellitas = (value) => {
+        setLocalEstrellitas(value)
+    }
+
+    const handleSubmitComment = async (event) => {
+        event.preventDefault();
+
+        console.log(`localEstrellitas: ${localEstrellitas}`)
+
+        if (comment !== "") {
+            const newComment = {
+                productId: id,
+                name: allProduct.name,
+                text: comment,
+                date: new Date().toISOString(),
+            };
+            setComments([...comments, newComment]);
+            setComment("");
+
+            // Guardar comentarios en localStorage
+            const savedComments =
+                JSON.parse(localStorage.getItem("comments")) || [];
+            localStorage.setItem(
+                "comments",
+                JSON.stringify([...savedComments, newComment])
+            );
+
+            const dataResponse = await axios.post("review", {
+                title: allProduct.name,
+                body: comment,
+                rating: localEstrellitas,
+                productId: id
+            })
+
+            console.log(`dataResponse: ${JSON.stringify(dataResponse)}`)
+
+        }
+    };
+
+    // Filtrar los comentarios para mostrar solo los del producto actual
+    // const productComments = comments.filter((comment) => comment.productId === id);
+    const productComments = comments.filter((comment) => comment.name === allProduct.name)
+
     return (
         <div>
-            {JSON.stringify(userLog)}
             <div className="carrito" onClick={showShoppingCart}>
                 <img src={ShoppingCartImage} alt="shopping-cart" width='25px' height='25px'/>
                 <div style={{
@@ -116,18 +180,19 @@ const ProductsDetail = () => {
                     <div></div>
                 ) : (
                     <>
-                        {allProduct.id !== undefined ? userLogId !== undefined ? (
+                        {/*{allProduct.id !== undefined ? userLogId !== undefined ? (*/}
+                        {/*    <Favorites productId={allProduct.id} userId={userLogId?.id}/>*/}
+                        {/*) : null : null}*/}
+                        {!isLoading ? user !== undefined ? userLogId !== undefined ? (
                             <Favorites productId={allProduct.id} userId={userLogId.id}/>
-                        ) : null : null}
+                        ) : null : null : null}
                         <div className={styles.imageContainer}>
-                           
 
                             <img
                                 className={styles.cardimg}
                                 src={allProduct.image ? allProduct.image : image}
                                 alt={`img-${allProduct.name}`}
                             />
-
 
                         </div>
 
@@ -148,14 +213,37 @@ const ProductsDetail = () => {
                                     </p>
                                 )}
                                 <p>
-                                    <RatingStart productId={allProduct.id}/>
+                                    <RatingStart productId={allProduct.id} handleEstrellitas={handleEstrellitas}/>
                                 </p>
                             </div>
 
-                           
+
                             <button className={styles.btn} onClick={() => dispatch(addSToShoppingCart(allProduct))}>Add
                                 to cart
                             </button>
+
+                            {/* Nueva sección de código para agregar comentarios */}
+                            <section>
+                                <h2>Add a comment or question:</h2>
+                                <form onSubmit={handleSubmitComment}>
+                                    <label htmlFor="comment">Comment:</label>
+                                    <textarea id="comment" value={comment} onChange={handleCommentChange}></textarea>
+                                    <button type="submit">Submit</button>
+                                </form>
+                                {productComments.length > 0 && (
+                                    <div>
+                                        <h3>Comments and questions:</h3>
+                                        {productComments.map((comment, index) => (
+                                            <div key={comment.date}>
+                                                <p style={{color: "red", fontSize: "20px"}}>{comment.text}</p>
+                                                <p>{comment.date}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </section>
+
+
                         </section>
                     </>
                 )}

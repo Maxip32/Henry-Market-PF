@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateProductRating } from '../../redux/actions';
 
-function Rating({ productId }) {
+function Rating({ productId, handleEstrellitas }) {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
 
@@ -13,7 +13,8 @@ function Rating({ productId }) {
     } else {
       // Si el usuario hace clic en una estrella diferente, marcarla
       setRating(value);
-      dispatch(updateProductRating(productId, value));
+      // dispatch(updateProductRating(productId, value));
+      handleEstrellitas(value);
     }
   };
 

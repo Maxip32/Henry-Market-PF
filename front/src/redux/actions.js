@@ -1,15 +1,12 @@
 import axios from "axios";
 
 
-export const getUser = ({accessToken}) => {
+export const getUser = () => {
     return async function (dispatch) {
         try {
-            const user = await axios.get(`/users`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
+            const user = await axios.get(`/users`);
+
+            console.log(`this is userdata ${user.data}`)
             dispatch({
                 type: "GET_USERS",
                 payload: user.data,
@@ -191,6 +188,7 @@ export const updateProductRating = (id, rating) => async (dispatch) => {
 export const toggleFavorite = ({productId, userId}) => {
     return async (dispatch, getState) => {
         try {
+            console.log(`userId: ${userId} productId: ${productId}`);
             const response = await axios.post(`/favorite`, {userId, productId});
             const {message} = response.data;
 
@@ -245,6 +243,7 @@ export const toggleFavorite = ({productId, userId}) => {
 export const getFavoriteId = (userId) => {
     return async function (dispatch) {
         try {
+            console.log(`userId into action getfavorite: ${userId}`);
             const response = await axios.get(`/favorite/${userId}`);
             const {products} = response.data
 
