@@ -27,7 +27,7 @@ export default function Dashboard() {
     const [itemsPerPage, setItemsPerPage] = useState(6);
 
     useEffect(() => {
-        dispatch(allProducts());
+        dispatch(allProducts(false));
         dispatch(clean());
     }, [dispatch]);
 

@@ -75,19 +75,29 @@ export const adressPost = (adress) => {
     };
 };
 
-export const allProducts = () => {
+export const allProducts = (borrado) => {
     return async function (dispatch) {
         try {
             const response = await axios.get(`/products`);
+           const products= response.data.filter( p=>{
+            if(borrado === true){
+                return p.deleted === false;
+                
+            }if(borrado === false){
+                return p
+            }})
             dispatch({
                 type: "ALL_PRODUCTS",
-                payload: response.data,
+                payload: products,
             });
         } catch (error) {
             console.error(error);
         }
     };
 };
+                
+                
+                
 
 export const allProductsId = ({id, accessToken}) => {
     return async function (dispatch) {
@@ -120,14 +130,22 @@ export const allProductsName = (name) => {
         }
     }
 }
-export const getProductsByCategory = (category) => {
+export const getProductsByCategory = (category, borrado) => {
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/products/category/${category}`);
+            const products= response.data.filter( p=>{
+                if(borrado === true){
+                    return p.deleted === false;
+                    
+                }if(borrado === false){
+                    return p
+                }})
             console.log("Products by category!!!!!:", response.data);
+
             dispatch({
                 type: "GET_PRODUCTS_BY_CATEGORY",
-                payload: response.data,
+                payload: products,
 
             });
         } catch (error) {

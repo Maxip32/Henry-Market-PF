@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import styles from "./FormProducts.module.css"
 import { ToastContainer, toast } from 'react-toastify' 
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from "axios";
 
 
 //import "./FormProducts.css"
@@ -111,7 +113,7 @@ const FormProducts = () => {
 
 
     
-   
+    const {getAccessTokenSilently} = useAuth0()
 
 
     const handleSubmit = async (e) =>{
@@ -125,22 +127,33 @@ const FormProducts = () => {
       const IMAGEURL = await uploadImage()
   
       try {
-        const res = await fetch('http://localhost:3001/products/',{
-            method:'POST',      
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({...form, image:IMAGEURL})
-        })
-        const data = await res.json()
+        console.log({...form, image:IMAGEURL})
+        const token = await getAccessTokenSilently()
+        const res = await axios.post('http://localhost:3001/products',{
+          ...form, image:IMAGEURL
+
+        } , { headers: {
+                  'Content-Type': 'application/json', 
+                   
+              },})
+              console.log(res.data)
+        // const res = await fetch('http://localhost:3001/products/',{
+        //     method:'POST',      
+        //     headers: {
+        //         'Content-Type': 'application/json', 
+        //         'Authorization': `Bearer ${token}`
+        //     },
+        //     body: JSON.stringify({...form, image:IMAGEURL})
+        // })
+        // const data = await res.json()
 
         toast.success("Product created")
         window.location.href = "/home";
 
 
 
-        if(data.error) return console.log('producto ya existe')
-        else return console.log(data)
+        // if(data.error) return console.log('producto ya existe')
+        // else return
 
     } catch (error) {
         console.log('Product could not be created')

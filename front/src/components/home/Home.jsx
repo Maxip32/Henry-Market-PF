@@ -19,12 +19,12 @@ import {useAuth0} from "@auth0/auth0-react";
 export default function Home() {
     const dispatch = useDispatch();
     let products = useSelector((state) => state.products);
-    products= products.filter( p=>{
-        return p.deleted !== true;
+    // products= products.filter( p=>{
+    //     return p.deleted !== true;
         
         
         
-    })
+    // })
     if (!Array.isArray(products)) {
         // handle error here, e.g. set products to an empty array
         products = [];
@@ -35,9 +35,19 @@ export default function Home() {
     const [itemsPerPage, setItemsPerPage] = useState(6);
 
     useEffect(() => {
-        dispatch(allProducts());
+        dispatch(allProducts(true));
         dispatch(clean());
     }, [dispatch]);
+
+    // useEffect(() => {
+    // products= products.filter( p=>{
+    //    return p.deleted !== true;
+        
+        
+        
+    // })
+       
+    // }, [products]);
     
     // const refreshPage = () => {
     //     window.location.reload();
@@ -143,12 +153,14 @@ export default function Home() {
                     Refresh
                 </button> */}
             </div>
-            
+            {isAuthenticated && (
             <div className={styles.buttons}>
                 <Link to="/admin">
                     <button className={styles.input}>-Dashboard-</button>
                 </Link>
             </div>
+                
+            )}
 
             <div></div>
             {!isAuthenticated && (

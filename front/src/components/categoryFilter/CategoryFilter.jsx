@@ -21,7 +21,7 @@ const CategoryFilter = () => {
     const handleCategoryChange = (event) => {
         const category = event.target.value;
         setSelectedCategory(category);
-        dispatch(getProductsByCategory(category));
+        dispatch(getProductsByCategory(category, true));
         
     };
 
