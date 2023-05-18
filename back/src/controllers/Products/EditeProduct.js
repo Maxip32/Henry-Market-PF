@@ -3,7 +3,7 @@ const {ProductsName} = require("../../db");
 const editeProducts = async (req, res) => {
     try {
         const {id} = req.params;
-        const {name, image, price, colors, size, category, description, stock} =
+        const {name, image, price, colors, size, category, description, stock, deleted} =
             req.body;
 
         const productFound = await ProductsName.findByPk(id);
@@ -19,6 +19,7 @@ const editeProducts = async (req, res) => {
                 category,
                 description,
                 stock,
+                deleted
             },
             {
                 where: {id},
